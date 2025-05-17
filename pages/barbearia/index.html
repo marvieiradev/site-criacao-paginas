@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barber Elite - Barbearia Premium</title>
+    <!-- TailwindCSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+      /* Configurações personalizadas */
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Playfair Display", serif;
+      }
+      .hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("img/barber-1.jpg");
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+      }
+      .transition-all {
+        transition: all 0.3s ease;
+      }
+      .hover-scale:hover {
+        transform: scale(1.05);
+      }
+      .service-card {
+        transition: all 0.3s ease;
+      }
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+      .gallery-img {
+        transition: all 0.3s ease;
+        filter: grayscale(30%);
+      }
+      .gallery-img:hover {
+        filter: grayscale(0%);
+        transform: scale(1.02);
+      }
+      .navbar {
+        transition: all 0.3s ease;
+      }
+      .navbar.scrolled {
+        background-color: #000000;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <!-- Navbar -->
+    <nav
+      id="navbar"
+      class="navbar fixed w-full z-50 py-4 px-6 md:px-12 transition-all"
+    >
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="#" class="text-white text-2xl md:text-3xl font-bold">
+          Barber<span class="text-amber-500">Elite</span>
+        </a>
+        <div class="hidden md:flex space-x-8">
+          <a
+            href="#inicio"
+            class="text-white hover:text-amber-500 transition-all"
+            >Início</a
+          >
+          <a
+            href="#sobre"
+            class="text-white hover:text-amber-500 transition-all"
+            >Sobre</a
+          >
+          <a
+            href="#servicos"
+            class="text-white hover:text-amber-500 transition-all"
+            >Serviços</a
+          >
+          <a
+            href="#galeria"
+            class="text-white hover:text-amber-500 transition-all"
+            >Galeria</a
+          >
+          <a
+            href="#contato"
+            class="text-white hover:text-amber-500 transition-all"
+            >Contato</a
+          >
+        </div>
+        <button id="mobile-menu-button" class="md:hidden text-white text-2xl">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <!-- Menu Mobile -->
+      <div
+        id="mobile-menu"
+        class="md:hidden hidden bg-black bg-opacity-95 absolute top-full left-0 w-full py-4 px-6"
+      >
+        <div class="flex flex-col space-y-4">
+          <a
+            href="#inicio"
+            class="text-white hover:text-amber-500 transition-all"
+            >Início</a
+          >
+          <a
+            href="#sobre"
+            class="text-white hover:text-amber-500 transition-all"
+            >Sobre</a
+          >
+          <a
+            href="#servicos"
+            class="text-white hover:text-amber-500 transition-all"
+            >Serviços</a
+          >
+          <a
+            href="#galeria"
+            class="text-white hover:text-amber-500 transition-all"
+            >Galeria</a
+          >
+          <a
+            href="#contato"
+            class="text-white hover:text-amber-500 transition-all"
+            >Contato</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-section flex items-center justify-center">
+      <div
+        class="container mx-auto px-6 md:px-12 text-center"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
+          Barber<span class="text-amber-500">Elite</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300 mb-8">
+          Estilo e precisão em cada corte
+        </p>
+        <a
+          href="#contato"
+          class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full transition-all hover:shadow-lg"
+        >
+          Agende Agora
+        </a>
+      </div>
+    </section>
+
+    <!-- Sobre Nós -->
+    <section id="sobre" class="py-20 bg-white">
+      <div class="container mx-auto px-6 md:px-12">
+        <div class="flex flex-col md:flex-row items-center">
+          <div
+            class="md:w-1/2 mb-10 md:mb-0"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+          >
+            <img
+              src="img/barber-2.jpg"
+              alt="Barbearia"
+              class="rounded-lg shadow-xl w-full h-auto"
+            />
+          </div>
+          <div
+            class="md:w-1/2 md:pl-12"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="200"
+          >
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+              Sobre a BarberElite
+            </h2>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              Fundada com a paixão pela arte da barbearia, a BarberElite é um
+              espaço onde tradição e modernidade se encontram. Nossos barbeiros
+              são artesãos do estilo, dedicados a proporcionar não apenas um
+              corte, mas uma experiência completa.
+            </p>
+            <p class="text-gray-600 mb-8 leading-relaxed">
+              Com ambiente sofisticado e acolhedor, oferecemos serviços premium
+              que vão desde cortes clássicos até as tendências mais
+              contemporâneas. Cada cliente recebe atenção personalizada,
+              garantindo resultados que destacam sua personalidade e estilo.
+            </p>
+            <div class="flex space-x-6">
+              <div class="text-center">
+                <span class="block text-3xl font-bold text-amber-500">5+</span>
+                <span class="text-gray-500">Anos de experiência</span>
+              </div>
+              <div class="text-center">
+                <span class="block text-3xl font-bold text-amber-500">8</span>
+                <span class="text-gray-500">Barbeiros profissionais</span>
+              </div>
+              <div class="text-center">
+                <span class="block text-3xl font-bold text-amber-500"
+                  >1000+</span
+                >
+                <span class="text-gray-500">Clientes satisfeitos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos" class="py-20 bg-gray-100">
+      <div class="container mx-auto px-6 md:px-12 text-center">
+        <h2
+          class="text-3xl md:text-4xl font-bold mb-4"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          Nossos Serviços
+        </h2>
+        <p
+          class="text-gray-600 mb-12 max-w-3xl mx-auto"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        >
+          Oferecemos uma variedade de serviços premium para garantir que você
+          saia com o melhor visual possível.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Serviço 1 -->
+          <div
+            class="service-card bg-white p-8 rounded-lg shadow-md"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="300"
+          >
+            <div
+              class="w-16 h-16 bg-amber-500 text-white rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-cut text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Corte de Cabelo</h3>
+            <p class="text-gray-600">
+              Cortes personalizados que valorizam seu estilo e características
+              faciais, realizados com técnicas modernas e precisão.
+            </p>
+            <p class="mt-4 text-amber-500 font-semibold">
+              A partir de R$ 45,00
+            </p>
+          </div>
+
+          <!-- Serviço 2 -->
+          <div
+            class="service-card bg-white p-8 rounded-lg shadow-md"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="400"
+          >
+            <div
+              class="w-16 h-16 bg-amber-500 text-white rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fa-solid fa-memory text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Barba</h3>
+            <p class="text-gray-600">
+              Modelagem e aparagem de barba com toalha quente, óleos essenciais
+              e finalização com produtos premium.
+            </p>
+            <p class="mt-4 text-amber-500 font-semibold">
+              A partir de R$ 35,00
+            </p>
+          </div>
+
+          <!-- Serviço 3 -->
+          <div
+            class="service-card bg-white p-8 rounded-lg shadow-md"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="500"
+          >
+            <div
+              class="w-16 h-16 bg-amber-500 text-white rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-spa text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Combo Completo</h3>
+            <p class="text-gray-600">
+              Experiência completa com corte de cabelo, barba, massagem facial e
+              tratamento com produtos exclusivos.
+            </p>
+            <p class="mt-4 text-amber-500 font-semibold">
+              A partir de R$ 75,00
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galeria -->
+    <section id="galeria" class="py-20 bg-white">
+      <div class="container mx-auto px-6 md:px-12 text-center">
+        <h2
+          class="text-3xl md:text-4xl font-bold mb-4"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          Nossa Galeria
+        </h2>
+        <p
+          class="text-gray-600 mb-12 max-w-3xl mx-auto"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        >
+          Conheça alguns dos nossos trabalhos e o ambiente da nossa barbearia.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div
+            class="overflow-hidden rounded-lg"
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            data-aos-delay="300"
+          >
+            <img
+              src="img/barber-1.jpg"
+              alt="Barbearia"
+              class="gallery-img w-full h-64 object-cover"
+            />
+          </div>
+          <div
+            class="overflow-hidden rounded-lg"
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            data-aos-delay="400"
+          >
+            <img
+              src="img/barber-2.jpg"
+              alt="Barbearia"
+              class="gallery-img w-full h-64 object-cover"
+            />
+          </div>
+          <div
+            class="overflow-hidden rounded-lg"
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            data-aos-delay="500"
+          >
+            <img
+              src="img/barber-3.jpg"
+              alt="Barbearia"
+              class="gallery-img w-full h-64 object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="py-20 bg-gray-900 text-white">
+      <div class="container mx-auto px-6 md:px-12">
+        <div class="flex flex-col md:flex-row">
+          <div
+            class="md:w-1/2 mb-10 md:mb-0"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+          >
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+              Entre em Contato
+            </h2>
+            <p class="text-gray-400 mb-8">
+              Estamos prontos para atendê-lo e proporcionar a melhor experiência
+              em barbearia.
+            </p>
+
+            <div class="mb-6 flex items-start">
+              <div class="text-amber-500 mr-4 mt-1">
+                <i class="fas fa-map-marker-alt text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold mb-1">Endereço</h3>
+                <p class="text-gray-400">
+                  Av. Paulista, 1000 - Bela Vista, São Paulo - SP
+                </p>
+              </div>
+            </div>
+
+            <div class="mb-6 flex items-start">
+              <div class="text-amber-500 mr-4 mt-1">
+                <i class="fas fa-phone text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold mb-1">Telefone</h3>
+                <p class="text-gray-400">(11) 99999-9999</p>
+              </div>
+            </div>
+
+            <div class="mb-6 flex items-start">
+              <div class="text-amber-500 mr-4 mt-1">
+                <i class="fas fa-envelope text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold mb-1">Email</h3>
+                <p class="text-gray-400">contato@barberelite.com.br</p>
+              </div>
+            </div>
+
+            <div class="flex space-x-4 mt-8">
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-800 hover:bg-amber-500 rounded-full flex items-center justify-center transition-all"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-800 hover:bg-amber-500 rounded-full flex items-center justify-center transition-all"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-800 hover:bg-amber-500 rounded-full flex items-center justify-center transition-all"
+              >
+                <i class="fab fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="md:w-1/2 md:pl-12"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="200"
+          >
+            <div class="bg-gray-800 p-8 rounded-lg">
+              <h3 class="text-2xl font-bold mb-6">Agende seu Horário</h3>
+              <form>
+                <div class="mb-4">
+                  <label for="nome" class="block text-gray-400 mb-2"
+                    >Nome Completo</label
+                  >
+                  <input
+                    type="text"
+                    id="nome"
+                    class="w-full bg-gray-700 border border-gray-600 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="email" class="block text-gray-400 mb-2"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    class="w-full bg-gray-700 border border-gray-600 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="telefone" class="block text-gray-400 mb-2"
+                    >Telefone</label
+                  >
+                  <input
+                    type="tel"
+                    id="telefone"
+                    class="w-full bg-gray-700 border border-gray-600 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="servico" class="block text-gray-400 mb-2"
+                    >Serviço Desejado</label
+                  >
+                  <select
+                    id="servico"
+                    class="w-full bg-gray-700 border border-gray-600 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  >
+                    <option value="">Selecione um serviço</option>
+                    <option value="corte">Corte de Cabelo</option>
+                    <option value="barba">Barba</option>
+                    <option value="combo">Combo Completo</option>
+                  </select>
+                </div>
+                <div class="mb-6">
+                  <label for="mensagem" class="block text-gray-400 mb-2"
+                    >Mensagem (opcional)</label
+                  >
+                  <textarea
+                    id="mensagem"
+                    rows="4"
+                    class="w-full bg-gray-700 border border-gray-600 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-4 rounded-md transition-all"
+                >
+                  Agendar Agora
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8">
+      <div class="container mx-auto px-6 md:px-12">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <a href="#" class="text-2xl font-bold"
+              >Barber<span class="text-amber-500">Elite</span></a
+            >
+            <p class="text-gray-500 mt-2">Estilo e precisão em cada corte</p>
+          </div>
+          <div class="text-center md:text-right">
+            <p class="text-gray-500">
+              &copy; 2025 BarberElite. Todos os direitos reservados.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Inicializar AOS (Animate On Scroll)
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init();
+
+        // Navbar scroll effect
+        const navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+        });
+
+        // Fechar menu mobile ao clicar em um link
+        const mobileLinks = mobileMenu.querySelectorAll("a");
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.add("hidden");
+          });
+        });
+
+        // Smooth scroll para links de âncora
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

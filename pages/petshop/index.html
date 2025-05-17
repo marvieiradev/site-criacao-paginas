@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetAmigo - Seu Pet em Boas Mãos</title>
+    
+    <!-- TailwindCSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuração do Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pet-green': {
+                            100: '#e0f2e9',
+                            200: '#c1e5d4',
+                            300: '#a3d8bf',
+                            400: '#84cba9',
+                            500: '#65be94',
+                            600: '#4e9876',
+                            700: '#377257',
+                            800: '#1f4c39',
+                            900: '#08261c',
+                        }
+                    },
+                    fontFamily: {
+                        'pet': ['Quicksand', 'sans-serif'],
+                        'pet-title': ['Baloo 2', 'cursive']
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'fade-in': 'fadeIn 1s ease-in',
+                        'slide-in': 'slideIn 0.5s ease-out'
+                    },
+                    keyframes: {
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Estilos adicionais */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .bg-paws {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="rgba(103, 190, 148, 0.1)"><path d="M12,8L10.67,8.09C9.81,7.07 7.4,4.5 5,4.5C5,4.5 3.03,7.46 4.96,11.41C4.41,12.24 4.07,12.67 4,13.66L2.07,13.95L2.28,14.93L4.04,14.67L4.18,15.38L2.61,16.32L3.08,17.21L4.53,16.32C5.68,18.76 8.59,20 12,20C15.41,20 18.32,18.76 19.47,16.32L20.92,17.21L21.39,16.32L19.82,15.38L19.96,14.67L21.72,14.93L21.93,13.95L20,13.66C19.93,12.67 19.59,12.24 19.04,11.41C20.97,7.46 19,4.5 19,4.5C16.6,4.5 14.19,7.07 13.33,8.09L12,8M9,11A1,1 0 0,1 10,12A1,1 0 0,1 9,13A1,1 0 0,1 8,12A1,1 0 0,1 9,11M15,11A1,1 0 0,1 16,12A1,1 0 0,1 15,13A1,1 0 0,1 14,12A1,1 0 0,1 15,11M12,7A1,1 0 0,1 13,8A1,1 0 0,1 12,9A1,1 0 0,1 11,8A1,1 0 0,1 12,7Z" /></svg>');
+            background-repeat: repeat;
+        }
+        
+        .pet-shadow {
+            box-shadow: 0 10px 25px -5px rgba(103, 190, 148, 0.3);
+        }
+        
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="font-pet bg-gray-50 bg-paws">
+    <!-- Navbar -->
+    <nav class="fixed w-full bg-white bg-opacity-95 shadow-md z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-paw text-3xl text-pet-green-500 mr-2 animate-wiggle"></i>
+                <span class="font-pet-title font-bold text-2xl text-pet-green-700">PetAmigo</span>
+            </div>
+            
+            <!-- Menu para desktop -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#inicio" class="font-medium text-pet-green-700 hover:text-pet-green-500 transition-colors">Início</a>
+                <a href="#servicos" class="font-medium text-pet-green-700 hover:text-pet-green-500 transition-colors">Serviços</a>
+                <a href="#sobre" class="font-medium text-pet-green-700 hover:text-pet-green-500 transition-colors">Sobre Nós</a>
+                <a href="#galeria" class="font-medium text-pet-green-700 hover:text-pet-green-500 transition-colors">Galeria</a>
+                <a href="#contato" class="font-medium text-pet-green-700 hover:text-pet-green-500 transition-colors">Contato</a>
+            </div>
+            
+            <!-- Botão de menu para mobile -->
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-pet-green-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Menu mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-4 py-2 animate-fade-in">
+            <a href="#inicio" class="block py-2 font-medium text-pet-green-700 hover:text-pet-green-500 transition-colors">Início</a>
+            <a href="#servicos" class="block py-2 font-medium text-pet-green-700 hover:text-pet-green-500 transition-colors">Serviços</a>
+            <a href="#sobre" class="block py-2 font-medium text-pet-green-700 hover:text-pet-green-500 transition-colors">Sobre Nós</a>
+            <a href="#galeria" class="block py-2 font-medium text-pet-green-700 hover:text-pet-green-500 transition-colors">Galeria</a>
+            <a href="#contato" class="block py-2 font-medium text-pet-green-700 hover:text-pet-green-500 transition-colors">Contato</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-28 pb-20 md:pt-32 md:pb-24 bg-gradient-to-b from-pet-green-100 to-white">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0 animate-fade-in">
+                <h1 class="font-pet-title font-bold text-4xl md:text-5xl lg:text-6xl text-pet-green-800 mb-4">
+                    Cuidamos do seu pet com <span class="text-pet-green-500">amor</span> e <span class="text-pet-green-500">carinho</span>
+                </h1>
+                <p class="text-gray-600 text-lg mb-8">
+                    No PetAmigo, seu animal de estimação recebe os melhores cuidados, com profissionais qualificados e ambiente acolhedor.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#servicos" class="bg-pet-green-500 hover:bg-pet-green-600 text-white font-medium py-3 px-6 rounded-full transition-colors duration-300 text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        Nossos Serviços
+                    </a>
+                    <a href="#contato" class="bg-white hover:bg-gray-100 text-pet-green-700 font-medium py-3 px-6 rounded-full border-2 border-pet-green-500 transition-colors duration-300 text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        Agende uma Visita
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center animate-slide-in">
+                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cachorro feliz" class="w-full max-w-md rounded-2xl shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-pet-title font-bold text-3xl md:text-4xl text-pet-green-700 mb-4">Nossos Serviços</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Oferecemos uma variedade de serviços para garantir o bem-estar e a felicidade do seu pet.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Serviço 1 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg pet-shadow hover-scale">
+                    <div class="w-16 h-16 bg-pet-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-cut text-2xl text-pet-green-600"></i>
+                    </div>
+                    <h3 class="font-pet-title font-semibold text-xl text-pet-green-700 mb-2">Banho e Tosa</h3>
+                    <p class="text-gray-600">Banhos relaxantes e tosas profissionais para deixar seu pet limpo, cheiroso e estiloso.</p>
+                </div>
+                
+                <!-- Serviço 2 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg pet-shadow hover-scale">
+                    <div class="w-16 h-16 bg-pet-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-stethoscope text-2xl text-pet-green-600"></i>
+                    </div>
+                    <h3 class="font-pet-title font-semibold text-xl text-pet-green-700 mb-2">Consultas Veterinárias</h3>
+                    <p class="text-gray-600">Atendimento veterinário completo com profissionais experientes e equipamentos modernos.</p>
+                </div>
+                
+                <!-- Serviço 3 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg pet-shadow hover-scale">
+                    <div class="w-16 h-16 bg-pet-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-bone text-2xl text-pet-green-600"></i>
+                    </div>
+                    <h3 class="font-pet-title font-semibold text-xl text-pet-green-700 mb-2">Pet Shop</h3>
+                    <p class="text-gray-600">Produtos de qualidade para seu pet: rações premium, brinquedos, acessórios e muito mais.</p>
+                </div>
+                
+                <!-- Serviço 4 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg pet-shadow hover-scale">
+                    <div class="w-16 h-16 bg-pet-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-home text-2xl text-pet-green-600"></i>
+                    </div>
+                    <h3 class="font-pet-title font-semibold text-xl text-pet-green-700 mb-2">Hospedagem</h3>
+                    <p class="text-gray-600">Hospedagem confortável e segura para seu pet durante suas viagens ou compromissos.</p>
+                </div>
+                
+                <!-- Serviço 5 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg pet-shadow hover-scale">
+                    <div class="w-16 h-16 bg-pet-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-walking text-2xl text-pet-green-600"></i>
+                    </div>
+                    <h3 class="font-pet-title font-semibold text-xl text-pet-green-700 mb-2">Passeios</h3>
+                    <p class="text-gray-600">Passeios diários para exercitar seu pet e garantir seu bem-estar físico e mental.</p>
+                </div>
+                
+                <!-- Serviço 6 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg pet-shadow hover-scale">
+                    <div class="w-16 h-16 bg-pet-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-graduation-cap text-2xl text-pet-green-600"></i>
+                    </div>
+                    <h3 class="font-pet-title font-semibold text-xl text-pet-green-700 mb-2">Adestramento</h3>
+                    <p class="text-gray-600">Treinamento profissional para ensinar bons comportamentos e fortalecer o vínculo com seu pet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nós -->
+    <section id="sobre" class="py-16 md:py-24 bg-pet-green-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 pr-0 md:pr-10">
+                    <img src="https://media.istockphoto.com/id/2196436307/pt/foto/veterinary-professionals-examining-beagle-dog-in-clinic.webp?a=1&b=1&s=612x612&w=0&k=20&c=UxOcvLlnuByhHipWm7ICpMO9X_KslHKXovD6Fhm6tIY=" alt="Equipe PetAmigo" class="rounded-2xl shadow-xl">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="font-pet-title font-bold text-3xl md:text-4xl text-pet-green-700 mb-6">Sobre o PetAmigo</h2>
+                    <p class="text-gray-600 mb-4">
+                        Fundado em 2015, o PetAmigo nasceu da paixão por animais e do desejo de oferecer serviços de alta qualidade para pets e seus tutores.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        Nossa equipe é formada por profissionais qualificados e apaixonados, que tratam cada animal como se fosse seu próprio pet, garantindo cuidado, carinho e atenção personalizada.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        No PetAmigo, acreditamos que cada pet é único e merece um tratamento especial. Por isso, nossos serviços são adaptados às necessidades específicas de cada animal.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-pet-green-500 mr-2"></i>
+                            <span class="text-gray-700">Profissionais qualificados</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-pet-green-500 mr-2"></i>
+                            <span class="text-gray-700">Ambiente acolhedor</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-pet-green-500 mr-2"></i>
+                            <span class="text-gray-700">Produtos de qualidade</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-pet-green-500 mr-2"></i>
+                            <span class="text-gray-700">Atendimento personalizado</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#contato" class="inline-block bg-pet-green-500 hover:bg-pet-green-600 text-white font-medium py-3 px-6 rounded-full transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        Conheça Nossa Equipe
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria -->
+    <section id="galeria" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-pet-title font-bold text-3xl md:text-4xl text-pet-green-700 mb-4">Galeria de Pets</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Conheça alguns dos nossos clientes felizes e momentos especiais no PetAmigo.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="overflow-hidden rounded-lg shadow-lg hover-scale">
+                    <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Cachorro" class="w-full h-64 object-cover">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg hover-scale">
+                    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Gato" class="w-full h-64 object-cover">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg hover-scale">
+                    <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Cachorro" class="w-full h-64 object-cover">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg hover-scale">
+                    <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Gato" class="w-full h-64 object-cover">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg hover-scale">
+                    <img src="https://images.unsplash.com/photo-1425082661705-1834bfd09dca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Coelho" class="w-full h-64 object-cover">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg hover-scale">
+                    <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Cachorro" class="w-full h-64 object-cover">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg hover-scale">
+                    <img src="https://images.unsplash.com/photo-1518288774672-b94e808873ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Gato" class="w-full h-64 object-cover">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg hover-scale">
+                    <img src="https://images.unsplash.com/photo-1591946614720-90a587da4a36?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Hamster" class="w-full h-64 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="py-16 md:py-24 bg-pet-green-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-pet-title font-bold text-3xl md:text-4xl text-pet-green-700 mb-4">O Que Nossos Clientes Dizem</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Veja o que os tutores têm a dizer sobre os serviços do PetAmigo.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Depoimento 1 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
+                    <div class="flex items-center mb-4">
+                        <div class="text-pet-green-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">
+                        "Meu cachorro sempre volta feliz e cheiroso do PetAmigo. A equipe é muito atenciosa e carinhosa com ele. Recomendo a todos!"
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-pet-green-700">Ana Silva</h4>
+                            <p class="text-gray-500 text-sm">Tutora do Max</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Depoimento 2 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
+                    <div class="flex items-center mb-4">
+                        <div class="text-pet-green-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">
+                        "Os veterinários do PetAmigo são excelentes! Minha gata recebeu um tratamento de primeira qualidade. Estou muito satisfeito com o atendimento."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-pet-green-700">Carlos Oliveira</h4>
+                            <p class="text-gray-500 text-sm">Tutor da Luna</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Depoimento 3 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
+                    <div class="flex items-center mb-4">
+                        <div class="text-pet-green-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">
+                        "Deixei meu cachorro hospedado no PetAmigo durante minhas férias e fiquei muito tranquila. Recebi fotos diárias e ele voltou super feliz!"
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-pet-green-700">Mariana Santos</h4>
+                            <p class="text-gray-500 text-sm">Tutora do Thor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-pet-title font-bold text-3xl md:text-4xl text-pet-green-700 mb-4">Entre em Contato</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Estamos prontos para atender você e seu pet. Entre em contato conosco!</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-8">
+                    <form class="bg-white rounded-xl p-8 shadow-lg">
+                        <div class="mb-6">
+                            <label for="nome" class="block text-gray-700 font-medium mb-2">Nome</label>
+                            <input type="text" id="nome" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pet-green-500 focus:border-transparent transition-colors">
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">E-mail</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pet-green-500 focus:border-transparent transition-colors">
+                        </div>
+                        <div class="mb-6">
+                            <label for="telefone" class="block text-gray-700 font-medium mb-2">Telefone</label>
+                            <input type="tel" id="telefone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pet-green-500 focus:border-transparent transition-colors">
+                        </div>
+                        <div class="mb-6">
+                            <label for="mensagem" class="block text-gray-700 font-medium mb-2">Mensagem</label>
+                            <textarea id="mensagem" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pet-green-500 focus:border-transparent transition-colors"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-pet-green-500 hover:bg-pet-green-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-8">
+                    <div class="bg-white rounded-xl p-8 shadow-lg h-full">
+                        <h3 class="font-pet-title font-semibold text-2xl text-pet-green-700 mb-6">Informações de Contato</h3>
+                        
+                        <div class="mb-6">
+                            <div class="flex items-start mb-4">
+                                <div class="w-10 h-10 bg-pet-green-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt text-pet-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-1">Endereço</h4>
+                                    <p class="text-gray-600">Av. dos Animais, 123 - Jardim Pet<br>São Paulo - SP, 01234-567</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start mb-4">
+                                <div class="w-10 h-10 bg-pet-green-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-phone-alt text-pet-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-1">Telefone</h4>
+                                    <p class="text-gray-600">(11) 1234-5678</p>
+                                    <p class="text-gray-600">(11) 98765-4321</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start mb-4">
+                                <div class="w-10 h-10 bg-pet-green-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-envelope text-pet-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-1">E-mail</h4>
+                                    <p class="text-gray-600">contato@petamigo.com.br</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-pet-green-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-clock text-pet-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-1">Horário de Funcionamento</h4>
+                                    <p class="text-gray-600">Segunda a Sexta: 8h às 19h</p>
+                                    <p class="text-gray-600">Sábado: 8h às 17h</p>
+                                    <p class="text-gray-600">Domingo: 9h às 13h</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-semibold text-gray-700 mb-4">Siga-nos nas Redes Sociais</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-pet-green-100 rounded-full flex items-center justify-center text-pet-green-600 hover:bg-pet-green-200 transition-colors">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-pet-green-100 rounded-full flex items-center justify-center text-pet-green-600 hover:bg-pet-green-200 transition-colors">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-pet-green-100 rounded-full flex items-center justify-center text-pet-green-600 hover:bg-pet-green-200 transition-colors">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-pet-green-100 rounded-full flex items-center justify-center text-pet-green-600 hover:bg-pet-green-200 transition-colors">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-pet-green-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-paw text-3xl text-pet-green-300 mr-2"></i>
+                        <span class="font-pet-title font-bold text-2xl text-white">PetAmigo</span>
+                    </div>
+                    <p class="text-pet-green-200 max-w-xs">
+                        Cuidando do seu pet com amor e profissionalismo desde 2015.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="font-pet-title font-semibold text-lg text-white mb-4">Links Rápidos</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#inicio" class="text-pet-green-200 hover:text-white transition-colors">Início</a></li>
+                            <li><a href="#servicos" class="text-pet-green-200 hover:text-white transition-colors">Serviços</a></li>
+                            <li><a href="#sobre" class="text-pet-green-200 hover:text-white transition-colors">Sobre Nós</a></li>
+                            <li><a href="#galeria" class="text-pet-green-200 hover:text-white transition-colors">Galeria</a></li>
+                            <li><a href="#contato" class="text-pet-green-200 hover:text-white transition-colors">Contato</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-pet-title font-semibold text-lg text-white mb-4">Serviços</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-pet-green-200 hover:text-white transition-colors">Banho e Tosa</a></li>
+                            <li><a href="#" class="text-pet-green-200 hover:text-white transition-colors">Veterinário</a></li>
+                            <li><a href="#" class="text-pet-green-200 hover:text-white transition-colors">Pet Shop</a></li>
+                            <li><a href="#" class="text-pet-green-200 hover:text-white transition-colors">Hospedagem</a></li>
+                            <li><a href="#" class="text-pet-green-200 hover:text-white transition-colors">Adestramento</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-span-2 md:col-span-1">
+                        <h4 class="font-pet-title font-semibold text-lg text-white mb-4">Newsletter</h4>
+                        <p class="text-pet-green-200 mb-4">
+                            Receba novidades, dicas e promoções especiais.
+                        </p>
+                        <form class="flex">
+                            <input type="email" placeholder="Seu e-mail" class="px-4 py-2 rounded-l-lg focus:outline-none flex-grow">
+                            <button type="submit" class="bg-pet-green-500 hover:bg-pet-green-600 text-white px-4 py-2 rounded-r-lg transition-colors">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-pet-green-700 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-pet-green-300 text-sm mb-4 md:mb-0">
+                    &copy; 2025 PetAmigo. Todos os direitos reservados.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-pet-green-300 hover:text-white transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-pet-green-300 hover:text-white transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-pet-green-300 hover:text-white transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-pet-green-300 hover:text-white transition-colors">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão de voltar ao topo -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-pet-green-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-pet-green-600 transition-colors opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Menu mobile toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Links do menu mobile - fechar menu ao clicar
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Navbar scroll effect
+        const navbar = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'shadow-lg');
+                navbar.classList.remove('py-3');
+            } else {
+                navbar.classList.add('py-3');
+                navbar.classList.remove('py-2', 'shadow-lg');
+            }
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scroll para links de âncora
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animações ao scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.hover-scale');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate-fade-in');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
