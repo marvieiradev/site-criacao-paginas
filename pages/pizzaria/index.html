@@ -95,6 +95,17 @@
         background-color: rgba(255, 255, 255, 0.8);
         filter: blur(10px);
       }
+
+      /* Estilo para o menu mobile */
+      .mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+      }
+
+      .mobile-menu.open {
+        max-height: 300px;
+      }
     </style>
   </head>
   <body class="bg-texture min-h-screen font-sans text-pizza-brown">
@@ -135,7 +146,10 @@
             >
           </div>
           <div class="md:hidden flex items-center">
-            <button class="text-white focus:outline-none">
+            <button
+              id="mobile-menu-button"
+              class="text-white focus:outline-none"
+            >
               <svg
                 class="h-6 w-6"
                 fill="none"
@@ -150,6 +164,37 @@
                 ></path>
               </svg>
             </button>
+          </div>
+        </div>
+
+        <!-- Menu Mobile - Adicionado para funcionalidade mobile -->
+        <div id="mobile-menu" class="mobile-menu md:hidden">
+          <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a
+              href="#"
+              class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-red-800 transition duration-300"
+              >Início</a
+            >
+            <a
+              href="#menu"
+              class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-red-800 transition duration-300"
+              >Menu</a
+            >
+            <a
+              href="#sobre"
+              class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-red-800 transition duration-300"
+              >Sobre</a
+            >
+            <a
+              href="#contato"
+              class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-red-800 transition duration-300"
+              >Contato</a
+            >
+            <a
+              href="#"
+              class="bg-white text-pizza-red block px-3 py-2 rounded-md text-base font-medium hover:bg-pizza-cream transition duration-300 mt-4"
+              >Pedir Agora</a
+            >
           </div>
         </div>
       </div>
@@ -781,6 +826,15 @@
             const pizzaImage = this.getAttribute("data-pizza");
             pizzaDisplay.src = pizzaImage;
           });
+        });
+
+        // Funcionalidade para o menu mobile
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        // Adiciona evento de clique para o botão do menu mobile
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("open");
         });
       });
     </script>
