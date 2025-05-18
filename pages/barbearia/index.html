@@ -72,13 +72,24 @@
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
           0 2px 4px -1px rgba(0, 0, 0, 0.06);
       }
+      /* Ajustes para mobile */
+      @media (max-width: 640px) {
+        .stats-container {
+          flex-direction: column;
+          align-items: center;
+          gap: 1.5rem;
+        }
+        .text-overflow-fix {
+          word-break: break-word;
+        }
+      }
     </style>
   </head>
-  <body class="bg-gray-50 text-gray-800">
+  <body class="bg-gray-50 text-gray-800 overflow-x-hidden w-full">
     <!-- Navbar -->
     <nav
       id="navbar"
-      class="navbar fixed w-full z-50 py-4 px-6 md:px-12 transition-all"
+      class="navbar fixed w-full z-50 py-4 px-4 sm:px-6 md:px-8 transition-all"
     >
       <div class="container mx-auto flex justify-between items-center">
         <a href="#" class="text-white text-2xl md:text-3xl font-bold">
@@ -151,7 +162,10 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero-section flex items-center justify-center">
+    <section
+      id="inicio"
+      class="hero-section flex items-center justify-center w-full overflow-x-hidden"
+    >
       <div
         class="container mx-auto px-6 md:px-12 text-center"
         data-aos="fade-up"
@@ -173,7 +187,7 @@
     </section>
 
     <!-- Sobre Nós -->
-    <section id="sobre" class="py-20 bg-white">
+    <section id="sobre" class="py-20 bg-white w-full overflow-x-hidden">
       <div class="container mx-auto px-6 md:px-12">
         <div class="flex flex-col md:flex-row items-center">
           <div
@@ -230,7 +244,7 @@
     </section>
 
     <!-- Serviços -->
-    <section id="servicos" class="py-20 bg-gray-100">
+    <section id="servicos" class="py-20 bg-gray-100 w-full overflow-x-hidden">
       <div class="container mx-auto px-6 md:px-12 text-center">
         <h2
           class="text-3xl md:text-4xl font-bold mb-4"
@@ -320,7 +334,7 @@
     </section>
 
     <!-- Galeria -->
-    <section id="galeria" class="py-20 bg-white">
+    <section id="galeria" class="py-20 bg-white w-full overflow-x-hidden">
       <div class="container mx-auto px-6 md:px-12 text-center">
         <h2
           class="text-3xl md:text-4xl font-bold mb-4"
@@ -380,7 +394,10 @@
     </section>
 
     <!-- Contato -->
-    <section id="contato" class="py-20 bg-gray-900 text-white">
+    <section
+      id="contato"
+      class="py-20 bg-gray-900 text-white w-full overflow-x-hidden"
+    >
       <div class="container mx-auto px-6 md:px-12">
         <div class="flex flex-col md:flex-row">
           <div
@@ -527,7 +544,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-white py-8">
+    <footer class="bg-black text-white py-8 w-full overflow-x-hidden">
       <div class="container mx-auto px-6 md:px-12">
         <div class="flex flex-col md:flex-row justify-between items-center">
           <div class="mb-6 md:mb-0">
