@@ -1,518 +1,989 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dra. Vitória Alimentos | Nutricionista</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dra. Vitória Alencar | Nutricionista</title>
     <!-- TailwindCSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
+
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#4D7C0F', // Verde oliva
-                        secondary: '#65A30D', // Verde limão
-                        accent: '#F97316', // Laranja
-                        light: '#ECFCCB', // Verde claro
-                        dark: '#166534', // Verde escuro
-                    },
-                    fontFamily: {
-                        sans: ['Montserrat', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    },
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#4D7C0F", // Verde oliva
+              secondary: "#65A30D", // Verde limão
+              accent: "#F97316", // Laranja
+              light: "#ECFCCB", // Verde claro
+              dark: "#166534", // Verde escuro
+            },
+            fontFamily: {
+              sans: ["Montserrat", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+          },
+        },
+      };
     </script>
-    
+
     <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
+      body {
+        font-family: "Montserrat", sans-serif;
+        overflow-x: hidden; /* Previne rolagem horizontal */
+        width: 100%;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Playfair Display", serif;
+      }
+
+      .hero-gradient {
+        background: linear-gradient(
+          135deg,
+          rgba(77, 124, 15, 0.9),
+          rgba(22, 101, 52, 0.8)
+        );
+      }
+
+      .hover-scale {
+        transition: transform 0.3s ease;
+      }
+
+      .hover-scale:hover {
+        transform: scale(1.05);
+      }
+
+      .slide-in-bottom {
+        animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+          both;
+      }
+
+      @keyframes slide-in-bottom {
+        0% {
+          transform: translateY(50px);
+          opacity: 0;
         }
-        
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
+        100% {
+          transform: translateY(0);
+          opacity: 1;
         }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, rgba(77, 124, 15, 0.9), rgba(22, 101, 52, 0.8));
-        }
-        
-        .hover-scale {
-            transition: transform 0.3s ease;
-        }
-        
-        .hover-scale:hover {
-            transform: scale(1.05);
-        }
-        
-        .slide-in-bottom {
-            animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-        }
-        
-        @keyframes slide-in-bottom {
-            0% {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
+      }
+
+      /* Menu mobile */
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        z-index: 9;
+      }
+
+      .mobile-menu.active {
+        display: block;
+      }
+
+      .mobile-menu a {
+        display: block;
+        padding: 1rem;
+        text-align: center;
+        border-bottom: 1px solid #f3f4f6;
+      }
     </style>
-</head>
-<body class="bg-gray-50">
+  </head>
+  <body class="bg-gray-50 w-full overflow-x-hidden">
     <!-- Navbar -->
     <nav class="bg-white shadow-md fixed w-full z-10">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="flex items-center">
-                <span class="text-primary text-2xl font-serif font-bold">Dra. Vitória Alimentos</span>
-            </a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#sobre" class="font-sans text-gray-700 hover:text-primary transition-colors duration-300">Sobre</a>
-                <a href="#servicos" class="font-sans text-gray-700 hover:text-primary transition-colors duration-300">Serviços</a>
-                <a href="#depoimentos" class="font-sans text-gray-700 hover:text-primary transition-colors duration-300">Depoimentos</a>
-                <a href="#contato" class="font-sans text-gray-700 hover:text-primary transition-colors duration-300">Contato</a>
-            </div>
-            <div class="md:hidden">
-                <button class="text-gray-700 focus:outline-none">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-            <a href="#contato" class="hidden md:block bg-accent hover:bg-orange-600 text-white font-sans font-medium py-2 px-6 rounded-full transition-colors duration-300">Agendar Consulta</a>
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <a href="#" class="flex items-center">
+          <span class="text-primary text-xl sm:text-2xl font-serif font-bold"
+            >Dra. Vitória Alencar</span
+          >
+        </a>
+        <div class="hidden md:flex space-x-8">
+          <a
+            href="#sobre"
+            class="font-sans text-gray-700 hover:text-primary transition-colors duration-300"
+            >Sobre</a
+          >
+          <a
+            href="#servicos"
+            class="font-sans text-gray-700 hover:text-primary transition-colors duration-300"
+            >Serviços</a
+          >
+          <a
+            href="#depoimentos"
+            class="font-sans text-gray-700 hover:text-primary transition-colors duration-300"
+            >Depoimentos</a
+          >
+          <a
+            href="#contato"
+            class="font-sans text-gray-700 hover:text-primary transition-colors duration-300"
+            >Contato</a
+          >
         </div>
+        <div class="md:hidden">
+          <button
+            id="mobile-menu-button"
+            class="text-gray-700 focus:outline-none"
+          >
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+        <a
+          href="#contato"
+          class="hidden md:block bg-accent hover:bg-orange-600 text-white font-sans font-medium py-2 px-6 rounded-full transition-colors duration-300"
+          >Agendar Consulta</a
+        >
+      </div>
+      <!-- Menu Mobile -->
+      <div id="mobile-menu" class="mobile-menu">
+        <a
+          href="#sobre"
+          class="font-sans text-gray-700 hover:text-primary transition-colors duration-300"
+          >Sobre</a
+        >
+        <a
+          href="#servicos"
+          class="font-sans text-gray-700 hover:text-primary transition-colors duration-300"
+          >Serviços</a
+        >
+        <a
+          href="#depoimentos"
+          class="font-sans text-gray-700 hover:text-primary transition-colors duration-300"
+          >Depoimentos</a
+        >
+        <a
+          href="#contato"
+          class="font-sans text-gray-700 hover:text-primary transition-colors duration-300"
+          >Contato</a
+        >
+        <a
+          href="#contato"
+          class="font-sans text-accent hover:text-primary font-medium transition-colors duration-300"
+          >Agendar Consulta</a
+        >
+      </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="pt-24 pb-16 md:pt-32 md:pb-24">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
-                <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-dark leading-tight mb-4">Transforme sua relação com a alimentação</h1>
-                <p class="font-sans text-lg text-gray-600 mb-8">Descubra o poder de uma nutrição personalizada para sua saúde e bem-estar com a Dra. Vitória Alimentos.</p>
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#contato" class="bg-primary hover:bg-dark text-white font-sans font-medium text-center py-3 px-8 rounded-full transition-colors duration-300 hover-scale">Primeira Consulta</a>
-                    <a href="#servicos" class="border-2 border-primary text-primary hover:bg-light font-sans font-medium text-center py-3 px-8 rounded-full transition-colors duration-300 hover-scale">Nossos Serviços</a>
-                </div>
-            </div>
-            <div class="md:w-1/2" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Alimentos saudáveis" class="w-full h-auto rounded-lg shadow-xl">
-            </div>
+    <header class="pt-24 pb-16 md:pt-32 md:pb-24 w-full overflow-x-hidden">
+      <div
+        class="container mx-auto px-4 flex flex-col md:flex-row items-center"
+      >
+        <div class="w-full md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+          <h1
+            class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-dark leading-tight mb-4"
+          >
+            Transforme sua relação com a alimentação
+          </h1>
+          <p class="font-sans text-base sm:text-lg text-gray-600 mb-8">
+            Descubra o poder de uma nutrição personalizada para sua saúde e
+            bem-estar com a Dra. Vitória Alencar.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+          >
+            <a
+              href="#contato"
+              class="bg-primary hover:bg-dark text-white font-sans font-medium text-center py-3 px-6 sm:px-8 rounded-full transition-colors duration-300 hover-scale"
+              >Primeira Consulta</a
+            >
+            <a
+              href="#servicos"
+              class="border-2 border-primary text-primary hover:bg-light font-sans font-medium text-center py-3 px-6 sm:px-8 rounded-full transition-colors duration-300 hover-scale"
+              >Nossos Serviços</a
+            >
+          </div>
         </div>
+        <div class="w-full md:w-1/2" data-aos="fade-left">
+          <img
+            src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+            alt="Alimentos saudáveis"
+            class="w-full h-auto rounded-lg shadow-xl"
+          />
+        </div>
+      </div>
     </header>
 
     <!-- Sobre Section -->
-    <section id="sobre" class="py-16 bg-light">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark mb-4">Sobre Dra. Vitória</h2>
-                <div class="w-24 h-1 bg-accent mx-auto"></div>
-            </div>
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-2/5 mb-10 md:mb-0" data-aos="fade-right">
-                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dra. Vitória" class="w-full h-auto rounded-lg shadow-lg">
-                </div>
-                <div class="md:w-3/5 md:pl-12" data-aos="fade-left">
-                    <h3 class="font-serif text-2xl font-semibold text-dark mb-4">Nutrição personalizada para cada fase da vida</h3>
-                    <p class="font-sans text-gray-700 mb-6 leading-relaxed">Com mais de 10 anos de experiência, a Dra. Vitória Alimentos é especialista em nutrição clínica e funcional, ajudando pessoas a transformarem suas vidas através da alimentação consciente e equilibrada.</p>
-                    <p class="font-sans text-gray-700 mb-6 leading-relaxed">Formada pela Universidade Federal de Nutrição com especialização em Nutrição Esportiva e Comportamental, a Dra. Vitória acredita que cada pessoa possui necessidades nutricionais únicas que devem ser respeitadas.</p>
-                    <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="flex items-center">
-                            <i class="fas fa-check-circle text-accent text-xl mr-2"></i>
-                            <span class="font-sans text-gray-700">Nutrição Clínica</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-check-circle text-accent text-xl mr-2"></i>
-                            <span class="font-sans text-gray-700">Nutrição Funcional</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-check-circle text-accent text-xl mr-2"></i>
-                            <span class="font-sans text-gray-700">Nutrição Esportiva</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-check-circle text-accent text-xl mr-2"></i>
-                            <span class="font-sans text-gray-700">Reeducação Alimentar</span>
-                        </div>
-                    </div>
-                    <a href="#contato" class="inline-block bg-primary hover:bg-dark text-white font-sans font-medium py-3 px-8 rounded-full transition-colors duration-300 hover-scale">Conheça meu trabalho</a>
-                </div>
-            </div>
+    <section id="sobre" class="py-16 bg-light w-full overflow-x-hidden">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <h2
+            class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-dark mb-4"
+          >
+            Sobre Dra. Vitória
+          </h2>
+          <div class="w-24 h-1 bg-accent mx-auto"></div>
         </div>
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="w-full md:w-2/5 mb-10 md:mb-0" data-aos="fade-right">
+            <img
+              src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+              alt="Dra. Vitória"
+              class="w-full h-auto rounded-lg shadow-lg"
+            />
+          </div>
+          <div class="w-full md:w-3/5 md:pl-8 lg:pl-12" data-aos="fade-left">
+            <h3
+              class="font-serif text-xl sm:text-2xl font-semibold text-dark mb-4"
+            >
+              Nutrição personalizada para cada fase da vida
+            </h3>
+            <p class="font-sans text-gray-700 mb-6 leading-relaxed">
+              Com mais de 10 anos de experiência, a Dra. Vitória Alimentos é
+              especialista em nutrição clínica e funcional, ajudando pessoas a
+              transformarem suas vidas através da alimentação consciente e
+              equilibrada.
+            </p>
+            <p class="font-sans text-gray-700 mb-6 leading-relaxed">
+              Formada pela Universidade Federal de Nutrição com especialização
+              em Nutrição Esportiva e Comportamental, a Dra. Vitória acredita
+              que cada pessoa possui necessidades nutricionais únicas que devem
+              ser respeitadas.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              <div class="flex items-center">
+                <i class="fas fa-check-circle text-accent text-xl mr-2"></i>
+                <span class="font-sans text-gray-700">Nutrição Clínica</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-check-circle text-accent text-xl mr-2"></i>
+                <span class="font-sans text-gray-700">Nutrição Funcional</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-check-circle text-accent text-xl mr-2"></i>
+                <span class="font-sans text-gray-700">Nutrição Esportiva</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-check-circle text-accent text-xl mr-2"></i>
+                <span class="font-sans text-gray-700"
+                  >Reeducação Alimentar</span
+                >
+              </div>
+            </div>
+            <a
+              href="#contato"
+              class="inline-block bg-primary hover:bg-dark text-white font-sans font-medium py-3 px-6 sm:px-8 rounded-full transition-colors duration-300 hover-scale"
+              >Conheça meu trabalho</a
+            >
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Serviços Section -->
-    <section id="servicos" class="py-16">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark mb-4">Nossos Serviços</h2>
-                <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
-                <p class="font-sans text-gray-600 max-w-2xl mx-auto">Oferecemos atendimento personalizado para cada necessidade, com planos alimentares que se adaptam ao seu estilo de vida.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-scale" data-aos="fade-up" data-aos-delay="100">
-                    <div class="h-48 bg-primary flex items-center justify-center">
-                        <i class="fas fa-apple-alt text-white text-5xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-serif text-xl font-semibold text-dark mb-3">Consulta Nutricional</h3>
-                        <p class="font-sans text-gray-600 mb-4">Avaliação completa do seu estado nutricional, histórico alimentar e objetivos para criar um plano personalizado.</p>
-                        <a href="#contato" class="font-sans text-primary hover:text-dark font-medium inline-flex items-center transition-colors duration-300">
-                            Saiba mais
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-scale" data-aos="fade-up" data-aos-delay="200">
-                    <div class="h-48 bg-secondary flex items-center justify-center">
-                        <i class="fas fa-heartbeat text-white text-5xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-serif text-xl font-semibold text-dark mb-3">Nutrição Esportiva</h3>
-                        <p class="font-sans text-gray-600 mb-4">Planos alimentares específicos para atletas e praticantes de atividades físicas, visando melhor desempenho e recuperação.</p>
-                        <a href="#contato" class="font-sans text-primary hover:text-dark font-medium inline-flex items-center transition-colors duration-300">
-                            Saiba mais
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-scale" data-aos="fade-up" data-aos-delay="300">
-                    <div class="h-48 bg-dark flex items-center justify-center">
-                        <i class="fas fa-utensils text-white text-5xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-serif text-xl font-semibold text-dark mb-3">Reeducação Alimentar</h3>
-                        <p class="font-sans text-gray-600 mb-4">Aprenda a desenvolver uma relação saudável com a comida, sem dietas restritivas, focando em mudanças sustentáveis.</p>
-                        <a href="#contato" class="font-sans text-primary hover:text-dark font-medium inline-flex items-center transition-colors duration-300">
-                            Saiba mais
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+    <section id="servicos" class="py-16 w-full overflow-x-hidden">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <h2
+            class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-dark mb-4"
+          >
+            Nossos Serviços
+          </h2>
+          <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
+          <p class="font-sans text-gray-600 max-w-2xl mx-auto">
+            Oferecemos atendimento personalizado para cada necessidade, com
+            planos alimentares que se adaptam ao seu estilo de vida.
+          </p>
         </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        >
+          <div
+            class="bg-white rounded-lg shadow-lg overflow-hidden hover-scale"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="h-48 bg-primary flex items-center justify-center">
+              <i class="fas fa-apple-alt text-white text-5xl"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="font-serif text-xl font-semibold text-dark mb-3">
+                Consulta Nutricional
+              </h3>
+              <p class="font-sans text-gray-600 mb-4">
+                Avaliação completa do seu estado nutricional, histórico
+                alimentar e objetivos para criar um plano personalizado.
+              </p>
+              <a
+                href="#contato"
+                class="font-sans text-primary hover:text-dark font-medium inline-flex items-center transition-colors duration-300"
+              >
+                Saiba mais
+                <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-lg overflow-hidden hover-scale"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="h-48 bg-secondary flex items-center justify-center">
+              <i class="fas fa-heartbeat text-white text-5xl"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="font-serif text-xl font-semibold text-dark mb-3">
+                Nutrição Esportiva
+              </h3>
+              <p class="font-sans text-gray-600 mb-4">
+                Planos alimentares específicos para atletas e praticantes de
+                atividades físicas, visando melhor desempenho e recuperação.
+              </p>
+              <a
+                href="#contato"
+                class="font-sans text-primary hover:text-dark font-medium inline-flex items-center transition-colors duration-300"
+              >
+                Saiba mais
+                <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-lg overflow-hidden hover-scale"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="h-48 bg-dark flex items-center justify-center">
+              <i class="fas fa-utensils text-white text-5xl"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="font-serif text-xl font-semibold text-dark mb-3">
+                Reeducação Alimentar
+              </h3>
+              <p class="font-sans text-gray-600 mb-4">
+                Aprenda a desenvolver uma relação saudável com a comida, sem
+                dietas restritivas, focando em mudanças sustentáveis.
+              </p>
+              <a
+                href="#contato"
+                class="font-sans text-primary hover:text-dark font-medium inline-flex items-center transition-colors duration-300"
+              >
+                Saiba mais
+                <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Benefícios Section -->
-    <section class="py-16 bg-primary text-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4">Por que escolher a Dra. Vitória?</h2>
-                <div class="w-24 h-1 bg-white mx-auto"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-white text-primary rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-user-md text-3xl"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-semibold mb-3">Atendimento Personalizado</h3>
-                    <p class="font-sans">Cada plano alimentar é desenvolvido considerando suas necessidades individuais e estilo de vida.</p>
-                </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-white text-primary rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-clipboard-check text-3xl"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-semibold mb-3">Acompanhamento Contínuo</h3>
-                    <p class="font-sans">Suporte constante durante todo o processo, com ajustes e orientações sempre que necessário.</p>
-                </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
-                    <div class="bg-white text-primary rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-graduation-cap text-3xl"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-semibold mb-3">Educação Nutricional</h3>
-                    <p class="font-sans">Aprenda sobre nutrição e desenvolva autonomia para fazer escolhas alimentares saudáveis.</p>
-                </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="400">
-                    <div class="bg-white text-primary rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-heart text-3xl"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-semibold mb-3">Abordagem Humanizada</h3>
-                    <p class="font-sans">Tratamento respeitoso e acolhedor, sem julgamentos, focado no seu bem-estar integral.</p>
-                </div>
-            </div>
+    <section class="py-16 bg-primary text-white w-full overflow-x-hidden">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <h2
+            class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-4"
+          >
+            Por que escolher a Dra. Vitória?
+          </h2>
+          <div class="w-24 h-1 bg-white mx-auto"></div>
         </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+            <div
+              class="bg-white text-primary rounded-full w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-user-md text-2xl sm:text-3xl"></i>
+            </div>
+            <h3 class="font-serif text-lg sm:text-xl font-semibold mb-3">
+              Atendimento Personalizado
+            </h3>
+            <p class="font-sans">
+              Cada plano alimentar é desenvolvido considerando suas necessidades
+              individuais e estilo de vida.
+            </p>
+          </div>
+          <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+            <div
+              class="bg-white text-primary rounded-full w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-clipboard-check text-2xl sm:text-3xl"></i>
+            </div>
+            <h3 class="font-serif text-lg sm:text-xl font-semibold mb-3">
+              Acompanhamento Contínuo
+            </h3>
+            <p class="font-sans">
+              Suporte constante durante todo o processo, com ajustes e
+              orientações sempre que necessário.
+            </p>
+          </div>
+          <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+            <div
+              class="bg-white text-primary rounded-full w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-graduation-cap text-2xl sm:text-3xl"></i>
+            </div>
+            <h3 class="font-serif text-lg sm:text-xl font-semibold mb-3">
+              Educação Nutricional
+            </h3>
+            <p class="font-sans">
+              Aprenda sobre nutrição e desenvolva autonomia para fazer escolhas
+              alimentares saudáveis.
+            </p>
+          </div>
+          <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+            <div
+              class="bg-white text-primary rounded-full w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fas fa-heart text-2xl sm:text-3xl"></i>
+            </div>
+            <h3 class="font-serif text-lg sm:text-xl font-semibold mb-3">
+              Abordagem Humanizada
+            </h3>
+            <p class="font-sans">
+              Tratamento respeitoso e acolhedor, sem julgamentos, focado no seu
+              bem-estar integral.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Depoimentos Section -->
-    <section id="depoimentos" class="py-16">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark mb-4">Depoimentos</h2>
-                <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
-                <p class="font-sans text-gray-600 max-w-2xl mx-auto">Veja o que nossos clientes dizem sobre os resultados obtidos com nosso acompanhamento nutricional.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg shadow-lg p-8 hover-scale" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-center mb-4">
-                        <div class="text-accent">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <p class="font-sans text-gray-700 italic mb-6">"A Dra. Vitória mudou completamente minha relação com a comida. Após anos de dietas restritivas, finalmente aprendi a me alimentar de forma saudável e prazerosa. Perdi 15kg em 8 meses de forma sustentável."</p>
-                    <div class="flex items-center">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-serif font-semibold text-dark">Mariana Silva</h4>
-                            <p class="font-sans text-gray-500 text-sm">Cliente há 1 ano</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-lg p-8 hover-scale" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex items-center mb-4">
-                        <div class="text-accent">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <p class="font-sans text-gray-700 italic mb-6">"Como atleta, sempre tive dificuldade em encontrar uma nutricionista que entendesse minhas necessidades. A Dra. Vitória desenvolveu um plano que melhorou meu desempenho e recuperação de forma impressionante."</p>
-                    <div class="flex items-center">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-serif font-semibold text-dark">Rafael Oliveira</h4>
-                            <p class="font-sans text-gray-500 text-sm">Cliente há 6 meses</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-lg p-8 hover-scale" data-aos="fade-up" data-aos-delay="300">
-                    <div class="flex items-center mb-4">
-                        <div class="text-accent">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <p class="font-sans text-gray-700 italic mb-6">"Após o diagnóstico de intolerância ao glúten, estava perdida sobre como me alimentar. A Dra. Vitória me ensinou a adaptar minhas refeições sem abrir mão do sabor e da praticidade. Minha qualidade de vida melhorou 100%."</p>
-                    <div class="flex items-center">
-                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-serif font-semibold text-dark">Juliana Santos</h4>
-                            <p class="font-sans text-gray-500 text-sm">Cliente há 8 meses</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section id="depoimentos" class="py-16 w-full overflow-x-hidden">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <h2
+            class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-dark mb-4"
+          >
+            Depoimentos
+          </h2>
+          <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
+          <p class="font-sans text-gray-600 max-w-2xl mx-auto">
+            Veja o que nossos clientes dizem sobre os resultados obtidos com
+            nosso acompanhamento nutricional.
+          </p>
         </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        >
+          <div
+            class="bg-white rounded-lg shadow-lg p-6 sm:p-8 hover-scale"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="flex items-center mb-4">
+              <div class="text-accent">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="font-sans text-gray-700 italic mb-6">
+              "A Dra. Vitória mudou completamente minha relação com a comida.
+              Após anos de dietas restritivas, finalmente aprendi a me alimentar
+              de forma saudável e prazerosa. Perdi 15kg em 8 meses de forma
+              sustentável."
+            </p>
+            <div class="flex items-center">
+              <img
+                src="https://randomuser.me/api/portraits/women/44.jpg"
+                alt="Cliente"
+                class="w-12 h-12 rounded-full mr-4"
+              />
+              <div>
+                <h4 class="font-serif font-semibold text-dark">
+                  Mariana Silva
+                </h4>
+                <p class="font-sans text-gray-500 text-sm">Cliente há 1 ano</p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-lg p-6 sm:p-8 hover-scale"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="flex items-center mb-4">
+              <div class="text-accent">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="font-sans text-gray-700 italic mb-6">
+              "Como atleta, sempre tive dificuldade em encontrar uma
+              nutricionista que entendesse minhas necessidades. A Dra. Vitória
+              desenvolveu um plano que melhorou meu desempenho e recuperação de
+              forma impressionante."
+            </p>
+            <div class="flex items-center">
+              <img
+                src="https://randomuser.me/api/portraits/men/32.jpg"
+                alt="Cliente"
+                class="w-12 h-12 rounded-full mr-4"
+              />
+              <div>
+                <h4 class="font-serif font-semibold text-dark">
+                  Rafael Oliveira
+                </h4>
+                <p class="font-sans text-gray-500 text-sm">
+                  Cliente há 6 meses
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-lg p-6 sm:p-8 hover-scale"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="flex items-center mb-4">
+              <div class="text-accent">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="font-sans text-gray-700 italic mb-6">
+              "Após o diagnóstico de intolerância ao glúten, estava perdida
+              sobre como me alimentar. A Dra. Vitória me ensinou a adaptar
+              minhas refeições sem abrir mão do sabor e da praticidade. Minha
+              qualidade de vida melhorou 100%."
+            </p>
+            <div class="flex items-center">
+              <img
+                src="https://randomuser.me/api/portraits/women/68.jpg"
+                alt="Cliente"
+                class="w-12 h-12 rounded-full mr-4"
+              />
+              <div>
+                <h4 class="font-serif font-semibold text-dark">
+                  Juliana Santos
+                </h4>
+                <p class="font-sans text-gray-500 text-sm">
+                  Cliente há 8 meses
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 hero-gradient text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6" data-aos="fade-up">Pronto para transformar sua alimentação?</h2>
-            <p class="font-sans text-lg mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Agende sua consulta hoje mesmo e dê o primeiro passo para uma vida mais saudável e equilibrada.</p>
-            <a href="#contato" class="inline-block bg-accent hover:bg-orange-600 text-white font-sans font-medium py-3 px-8 rounded-full transition-colors duration-300 hover-scale" data-aos="fade-up" data-aos-delay="200">Agendar Consulta</a>
-        </div>
+    <section class="py-16 hero-gradient text-white w-full overflow-x-hidden">
+      <div class="container mx-auto px-4 text-center">
+        <h2
+          class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-6"
+          data-aos="fade-up"
+        >
+          Pronto para transformar sua alimentação?
+        </h2>
+        <p
+          class="font-sans text-base sm:text-lg mb-8 max-w-2xl mx-auto"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          Agende sua consulta hoje mesmo e dê o primeiro passo para uma vida
+          mais saudável e equilibrada.
+        </p>
+        <a
+          href="#contato"
+          class="inline-block bg-accent hover:bg-orange-600 text-white font-sans font-medium py-3 px-6 sm:px-8 rounded-full transition-colors duration-300 hover-scale"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          >Agendar Consulta</a
+        >
+      </div>
     </section>
 
     <!-- Contato Section -->
-    <section id="contato" class="py-16 bg-light">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-dark mb-4">Entre em Contato</h2>
-                <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
-                <p class="font-sans text-gray-600 max-w-2xl mx-auto">Estamos prontos para atender você e esclarecer todas as suas dúvidas.</p>
-            </div>
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-8" data-aos="fade-right">
-                    <form class="bg-white rounded-lg shadow-lg p-8">
-                        <div class="mb-6">
-                            <label for="nome" class="block font-sans text-gray-700 font-medium mb-2">Nome Completo</label>
-                            <input type="text" id="nome" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary font-sans">
-                        </div>
-                        <div class="mb-6">
-                            <label for="email" class="block font-sans text-gray-700 font-medium mb-2">E-mail</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary font-sans">
-                        </div>
-                        <div class="mb-6">
-                            <label for="telefone" class="block font-sans text-gray-700 font-medium mb-2">Telefone</label>
-                            <input type="tel" id="telefone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary font-sans">
-                        </div>
-                        <div class="mb-6">
-                            <label for="mensagem" class="block font-sans text-gray-700 font-medium mb-2">Mensagem</label>
-                            <textarea id="mensagem" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary font-sans"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-primary hover:bg-dark text-white font-sans font-medium py-3 px-6 rounded-lg transition-colors duration-300 hover-scale">Enviar Mensagem</button>
-                    </form>
-                </div>
-                <div class="md:w-1/2 md:pl-8" data-aos="fade-left">
-                    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
-                        <h3 class="font-serif text-2xl font-semibold text-dark mb-6">Informações de Contato</h3>
-                        <div class="flex items-start mb-6">
-                            <div class="text-primary text-xl mr-4">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-sans font-medium text-dark mb-1">Endereço</h4>
-                                <p class="font-sans text-gray-600">Av. Nutrição Saudável, 123 - Centro<br>São Paulo, SP - CEP 01234-567</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start mb-6">
-                            <div class="text-primary text-xl mr-4">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-sans font-medium text-dark mb-1">Telefone</h4>
-                                <p class="font-sans text-gray-600">(11) 98765-4321</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start mb-6">
-                            <div class="text-primary text-xl mr-4">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-sans font-medium text-dark mb-1">E-mail</h4>
-                                <p class="font-sans text-gray-600">contato@dravitoria.com.br</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="text-primary text-xl mr-4">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-sans font-medium text-dark mb-1">Horário de Atendimento</h4>
-                                <p class="font-sans text-gray-600">Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 12h</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-center space-x-4">
-                        <a href="#" class="bg-primary hover:bg-dark text-white w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="bg-primary hover:bg-dark text-white w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="bg-primary hover:bg-dark text-white w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="#" class="bg-primary hover:bg-dark text-white w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+    <section id="contato" class="py-16 bg-light w-full overflow-x-hidden">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <h2
+            class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-dark mb-4"
+          >
+            Entre em Contato
+          </h2>
+          <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
+          <p class="font-sans text-gray-600 max-w-2xl mx-auto">
+            Estamos prontos para atender você e esclarecer todas as suas
+            dúvidas.
+          </p>
         </div>
+        <div class="flex flex-col lg:flex-row">
+          <div
+            class="w-full lg:w-1/2 mb-10 lg:mb-0 lg:pr-6"
+            data-aos="fade-right"
+          >
+            <form class="bg-white rounded-lg shadow-lg p-6 sm:p-8">
+              <div class="mb-6">
+                <label
+                  for="nome"
+                  class="block font-sans text-gray-700 font-medium mb-2"
+                  >Nome Completo</label
+                >
+                <input
+                  type="text"
+                  id="nome"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary font-sans"
+                />
+              </div>
+              <div class="mb-6">
+                <label
+                  for="email"
+                  class="block font-sans text-gray-700 font-medium mb-2"
+                  >E-mail</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary font-sans"
+                />
+              </div>
+              <div class="mb-6">
+                <label
+                  for="telefone"
+                  class="block font-sans text-gray-700 font-medium mb-2"
+                  >Telefone</label
+                >
+                <input
+                  type="tel"
+                  id="telefone"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary font-sans"
+                />
+              </div>
+              <div class="mb-6">
+                <label
+                  for="mensagem"
+                  class="block font-sans text-gray-700 font-medium mb-2"
+                  >Mensagem</label
+                >
+                <textarea
+                  id="mensagem"
+                  rows="4"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary font-sans"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-primary hover:bg-dark text-white font-sans font-medium py-3 px-6 rounded-lg transition-colors duration-300 hover-scale"
+              >
+                Enviar Mensagem
+              </button>
+            </form>
+          </div>
+          <div class="w-full lg:w-1/2 lg:pl-6" data-aos="fade-left">
+            <div class="bg-white rounded-lg shadow-lg p-6 sm:p-8 mb-8">
+              <h3
+                class="font-serif text-xl sm:text-2xl font-semibold text-dark mb-6"
+              >
+                Informações de Contato
+              </h3>
+              <div class="flex items-start mb-6">
+                <div class="text-primary text-xl mr-4">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                  <h4 class="font-sans font-medium text-dark mb-1">Endereço</h4>
+                  <p class="font-sans text-gray-600">
+                    Av. Nutrição Saudável, 123 - Centro<br />São Paulo, SP - CEP
+                    01234-567
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start mb-6">
+                <div class="text-primary text-xl mr-4">
+                  <i class="fas fa-phone-alt"></i>
+                </div>
+                <div>
+                  <h4 class="font-sans font-medium text-dark mb-1">Telefone</h4>
+                  <p class="font-sans text-gray-600">(11) 98765-4321</p>
+                </div>
+              </div>
+              <div class="flex items-start mb-6">
+                <div class="text-primary text-xl mr-4">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <h4 class="font-sans font-medium text-dark mb-1">E-mail</h4>
+                  <p class="font-sans text-gray-600">
+                    contato@dravitoria.com.br
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="text-primary text-xl mr-4">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div>
+                  <h4 class="font-sans font-medium text-dark mb-1">
+                    Horário de Atendimento
+                  </h4>
+                  <p class="font-sans text-gray-600">
+                    Segunda a Sexta: 8h às 18h<br />Sábado: 8h às 12h
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center space-x-4">
+              <a
+                href="#"
+                class="bg-primary hover:bg-dark text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-colors duration-300"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                class="bg-primary hover:bg-dark text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-colors duration-300"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                class="bg-primary hover:bg-dark text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a
+                href="#"
+                class="bg-primary hover:bg-dark text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-colors duration-300"
+              >
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between">
-                <div class="mb-8 md:mb-0">
-                    <h3 class="font-serif text-2xl font-bold mb-4">Dra. Vitória Alimentos</h3>
-                    <p class="font-sans text-gray-300 max-w-xs">Transformando vidas através da nutrição personalizada e consciente.</p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-                    <div>
-                        <h4 class="font-serif text-lg font-semibold mb-4">Links Rápidos</h4>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="font-sans text-gray-300 hover:text-white transition-colors duration-300">Início</a></li>
-                            <li><a href="#sobre" class="font-sans text-gray-300 hover:text-white transition-colors duration-300">Sobre</a></li>
-                            <li><a href="#servicos" class="font-sans text-gray-300 hover:text-white transition-colors duration-300">Serviços</a></li>
-                            <li><a href="#depoimentos" class="font-sans text-gray-300 hover:text-white transition-colors duration-300">Depoimentos</a></li>
-                            <li><a href="#contato" class="font-sans text-gray-300 hover:text-white transition-colors duration-300">Contato</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-serif text-lg font-semibold mb-4">Serviços</h4>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="font-sans text-gray-300 hover:text-white transition-colors duration-300">Consulta Nutricional</a></li>
-                            <li><a href="#" class="font-sans text-gray-300 hover:text-white transition-colors duration-300">Nutrição Esportiva</a></li>
-                            <li><a href="#" class="font-sans text-gray-300 hover:text-white transition-colors duration-300">Reeducação Alimentar</a></li>
-                            <li><a href="#" class="font-sans text-gray-300 hover:text-white transition-colors duration-300">Nutrição Funcional</a></li>
-                            <li><a href="#" class="font-sans text-gray-300 hover:text-white transition-colors duration-300">Acompanhamento Online</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-span-2 md:col-span-1">
-                        <h4 class="font-serif text-lg font-semibold mb-4">Newsletter</h4>
-                        <p class="font-sans text-gray-300 mb-4">Receba dicas de nutrição e bem-estar diretamente no seu e-mail.</p>
-                        <form class="flex">
-                            <input type="email" placeholder="Seu e-mail" class="px-4 py-2 rounded-l-lg focus:outline-none font-sans w-full">
-                            <button type="submit" class="bg-accent hover:bg-orange-600 text-white px-4 py-2 rounded-r-lg transition-colors duration-300">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
+    <footer class="bg-dark text-white py-12 w-full overflow-x-hidden">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between">
+          <div class="mb-8 md:mb-0">
+            <h3 class="font-serif text-xl sm:text-2xl font-bold mb-4">
+              Dra. Vitória Alencar
+            </h3>
+            <p class="font-sans text-gray-300 max-w-xs">
+              Transformando vidas através da nutrição personalizada e
+              consciente.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <div>
+              <h4 class="font-serif text-lg font-semibold mb-4">
+                Links Rápidos
+              </h4>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    class="font-sans text-gray-300 hover:text-white transition-colors duration-300"
+                    >Início</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#sobre"
+                    class="font-sans text-gray-300 hover:text-white transition-colors duration-300"
+                    >Sobre</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#servicos"
+                    class="font-sans text-gray-300 hover:text-white transition-colors duration-300"
+                    >Serviços</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#depoimentos"
+                    class="font-sans text-gray-300 hover:text-white transition-colors duration-300"
+                    >Depoimentos</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#contato"
+                    class="font-sans text-gray-300 hover:text-white transition-colors duration-300"
+                    >Contato</a
+                  >
+                </li>
+              </ul>
             </div>
-            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
-                <p class="font-sans text-gray-400">&copy; 2025 Dra. Vitória Alimentos. Todos os direitos reservados.</p>
+            <div>
+              <h4 class="font-serif text-lg font-semibold mb-4">Serviços</h4>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    class="font-sans text-gray-300 hover:text-white transition-colors duration-300"
+                    >Consulta Nutricional</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="font-sans text-gray-300 hover:text-white transition-colors duration-300"
+                    >Nutrição Esportiva</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="font-sans text-gray-300 hover:text-white transition-colors duration-300"
+                    >Reeducação Alimentar</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="font-sans text-gray-300 hover:text-white transition-colors duration-300"
+                    >Nutrição Funcional</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="font-sans text-gray-300 hover:text-white transition-colors duration-300"
+                    >Acompanhamento Online</a
+                  >
+                </li>
+              </ul>
             </div>
+            <div class="col-span-1 sm:col-span-2 md:col-span-1">
+              <h4 class="font-serif text-lg font-semibold mb-4">Newsletter</h4>
+              <p class="font-sans text-gray-300 mb-4">
+                Receba dicas de nutrição e bem-estar diretamente no seu e-mail.
+              </p>
+              <form class="flex">
+                <input
+                  type="email"
+                  placeholder="Seu e-mail"
+                  class="px-4 py-2 rounded-l-lg focus:outline-none font-sans w-full"
+                />
+                <button
+                  type="submit"
+                  class="bg-accent hover:bg-orange-600 text-white px-4 py-2 rounded-r-lg transition-colors duration-300"
+                >
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
+        <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+          <p class="font-sans text-gray-400">
+            &copy; 2025 Dra. Vitória Alencar. Todos os direitos reservados.
+          </p>
+        </div>
+      </div>
     </footer>
 
     <!-- Botão de Voltar ao Topo -->
-    <a href="#" class="fixed bottom-6 right-6 bg-accent hover:bg-orange-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-colors duration-300 opacity-0" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
+    <a
+      href="#"
+      class="fixed bottom-6 right-6 bg-accent hover:bg-orange-600 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg transition-colors duration-300 opacity-0"
+      id="backToTop"
+    >
+      <i class="fas fa-arrow-up"></i>
     </a>
 
     <!-- Script para animações e interações -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Inicializa a biblioteca de animação AOS
-            AOS.init({
-                duration: 800,
-                easing: 'ease-in-out',
-                once: true
-            });
-            
-            // Botão de voltar ao topo
-            const backToTopButton = document.getElementById('backToTop');
-            
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
-                    backToTopButton.classList.add('opacity-100');
-                    backToTopButton.classList.remove('opacity-0');
-                } else {
-                    backToTopButton.classList.add('opacity-0');
-                    backToTopButton.classList.remove('opacity-100');
-                }
-            });
-            
-            // Animação de entrada para elementos com classe slide-in-bottom
-            const animateElements = document.querySelectorAll('.slide-in-bottom');
-            animateElements.forEach(element => {
-                element.style.opacity = '0';
-                setTimeout(() => {
-                    element.style.opacity = '1';
-                }, 300);
-            });
-            
-            // Smooth scroll para links de navegação
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Inicializa a biblioteca de animação AOS
+        AOS.init({
+          duration: 800,
+          easing: "ease-in-out",
+          once: true,
+          disable: "mobile", // Desativa em dispositivos móveis para melhor performance
         });
+
+        // Menu mobile toggle
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        if (mobileMenuButton && mobileMenu) {
+          mobileMenuButton.addEventListener("click", function () {
+            mobileMenu.classList.toggle("active");
+          });
+
+          // Fecha o menu ao clicar em um link
+          const mobileMenuLinks = mobileMenu.querySelectorAll("a");
+          mobileMenuLinks.forEach((link) => {
+            link.addEventListener("click", function () {
+              mobileMenu.classList.remove("active");
+            });
+          });
+        }
+
+        // Botão de voltar ao topo
+        const backToTopButton = document.getElementById("backToTop");
+
+        window.addEventListener("scroll", function () {
+          if (window.pageYOffset > 300) {
+            backToTopButton.classList.add("opacity-100");
+            backToTopButton.classList.remove("opacity-0");
+          } else {
+            backToTopButton.classList.add("opacity-0");
+            backToTopButton.classList.remove("opacity-100");
+          }
+        });
+
+        // Animação de entrada para elementos com classe slide-in-bottom
+        const animateElements = document.querySelectorAll(".slide-in-bottom");
+        animateElements.forEach((element) => {
+          element.style.opacity = "0";
+          setTimeout(() => {
+            element.style.opacity = "1";
+          }, 300);
+        });
+
+        // Smooth scroll para links de navegação
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
