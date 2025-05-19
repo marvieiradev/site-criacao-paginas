@@ -1,23 +1,46 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Criação de Páginas</title>
+    <title>Criação de Páginas - Linktree</title>
     <!-- TailwindCSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
+    <!-- Google Fonts - Fontes futuristas -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script>
+      // Configuração do Tailwind para suportar temas
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              highlight: "#5d30ff",
+              dark: {
+                900: "#000011",
+                800: "#000a22",
+                700: "#1c202b",
+                600: "#2e3342",
+              },
+            },
+          },
+        },
+      };
+    </script>
     <style>
-      body {
-        font-family: "Poppins", sans-serif;
-        background: linear-gradient(135deg, #e6f7ff 0%, #f0f9ff 100%);
+      .font-orbitron {
+        font-family: "Orbitron", sans-serif;
       }
+
+      h3 {
+        font-family: "Poppins", sans-serif !important;
+      }
+
       .link-card {
         transition: all 0.3s ease;
         position: relative;
@@ -26,7 +49,14 @@
       }
       .link-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      .dark .link-card:hover {
+        box-shadow: 0 10px 20px rgba(93, 48, 255, 0.3);
+        border-color: #5d30ff;
+      }
+      .light .link-card:hover {
+        box-shadow: 0 10px 20px rgba(93, 48, 255, 0.2);
+        border-color: #5d30ff;
       }
       .link-card img {
         width: 100%;
@@ -36,6 +66,12 @@
         top: 0;
         left: 0;
         z-index: 1;
+      }
+      .dark .link-card img {
+        filter: brightness(0.7) saturate(1.2);
+      }
+      .light .link-card img {
+        filter: brightness(0.9) saturate(1.1);
       }
       .link-card .text-container {
         position: absolute;
@@ -49,8 +85,10 @@
         z-index: 2;
       }
       .link-card h3 {
-        text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.7);
+        text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);
         font-weight: 600;
+        font-family: "Orbitron", sans-serif;
+        letter-spacing: 1px;
       }
       .link-card::after {
         content: "";
@@ -59,49 +97,82 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(
-          0deg,
-          rgba(0, 0, 0, 0.6) 0%,
-          rgba(0, 0, 0, 0.4) 50%,
-          rgba(0, 0, 0, 0.2) 100%
-        );
         z-index: 1;
       }
+      .dark .link-card::after {
+        background: linear-gradient(
+          45deg,
+          rgba(93, 48, 255, 0.6) 0%,
+          rgba(18, 18, 18, 0.4) 100%
+        );
+      }
+      .light .link-card::after {
+        background: linear-gradient(
+          45deg,
+          rgba(93, 48, 255, 0.3) 0%,
+          rgba(255, 255, 255, 0.2) 100%
+        );
+      }
       .logo-text {
-        background: linear-gradient(90deg, #4a90e2 0%, #63b3ed 100%);
+        letter-spacing: 1px;
+      }
+      .dark .logo-text {
+        background: linear-gradient(90deg, #5d30ff 0%, #9d84ff 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
+      .light .logo-text {
+        background: linear-gradient(90deg, #5d30ff 0%, #7b5cff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .logo-container {
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .dark .logo-container {
+        background: linear-gradient(
+          135deg,
+          rgba(93, 48, 255, 0.2) 0%,
+          rgba(93, 48, 255, 0.1) 100%
+        );
+        border: 1px solid rgba(93, 48, 255, 0.3);
+      }
+      .light .logo-container {
+        background: linear-gradient(
+          135deg,
+          rgba(93, 48, 255, 0.1) 0%,
+          rgba(93, 48, 255, 0.05) 100%
+        );
+        border: 1px solid rgba(93, 48, 255, 0.2);
+      }
+      .logo-container:hover {
+        transform: scale(1.05);
+      }
     </style>
   </head>
-  <body class="min-h-screen py-8 px-4">
+  <body
+    class="min-h-screen py-8 px-4 font-rajdhani transition-colors duration-300 dark:bg-dark-900 dark:text-white light:bg-gray-100 light:text-gray-800"
+  >
     <div
-      class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-lg"
+      class="max-w-md mx-auto rounded-xl shadow-lg overflow-hidden md:max-w-xl transition-colors duration-300 dark:bg-dark-800 dark:border-gray-700 light:bg-white light:border-gray-200 border"
     >
       <div class="p-8">
         <!-- Logo -->
         <div class="flex flex-col items-center justify-center mb-8">
           <div
-            class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mb-4"
+            id="themeToggle"
+            class="w-24 h-24 logo-container rounded-full flex items-center justify-center mb-4"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-12 w-12 text-blue-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              />
-            </svg>
+            <img src="logo.png" alt="" />
           </div>
-          <h1 class="text-2xl font-bold logo-text">Criação de Páginas</h1>
-          <p class="text-gray-500 text-sm mt-2 text-center">
-            Conecte-se com nossos serviços
+          <h1 class="text-2xl md:text-3xl font-bold logo-text font-orbitron">
+            Criação de Páginas
+          </h1>
+          <p
+            class="text-md font-semibold mt-4 text-center transition-colors duration-300 dark:text-white light:text-gray-700"
+          >
+            Veja alguns exemplos de páginas que podemos criar para você!
           </p>
         </div>
 
@@ -109,8 +180,8 @@
         <div class="space-y-4">
           <!-- Agência de Marketing -->
           <a
-            href="pages/agencia/index.html"
-            class="link-card block bg-white rounded-lg border border-blue-100 overflow-hidden"
+            href="#"
+            class="link-card block rounded-lg overflow-hidden transition-colors duration-300 dark:bg-gray-700 dark:border-gray-600 light:bg-gray-50 light:border-gray-200 border"
           >
             <img
               src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
@@ -126,8 +197,8 @@
 
           <!-- Petshop -->
           <a
-            href="pages/petshop/index.html"
-            class="link-card block bg-white rounded-lg border border-blue-100 overflow-hidden"
+            href="#"
+            class="link-card block rounded-lg overflow-hidden transition-colors duration-300 dark:bg-gray-700 dark:border-gray-600 light:bg-gray-50 light:border-gray-200 border"
           >
             <img
               src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
@@ -141,8 +212,8 @@
 
           <!-- Nutricionista -->
           <a
-            href="pages/nutri/index.html"
-            class="link-card block bg-white rounded-lg border border-blue-100 overflow-hidden"
+            href="#"
+            class="link-card block rounded-lg overflow-hidden transition-colors duration-300 dark:bg-gray-700 dark:border-gray-600 light:bg-gray-50 light:border-gray-200 border"
           >
             <img
               src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
@@ -156,8 +227,8 @@
 
           <!-- Pizzaria -->
           <a
-            href="pages/pizzaria/index.html"
-            class="link-card block bg-white rounded-lg border border-blue-100 overflow-hidden"
+            href="#"
+            class="link-card block rounded-lg overflow-hidden transition-colors duration-300 dark:bg-gray-700 dark:border-gray-600 light:bg-gray-50 light:border-gray-200 border"
           >
             <img
               src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
@@ -171,8 +242,8 @@
 
           <!-- Barbearia -->
           <a
-            href="pages/barbearia/index.html"
-            class="link-card block bg-white rounded-lg border border-blue-100 overflow-hidden"
+            href="#"
+            class="link-card block rounded-lg overflow-hidden transition-colors duration-300 dark:bg-gray-700 dark:border-gray-600 light:bg-gray-50 light:border-gray-200 border"
           >
             <img
               src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
@@ -186,8 +257,8 @@
 
           <!-- Fotógrafo -->
           <a
-            href="pages/fotografo/index.html"
-            class="link-card block bg-white rounded-lg border border-blue-100 overflow-hidden"
+            href="#"
+            class="link-card block rounded-lg overflow-hidden transition-colors duration-300 dark:bg-gray-700 dark:border-gray-600 light:bg-gray-50 light:border-gray-200 border"
           >
             <img
               src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
@@ -201,10 +272,47 @@
         </div>
 
         <!-- Footer -->
-        <div class="mt-8 pt-4 border-t border-gray-100 text-center">
-          <p class="text-xs text-gray-400">© 2025 Criação de Páginas</p>
+        <div
+          class="mt-8 pt-4 text-center transition-colors duration-300 dark:border-white light:border-gray-700 border-t"
+        >
+          <p
+            class="text-sm font-semibold transition-colors duration-300 dark:text-white light:text-gray-700"
+          >
+            © 2025 Criação de Páginas
+          </p>
         </div>
       </div>
     </div>
+
+    <script>
+      // Script para alternar entre os temas dark e light
+      document.addEventListener("DOMContentLoaded", function () {
+        const themeToggle = document.getElementById("themeToggle");
+        const html = document.documentElement;
+
+        // Função para alternar o tema
+        function toggleTheme() {
+          if (html.classList.contains("dark")) {
+            html.classList.remove("dark");
+            html.classList.add("light");
+            localStorage.setItem("theme", "light");
+          } else {
+            html.classList.remove("light");
+            html.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+          }
+        }
+
+        // Verificar tema salvo no localStorage
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+          html.classList.remove("dark", "light");
+          html.classList.add(savedTheme);
+        }
+
+        // Adicionar evento de clique ao ícone
+        themeToggle.addEventListener("click", toggleTheme);
+      });
+    </script>
   </body>
 </html>
