@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>50 Formas de Ganhar Dinheiro Rápido | Ebook Promocional</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "money-green": "#00c853",
+              "money-dark-green": "#009624",
+              "dark-bg": "#121212",
+              "dark-card": "#1e1e1e",
+            },
+            animation: {
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              "bounce-slow": "bounce 2s infinite",
+              float: "float 6s ease-in-out infinite",
+              shine: "shine 3s ease-in-out infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
+              shine: {
+                "0%": { backgroundPosition: "200% center" },
+                "100%": { backgroundPosition: "-200% center" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Animações personalizadas */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes shine {
+        0% {
+          background-position: 200% center;
+        }
+        100% {
+          background-position: -200% center;
+        }
+      }
+
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .animate-shine {
+        background: linear-gradient(
+          to right,
+          #121212 0%,
+          #00c853 20%,
+          #121212 40%
+        );
+        background-size: 200% auto;
+        animation: shine 3s ease-in-out infinite;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-fill-color: transparent;
+      }
+
+      .text-shadow {
+        text-shadow: 0 0 10px rgba(0, 200, 83, 0.7);
+      }
+
+      .price-tag {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .price-tag::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        animation: shine 2s infinite;
+      }
+
+      /* Botão estilo novo */
+      .btn-comprar {
+        background-color: #00c853;
+        color: white;
+        font-weight: bold;
+        padding: 0.75rem 1.5rem;
+        border-radius: 9999px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 14px rgba(0, 200, 83, 0.5);
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn-comprar:hover {
+        background-color: #009624;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 200, 83, 0.6);
+      }
+
+      .btn-comprar:active {
+        transform: translateY(0);
+      }
+
+      /* Scrollbar personalizado */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #121212;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #00c853;
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #009624;
+      }
+
+      /* Garantir que o texto seja legível em todos os dispositivos */
+      @media (max-width: 640px) {
+        .responsive-text {
+          font-size: 0.9rem;
+        }
+      }
+
+      /* Timer estilo */
+      .timer-container {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .timer-box {
+        background-color: rgba(0, 200, 83, 0.1);
+        border: 1px solid rgba(0, 200, 83, 0.3);
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        min-width: 3rem;
+        text-align: center;
+      }
+
+      .timer-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #00c853;
+      }
+
+      .timer-label {
+        font-size: 0.75rem;
+        color: #e0e0e0;
+      }
+    </style>
+  </head>
+  <body class="bg-dark-bg text-white font-sans antialiased">
+    <!-- Barra de navegação -->
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 bg-dark-bg/90 backdrop-blur-sm border-b border-money-green/20"
+    >
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center">
+          <span class="text-money-green font-bold text-xl md:text-2xl"
+            >Money<span class="text-white">Fast</span></span
+          >
+        </div>
+        <div class="flex items-center space-x-2 md:space-x-4">
+          <div class="hidden md:flex items-center space-x-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-money-green"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span class="text-sm">Site Seguro</span>
+          </div>
+          <a href="#comprar" class="btn-comprar gap-2">
+            <i class="fas fa-shopping-cart"></i>
+            Comprar Agora
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Seção principal (Hero) -->
+    <header class="pt-24 pb-16 md:pt-32 md:pb-24 px-4 relative overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-dark-bg via-dark-bg/90 to-dark-bg"
+        ></div>
+        <div
+          class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-money-green/10 via-transparent to-transparent opacity-70"
+        ></div>
+      </div>
+
+      <div class="container mx-auto relative z-10">
+        <div
+          class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12"
+        >
+          <div class="w-full md:w-1/2 space-y-6">
+            <div
+              class="inline-block px-3 py-1 rounded-full bg-money-green/10 border border-money-green/20 text-money-green text-sm font-medium mb-2"
+            >
+              <span class="flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 mr-1"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Ebook Exclusivo
+              </span>
+            </div>
+
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+            >
+              <span class="block">Descubra</span>
+              <span class="text-money-green animate-shine font-extrabold"
+                >50 Formas</span
+              >
+              <span class="block">de Ganhar Dinheiro Rápido</span>
+            </h1>
+
+            <p class="text-gray-300 text-lg md:text-xl">
+              Transforme sua vida financeira hoje mesmo com métodos comprovados
+              e estratégias que realmente funcionam.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center gap-4 pt-2">
+              <a href="#comprar" class="w-full sm:w-auto btn-comprar gap-2">
+                <i class="fas fa-bolt"></i>
+                Garantir Meu Ebook
+              </a>
+              <a
+                href="#depoimentos"
+                class="w-full sm:w-auto text-white border border-white/20 hover:border-money-green/50 font-medium py-3 px-8 rounded-full transition-all duration-300 hover:bg-white/5 text-center"
+              >
+                Ver Depoimentos
+              </a>
+            </div>
+          </div>
+
+          <div class="w-full md:w-1/2 flex justify-center">
+            <div class="relative w-full max-w-md">
+              <!-- Efeito de brilho ao redor do ebook -->
+              <div
+                class="absolute inset-0 bg-money-green/20 blur-2xl rounded-full"
+              ></div>
+
+              <!-- Imagem do ebook -->
+              <div class="relative animate-float">
+                <div
+                  class="bg-gradient-to-br from-money-dark-green to-money-green p-1 rounded-lg shadow-xl shadow-money-green/30 transform rotate-3 transition-transform duration-500 hover:rotate-0"
+                >
+                  <div class="bg-dark-card p-4 rounded-lg">
+                    <div
+                      class="aspect-[3/4] bg-dark-bg rounded-md overflow-hidden relative"
+                    >
+                      <div
+                        class="absolute inset-0 flex flex-col justify-between p-6 bg-gradient-to-b from-dark-bg/80 via-transparent to-dark-bg/80"
+                      >
+                        <div>
+                          <h3 class="text-xl font-bold text-money-green">
+                            EBOOK
+                          </h3>
+                          <h2 class="text-2xl font-extrabold mt-2">
+                            50 FORMAS DE GANHAR DINHEIRO RÁPIDO
+                          </h2>
+                        </div>
+                        <div>
+                          <div class="flex items-center gap-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="h-5 w-5 text-money-green"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z"
+                                clip-rule="evenodd"
+                              />
+                            </svg>
+                            <p class="text-sm font-medium">
+                              Seu investimento para liberdade financeira
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Padrão de fundo com símbolos de dinheiro -->
+                      <div
+                        class="absolute inset-0 opacity-10 flex flex-wrap justify-center items-center"
+                      >
+                        <div
+                          class="w-full h-full flex flex-wrap justify-center items-center"
+                        >
+                          <span class="text-2xl m-2">💰</span>
+                          <span class="text-2xl m-2">💵</span>
+                          <span class="text-2xl m-2">💸</span>
+                          <span class="text-2xl m-2">📈</span>
+                          <span class="text-2xl m-2">💰</span>
+                          <span class="text-2xl m-2">💵</span>
+                          <span class="text-2xl m-2">💸</span>
+                          <span class="text-2xl m-2">📈</span>
+                          <span class="text-2xl m-2">💰</span>
+                          <span class="text-2xl m-2">💵</span>
+                          <span class="text-2xl m-2">💸</span>
+                          <span class="text-2xl m-2">📈</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Seção de preço e promoção -->
+    <section
+      id="comprar"
+      class="py-16 px-4 bg-gradient-to-b from-dark-bg to-dark-bg/95 relative"
+    >
+      <div
+        class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-money-green/5 via-transparent to-transparent opacity-70"
+      ></div>
+
+      <div class="container mx-auto relative z-10">
+        <div
+          class="max-w-6xl mx-auto bg-dark-card rounded-2xl overflow-hidden shadow-xl shadow-money-green/10 border border-money-green/10"
+        >
+          <div class="p-8 md:p-12">
+            <div
+              class="flex flex-col md:flex-row items-center justify-between gap-8"
+            >
+              <div class="w-full md:w-3/5 space-y-6">
+                <h2 class="text-3xl md:text-4xl font-bold">
+                  Invista em seu futuro financeiro
+                  <span class="text-money-green">hoje mesmo</span>
+                </h2>
+
+                <p class="text-gray-300">
+                  Este ebook é seu guia completo para começar a gerar renda
+                  extra imediatamente. São 50 métodos testados e aprovados que
+                  podem ser implementados a partir de hoje.
+                </p>
+
+                <ul class="space-y-3">
+                  <li class="flex items-start">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6 text-money-green mr-2 flex-shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <span
+                      >Métodos que funcionam mesmo sem experiência prévia</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6 text-money-green mr-2 flex-shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <span
+                      >Estratégias para diferentes perfis e
+                      disponibilidades</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6 text-money-green mr-2 flex-shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <span>Guia passo a passo para implementação imediata</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6 text-money-green mr-2 flex-shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <span>Acesso vitalício com atualizações gratuitas</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="w-full md:w-2/5">
+                <div
+                  class="bg-dark-bg rounded-xl p-6 border border-money-green/20 price-tag"
+                >
+                  <div class="text-center space-y-4">
+                    <span
+                      class="inline-block px-3 py-1 bg-money-green/10 text-money-green text-sm font-medium rounded-full"
+                    >
+                      Oferta por tempo limitado
+                    </span>
+
+                    <!-- Timer dinâmico -->
+                    <div class="timer-container">
+                      <div class="timer-box w-[70px]">
+                        <div class="timer-value" id="hours">02</div>
+                        <div class="timer-label">Horas</div>
+                      </div>
+                      <div class="timer-box w-[70px]">
+                        <div class="timer-value" id="minutes">00</div>
+                        <div class="timer-label">Minutos</div>
+                      </div>
+                      <div class="timer-box w-[70px]">
+                        <div class="timer-value" id="seconds">00</div>
+                        <div class="timer-label">Segundos</div>
+                      </div>
+                    </div>
+
+                    <div class="space-y-1">
+                      <p class="text-gray-400 line-through text-lg">
+                        De R$ 99,00
+                      </p>
+                      <p class="text-4xl md:text-5xl font-bold">
+                        <span class="text-money-green text-shadow"
+                          >R$ 19,90</span
+                        >
+                      </p>
+                      <p class="text-gray-300 text-sm">
+                        Pagamento único, sem mensalidades
+                      </p>
+                    </div>
+
+                    <div class="pt-2">
+                      <a
+                        href="#"
+                        class="btn-comprar w-full py-4 px-6 text-sm lg:text-xl gap-2"
+                      >
+                        <i class="fas fa-shopping-cart"></i>
+                        COMPRAR AGORA
+                      </a>
+                    </div>
+
+                    <div
+                      class="flex items-center justify-center space-x-3 pt-3"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 text-money-green"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                      <span class="text-sm text-gray-300"
+                        >Pagamento 100% seguro</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de benefícios -->
+    <section class="py-16 px-4 bg-dark-bg">
+      <div class="container mx-auto">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              O que você vai <span class="text-money-green">descobrir</span>
+            </h2>
+            <p class="text-gray-300">
+              Este ebook foi criado para pessoas que buscam alternativas reais
+              para aumentar sua renda, seja para complementar o salário atual ou
+              para iniciar um novo caminho financeiro.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Benefício 1 -->
+            <div
+              class="bg-dark-card rounded-xl p-6 border border-money-green/10 hover:border-money-green/30 transition-all duration-300 hover:shadow-lg hover:shadow-money-green/5 group"
+            >
+              <div
+                class="w-12 h-12 bg-money-green/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-money-green/20 transition-all duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-money-green"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-money-green transition-colors duration-300"
+              >
+                Freelancing Digital
+              </h3>
+              <p class="text-gray-300">
+                Aprenda como oferecer serviços digitais em plataformas globais e
+                receber em moeda estrangeira, mesmo sem experiência prévia.
+              </p>
+            </div>
+
+            <!-- Benefício 2 -->
+            <div
+              class="bg-dark-card rounded-xl p-6 border border-money-green/10 hover:border-money-green/30 transition-all duration-300 hover:shadow-lg hover:shadow-money-green/5 group"
+            >
+              <div
+                class="w-12 h-12 bg-money-green/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-money-green/20 transition-all duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-money-green"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-money-green transition-colors duration-300"
+              >
+                Investimentos Acessíveis
+              </h3>
+              <p class="text-gray-300">
+                Descubra opções de investimento que podem ser iniciadas com
+                pequenas quantias e gerar rendimentos consistentes ao longo do
+                tempo.
+              </p>
+            </div>
+
+            <!-- Benefício 3 -->
+            <div
+              class="bg-dark-card rounded-xl p-6 border border-money-green/10 hover:border-money-green/30 transition-all duration-300 hover:shadow-lg hover:shadow-money-green/5 group"
+            >
+              <div
+                class="w-12 h-12 bg-money-green/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-money-green/20 transition-all duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-money-green"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-money-green transition-colors duration-300"
+              >
+                E-commerce Simplificado
+              </h3>
+              <p class="text-gray-300">
+                Estratégias para iniciar um negócio online sem estoque, usando
+                dropshipping e outras técnicas modernas de comércio eletrônico.
+              </p>
+            </div>
+
+            <!-- Benefício 4 -->
+            <div
+              class="bg-dark-card rounded-xl p-6 border border-money-green/10 hover:border-money-green/30 transition-all duration-300 hover:shadow-lg hover:shadow-money-green/5 group"
+            >
+              <div
+                class="w-12 h-12 bg-money-green/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-money-green/20 transition-all duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-money-green"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-money-green transition-colors duration-300"
+              >
+                Criação de Conteúdo
+              </h3>
+              <p class="text-gray-300">
+                Como monetizar suas habilidades e conhecimentos através de
+                blogs, canais de vídeo, podcasts e outras plataformas de
+                conteúdo.
+              </p>
+            </div>
+
+            <!-- Benefício 5 -->
+            <div
+              class="bg-dark-card rounded-xl p-6 border border-money-green/10 hover:border-money-green/30 transition-all duration-300 hover:shadow-lg hover:shadow-money-green/5 group"
+            >
+              <div
+                class="w-12 h-12 bg-money-green/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-money-green/20 transition-all duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-money-green"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-money-green transition-colors duration-300"
+              >
+                Economia Compartilhada
+              </h3>
+              <p class="text-gray-300">
+                Aproveite recursos que você já possui para gerar renda extra
+                através de plataformas de compartilhamento e aluguel temporário.
+              </p>
+            </div>
+
+            <!-- Benefício 6 -->
+            <div
+              class="bg-dark-card rounded-xl p-6 border border-money-green/10 hover:border-money-green/30 transition-all duration-300 hover:shadow-lg hover:shadow-money-green/5 group"
+            >
+              <div
+                class="w-12 h-12 bg-money-green/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-money-green/20 transition-all duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-money-green"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-money-green transition-colors duration-300"
+              >
+                Ideias Inovadoras
+              </h3>
+              <p class="text-gray-300">
+                Conheça oportunidades emergentes e nichos de mercado pouco
+                explorados que podem se tornar fontes significativas de renda.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de depoimentos -->
+    <section
+      id="depoimentos"
+      class="py-16 px-4 bg-gradient-to-b from-dark-bg/95 to-dark-bg relative"
+    >
+      <div
+        class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-money-green/5 via-transparent to-transparent opacity-70"
+      ></div>
+
+      <div class="container mx-auto relative z-10">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              O que nossos <span class="text-money-green">leitores dizem</span>
+            </h2>
+            <p class="text-gray-300">
+              Centenas de pessoas já transformaram sua realidade financeira com
+              nosso ebook. Confira alguns depoimentos reais de quem aplicou as
+              estratégias.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Depoimento 1 -->
+            <div
+              class="bg-dark-card rounded-xl p-6 border border-money-green/10 hover:border-money-green/30 transition-all duration-300 hover:shadow-lg hover:shadow-money-green/5"
+            >
+              <div class="flex items-center mb-4">
+                <div class="flex text-money-green">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <p class="text-gray-300 mb-4">
+                "Comecei a aplicar 3 das 50 estratégias e já estou faturando R$
+                1.200 extras por mês. O método de freelancing digital foi o que
+                mais funcionou para mim. Melhor investimento que fiz!"
+              </p>
+
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 bg-money-green/20 rounded-full flex items-center justify-center mr-3"
+                >
+                  <span class="text-money-green font-bold">RM</span>
+                </div>
+                <div>
+                  <h4 class="font-medium">Ricardo Mendes</h4>
+                  <p class="text-sm text-gray-400">Designer Gráfico</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Depoimento 2 -->
+            <div
+              class="bg-dark-card rounded-xl p-6 border border-money-green/10 hover:border-money-green/30 transition-all duration-300 hover:shadow-lg hover:shadow-money-green/5"
+            >
+              <div class="flex items-center mb-4">
+                <div class="flex text-money-green">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <p class="text-gray-300 mb-4">
+                "Estava desempregada e desesperada quando encontrei este ebook.
+                Implementei a estratégia de economia compartilhada e a de
+                criação de conteúdo. Em 2 meses já estava ganhando mais do que
+                no meu antigo emprego!"
+              </p>
+
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 bg-money-green/20 rounded-full flex items-center justify-center mr-3"
+                >
+                  <span class="text-money-green font-bold">AS</span>
+                </div>
+                <div>
+                  <h4 class="font-medium">Amanda Silva</h4>
+                  <p class="text-sm text-gray-400">Empreendedora Digital</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Depoimento 3 -->
+            <div
+              class="bg-dark-card rounded-xl p-6 border border-money-green/10 hover:border-money-green/30 transition-all duration-300 hover:shadow-lg hover:shadow-money-green/5"
+            >
+              <div class="flex items-center mb-4">
+                <div class="flex text-money-green">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <p class="text-gray-300 mb-4">
+                "Comprei o ebook por R$19,90 e já recuperei esse valor no
+                primeiro dia aplicando uma das técnicas. O método de
+                investimentos acessíveis mudou completamente minha visão sobre
+                finanças. Recomendo demais!"
+              </p>
+
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 bg-money-green/20 rounded-full flex items-center justify-center mr-3"
+                >
+                  <span class="text-money-green font-bold">PL</span>
+                </div>
+                <div>
+                  <h4 class="font-medium">Paulo Lima</h4>
+                  <p class="text-sm text-gray-400">Estudante Universitário</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de garantia e segurança -->
+    <section class="py-16 px-4 bg-dark-bg">
+      <div class="container mx-auto">
+        <div
+          class="max-w-6xl mx-auto bg-dark-card rounded-2xl overflow-hidden shadow-xl shadow-money-green/10 border border-money-green/10"
+        >
+          <div class="p-8 md:p-12">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+              <div class="w-full md:w-1/3 flex justify-center">
+                <div
+                  class="w-32 h-32 bg-money-green/10 rounded-full flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-16 w-16 text-money-green"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div class="w-full md:w-2/3 space-y-4">
+                <h2 class="text-2xl md:text-3xl font-bold">
+                  Garantia de
+                  <span class="text-money-green">Satisfação Total</span>
+                </h2>
+
+                <p class="text-gray-300">
+                  Estamos tão confiantes no valor deste ebook que oferecemos uma
+                  garantia de 30 dias. Se você não ficar satisfeito com o
+                  conteúdo ou não conseguir implementar nenhuma das estratégias,
+                  devolveremos 100% do seu investimento, sem perguntas.
+                </p>
+
+                <div class="pt-2 flex flex-col sm:flex-row gap-4">
+                  <div class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 text-money-green mr-2"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span>Pagamento Seguro</span>
+                  </div>
+
+                  <div class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 text-money-green mr-2"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span>Garantia de 30 Dias</span>
+                  </div>
+
+                  <div class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 text-money-green mr-2"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"
+                      />
+                    </svg>
+                    <span>Entrega Imediata</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-dark-bg mt-0 mb-0 mx-4">
+      <div class="mx-auto">
+        <div class="max-w-6xl mx-auto">
+          <img src="money.jpg" alt="" class="rounded-2xl" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de chamada final para ação -->
+    <section class="py-16 px-4 bg-gradient-to-b from-dark-bg to-black relative">
+      <div
+        class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-money-green/10 via-transparent to-transparent opacity-70"
+      ></div>
+
+      <div class="container mx-auto relative z-10">
+        <div class="max-w-6xl mx-auto text-center space-y-8">
+          <h2 class="text-3xl md:text-5xl font-bold leading-tight">
+            Transforme sua vida financeira
+            <span class="text-money-green">hoje mesmo</span>
+          </h2>
+
+          <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+            Não espere mais para começar a gerar renda extra. Com um
+            investimento único de apenas R$ 19,90, você terá acesso a 50
+            estratégias comprovadas que podem mudar sua realidade financeira.
+          </p>
+
+          <div class="pt-4 flex flex-col justify-center items-center gap-4">
+            <div class="inline-block">
+              <div class="bg-money-green/10 rounded-lg p-4 mb-6 inline-block">
+                <p class="text-gray-300 line-through text-lg">De R$ 99,00</p>
+                <p class="text-4xl md:text-5xl font-bold">
+                  <span class="text-money-green text-shadow">Por R$ 19,90</span>
+                </p>
+                <p class="text-gray-300 text-sm">
+                  Pagamento único, sem mensalidades
+                </p>
+              </div>
+            </div>
+
+            <a
+              href="#"
+              class="btn-comprar inline-block py-5 px-8 text-sm lg:text-xl max-w-2xl mx-auto gap-2"
+            >
+              <i class="fas fa-bolt"></i>
+              QUERO GARANTIR MEU EBOOK AGORA
+            </a>
+
+            <div class="flex items-center justify-center space-x-3 pt-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-money-green"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="text-sm text-gray-300"
+                >Pagamento 100% seguro | Acesso imediato após a compra</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="py-8 px-4 bg-black border-t border-money-green/10">
+      <div class="container mx-auto">
+        <div
+          class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center"
+        >
+          <div class="mb-4 md:mb-0">
+            <span class="text-money-green font-bold text-xl"
+              >Money<span class="text-white">Fast</span></span
+            >
+          </div>
+
+          <div
+            class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6"
+          >
+            <div class="flex items-center space-x-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-money-green"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="text-sm">Site Seguro</span>
+            </div>
+
+            <div class="flex items-center space-x-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-money-green"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="text-sm">Pagamento Seguro</span>
+            </div>
+
+            <div class="flex items-center space-x-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-money-green"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                />
+                <path
+                  d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                />
+              </svg>
+              <span class="text-sm">suporte@moneyfast.com.br</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="max-w-6xl mx-auto mt-6 pt-6 border-t border-white/10 text-center"
+        >
+          <p class="text-sm text-gray-400">
+            &copy; 2025 MoneyFast. Todos os direitos reservados. Este site é
+            protegido por reCAPTCHA e a
+            <a href="#" class="text-money-green hover:underline"
+              >Política de Privacidade</a
+            >
+            e
+            <a href="#" class="text-money-green hover:underline"
+              >Termos de Serviço</a
+            >
+            do Google se aplicam.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Botão flutuante de compra para mobile -->
+    <div class="fixed bottom-4 right-4 md:hidden z-50">
+      <a
+        href="#comprar"
+        class="btn-comprar flex items-center justify-center w-14 h-14 rounded-full"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+          />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Script para animações suaves de scroll e timer -->
+    <script>
+      // Timer dinâmico de 2 horas
+      function startTimer() {
+        // Definir o tempo inicial (2 horas)
+        let hours = 2;
+        let minutes = 0;
+        let seconds = 0;
+
+        // Atualizar o timer a cada segundo
+        const timerInterval = setInterval(() => {
+          // Decrementar os segundos
+          seconds--;
+
+          // Ajustar minutos e segundos quando necessário
+          if (seconds < 0) {
+            seconds = 59;
+            minutes--;
+          }
+
+          if (minutes < 0) {
+            minutes = 59;
+            hours--;
+          }
+
+          // Parar o timer quando chegar a zero
+          if (hours === 0 && minutes === 0 && seconds === 0) {
+            clearInterval(timerInterval);
+          }
+
+          // Atualizar os elementos do DOM
+          document.getElementById("hours").textContent = hours
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("minutes").textContent = minutes
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("seconds").textContent = seconds
+            .toString()
+            .padStart(2, "0");
+        }, 1000);
+      }
+
+      // Animações de scroll suave
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Animação de elementos ao entrar na viewport
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fade-in");
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Aplicar animação a elementos específicos
+      document.addEventListener("DOMContentLoaded", () => {
+        // Iniciar o timer
+        startTimer();
+
+        // Animar elementos ao entrar na viewport
+        const animatedElements = document.querySelectorAll(".bg-dark-card");
+        animatedElements.forEach((el) => {
+          el.style.opacity = 0;
+          el.style.transform = "translateY(20px)";
+          el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>
