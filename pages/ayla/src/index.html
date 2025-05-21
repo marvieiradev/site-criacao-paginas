@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aniversário da Maria</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      @font-face {
+        font-family: "Beauty-Sunny";
+        src: url("fonts/Beauty-Sunny.woff") format("woff");
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-100vh) rotate(0deg);
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-image: url("img/fundo.jpg");
+        background-size: 50%;
+        background-size: contain;
+        background-attachment: fixed;
+        background-position: center;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 0, 0.1);
+        z-index: -1;
+      }
+
+      .spin-daisy {
+        animation: spin 10s linear infinite;
+      }
+
+      .falling-daisy {
+        position: fixed;
+        top: -100px;
+        pointer-events: none;
+        z-index: 10;
+        animation: fall 6s linear forwards;
+        opacity: 0;
+      }
+
+      .message-font,
+      #contador,
+      h2 {
+        font-family: "Beauty-Sunny", sans-serif;
+      }
+
+      .carousel-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+
+      .carousel-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+
+      .carousel-slide.active {
+        opacity: 1;
+      }
+
+      .countdown-text {
+        text-shadow: 0 0 5px white, 0 0 5px white, 0 0 5px white, 0 0 5px white;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col items-center">
+    <!-- Título -->
+    <div class="w-full max-w-md px-4 mb-4 flex justify-center mt-4">
+      <img src="img/titulo.svg" alt="" width="240px" />
+    </div>
+
+    <!-- Carrossel de fotos -->
+    <div class="w-full max-w-md px-4 mb-4">
+      <div class="carousel-container aspect-[4/2]">
+        <div class="carousel-slide active">
+          <img src="" alt="" class="w-full h-full object-cover" />
+        </div>
+        <div class="carousel-slide">
+          <img src="" alt="" class="w-full h-full object-cover" />
+        </div>
+        <div class="carousel-slide">
+          <img src="" alt="" class="w-full h-full object-cover" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Contador -->
+    <div
+      id="contador"
+      class="flex items-center justify-between mb-6 bg-pink-200 rounded-full py-3 px-8 shadow-md gap-4 cursor-pointer"
+    >
+      <div class="spin-daisy w-7 h-7">
+        <img src="img/daisy.svg" alt="" />
+      </div>
+      <div
+        id="countdown"
+        class="countdown-text text-xl text-pink-600 font-semibold tracking-wide"
+      ></div>
+    </div>
+
+    <!-- Mensagem convidativa -->
+    <div
+      class="bg-white rounded-2xl shadow-lg py-6 p-2 mb-6 max-w-md mx-4 text-center border-2 border-pink-200 leading-6"
+    >
+      <p class="message-font text-xl text-gray-800">
+        A flor mais linda do nosso jardim está completando seu primeiro aninho!
+        Venha comemorar conosco esse momento tão especial!
+      </p>
+    </div>
+
+    <!-- Cards de informações e sugestões -->
+    <div class="flex flex-col gap-4 w-full max-w-md px-4 mb-8 text-sm">
+      <!-- Card de informações -->
+      <div
+        class="bg-pink-100 rounded-2xl shadow-md p-5 border-2 border-pink-300"
+      >
+        <div class="flex items-center mb-3 gap-4">
+          <div
+            class="flex justify-center mb-3 rounded-full bg-pink-200 w-12 h-12 text-center items-center text-pink-500 text-2xl"
+          >
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <h2 class="title-font text-2xl text-pink-500 font-bold mb-3">
+            Detalhes
+          </h2>
+        </div>
+        <p class="mb-1"><span class="font-bold">Data:</span> 02/08/2025</p>
+        <p class="mb-1"><span class="font-bold">Horário:</span> 19:00</p>
+        <p class="mb-1"><span class="font-bold">Local:</span> Casa de Oração</p>
+        <p>
+          <span class="font-bold">Endereço:</span> Rua Cel Antônio Botelho, 47
+        </p>
+      </div>
+
+      <!-- Card de sugestões de presentes -->
+      <div
+        class="bg-pink-100 rounded-2xl shadow-md p-5 border-2 border-pink-300"
+      >
+        <div class="flex items-center mb-3 gap-4">
+          <div
+            class="flex justify-center mb-3 rounded-full bg-pink-200 w-12 h-12 text-center items-center text-pink-500 text-2xl"
+          >
+            <i class="fa-solid fa-gift"></i>
+          </div>
+          <h2 class="title-font text-2xl text-pink-500 font-bold mb-3">
+            Sugestão de Presentes
+          </h2>
+        </div>
+        <p class="mb-1">• Roupas tamanho 2-3 anos</p>
+        <p class="mb-1">• Calçado 20/21</p>
+        <p class="mb-1">• Brinquedos educativos</p>
+      </div>
+    </div>
+
+    <!-- Botão de confirmação -->
+    <button
+      id="confirmar-presenca"
+      class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 mb-10"
+    >
+      Confirmar presença
+    </button>
+
+    <script>
+      // Carrossel de fotos
+      const slides = document.querySelectorAll(".carousel-slide");
+      let currentSlide = 0;
+
+      function nextSlide() {
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add("active");
+      }
+
+      // Mudar slide a cada 5 segundos
+      setInterval(nextSlide, 5000);
+
+      // Contador regressivo
+      function updateCountdown() {
+        const targetDate = new Date("2025-08-02T00:00:00");
+        const now = new Date();
+
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+          document.getElementById("countdown").textContent =
+            "Hoje é o grande dia!";
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const months = Math.floor(days / 30);
+        const remainingDays = days % 30;
+
+        document.getElementById("countdown").textContent = `Faltam ${months} ${
+          months === 1 ? "mês" : "meses"
+        } e ${remainingDays} ${remainingDays === 1 ? "dia" : "dias"}`;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 86400000); // Atualiza a cada dia
+
+      // Margaridas caindo
+      function createFallingDaisies() {
+        for (let i = 0; i < 15; i++) {
+          setTimeout(() => {
+            const daisy = document.createElement("div");
+            daisy.classList.add("falling-daisy");
+
+            // Usar imagem real de margarida
+            const img = document.createElement("img");
+            img.src = "img/daisy.svg";
+            img.style.width = `${40 + Math.random() * 40}px`;
+            img.style.height = "auto";
+            //img.style.borderRadius = "50%";
+            img.style.objectFit = "cover";
+            img.style.objectPosition = "center";
+            //img.style.boxShadow = "0 0 10px rgba(255, 255, 255, 0.8)";
+
+            daisy.appendChild(img);
+            daisy.style.left = `${Math.random() * 100}%`;
+            daisy.style.animationDuration = `${4 + Math.random() * 3}s`;
+            //daisy.style.opacity = "1";
+            document.body.appendChild(daisy);
+
+            // Remover após a animação
+            setTimeout(() => {
+              daisy.remove();
+            }, 7000);
+          }, i * 300);
+        }
+      }
+
+      // Iniciar animação de queda quando a página carrega
+      window.addEventListener("load", createFallingDaisies);
+      document.getElementById("contador").addEventListener("click", () => {
+        createFallingDaisies();
+      });
+
+      // Gerar URLs para as imagens de placeholder
+      const images = document.querySelectorAll(".carousel-slide img");
+      images[0].src = "img/img-01.png"; // Substitua por uma imagem real
+      images[1].src = "img/img-02.png"; // Substitua por uma imagem real
+      images[2].src = "img/img-03.png"; // Substitua por uma imagem real
+    </script>
+  </body>
+</html>
