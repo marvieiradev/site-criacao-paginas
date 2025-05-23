@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50 Formas de Ganhar Dinheiro Rápido - Ebook Exclusivo</title>
+    
+    <!-- TailwindCSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#121212',
+                        'dark-secondary': '#1e1e1e',
+                        'money-green': '#00c853',
+                        'money-green-light': '#5efc82',
+                        'money-green-dark': '#009624',
+                        'accent-color': '#ffd700',
+                        'danger-color': '#ff3d00',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'fade-in-up': 'fadeInUp 1.2s ease-out',
+                        'pulse': 'pulse 2s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        fadeInUp: {
+                            '0%': { 
+                                opacity: '0',
+                                transform: 'translateY(30px)'
+                            },
+                            '100%': { 
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            },
+                        },
+                        pulse: {
+                            '0%, 100%': { 
+                                boxShadow: '0 5px 15px rgba(0, 0, 0, 0.2)'
+                            },
+                            '50%': { 
+                                boxShadow: '0 5px 30px rgba(255, 61, 0, 0.4)'
+                            },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos base que complementam o Tailwind */
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(20px);
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .testimonial-card {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        @keyframes pulse-button {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 5px 15px rgba(0, 200, 83, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 10px 20px rgba(0, 200, 83, 0.6);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 5px 15px rgba(0, 200, 83, 0.4);
+            }
+        }
+        
+        .pulse {
+            animation: pulse-button 1s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-dark-bg text-white">
+    <!-- Header -->
+    <header class="bg-dark-secondary fixed w-full top-0 z-50 shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-money-green">Dinheiro<span class="text-white">Rápido</span></a>
+            <div class="flex items-center text-sm">
+                <i class="fas fa-shield-alt text-money-green mr-2"></i> Site 100% Seguro
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 bg-gradient-to-br from-dark-bg to-dark-secondary relative overflow-hidden">
+        <div class="absolute inset-0 bg-opacity-5 z-0"></div>
+        <div class="container mx-auto px-4 relative z-10 flex flex-col items-center text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight animate-on-scroll">
+                Descubra as <span class="text-money-green">50 Formas</span> de Ganhar Dinheiro Rápido
+            </h1>
+            <p class="text-xl max-w-3xl mb-8 animate-on-scroll">
+                Métodos comprovados e práticos para aumentar sua renda ainda hoje, mesmo começando do zero e sem experiência prévia.
+            </p>
+            
+            <div class="bg-dark-secondary p-6 rounded-lg mb-8 shadow-lg animate-pulse w-full max-w-md">
+                <div class="text-danger-color font-bold mb-2">OFERTA POR TEMPO LIMITADO:</div>
+                <div class="flex justify-center gap-4">
+                    <div class="flex flex-col items-center">
+                        <div id="hours" class="bg-dark-bg text-money-green text-2xl font-bold p-3 rounded min-w-[60px]">02</div>
+                        <div class="text-sm text-gray-400 mt-1">Horas</div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div id="minutes" class="bg-dark-bg text-money-green text-2xl font-bold p-3 rounded min-w-[60px]">00</div>
+                        <div class="text-sm text-gray-400 mt-1">Minutos</div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div id="seconds" class="bg-dark-bg text-money-green text-2xl font-bold p-3 rounded min-w-[60px]">00</div>
+                        <div class="text-sm text-gray-400 mt-1">Segundos</div>
+                    </div>
+                </div>
+            </div>
+            
+            <img src="images/money-growth.jpg" alt="Crescimento financeiro" class="max-w-full h-auto rounded-lg shadow-xl mb-8 animate-on-scroll">
+            
+            <a href="#pricing" class="bg-gradient-to-r from-money-green-dark to-money-green text-white font-bold py-4 px-8 rounded-full text-xl flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 animate-on-scroll">
+                <i class="fas fa-bolt mr-2"></i> QUERO GARANTIR AGORA
+            </a>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 bg-dark-secondary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 animate-on-scroll">
+                O Que Você Vai <span class="text-money-green">Descobrir</span>
+            </h2>
+            <p class="text-xl text-center max-w-3xl mx-auto mb-12 animate-on-scroll">
+                Um método de ganhar dinheiro rápido para cada necessidade e perfil, com passos práticos e detalhados.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-dark-bg p-8 rounded-lg shadow-lg transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-xl animate-on-scroll">
+                    <i class="fas fa-laptop-code text-4xl text-money-green mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4">Trabalhos Digitais</h3>
+                    <p>Aprenda como ganhar dinheiro online com freelancing, marketing digital e vendas de produtos digitais.</p>
+                </div>
+                
+                <div class="bg-dark-bg p-8 rounded-lg shadow-lg transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-xl animate-on-scroll">
+                    <i class="fas fa-chart-line text-4xl text-money-green mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4">Investimentos Rápidos</h3>
+                    <p>Descubra estratégias de investimentos de curto prazo que podem trazer retornos significativos.</p>
+                </div>
+                
+                <div class="bg-dark-bg p-8 rounded-lg shadow-lg transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-xl animate-on-scroll">
+                    <i class="fas fa-store text-4xl text-money-green mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4">Micro Negócios</h3>
+                    <p>Ideias de pequenos negócios que você pode começar hoje mesmo com pouco ou nenhum investimento.</p>
+                </div>
+                
+                <div class="bg-dark-bg p-8 rounded-lg shadow-lg transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-xl animate-on-scroll">
+                    <i class="fas fa-handshake text-4xl text-money-green mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4">Parcerias Lucrativas</h3>
+                    <p>Como encontrar e estabelecer parcerias estratégicas que geram renda extra rapidamente.</p>
+                </div>
+                
+                <div class="bg-dark-bg p-8 rounded-lg shadow-lg transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-xl animate-on-scroll">
+                    <i class="fas fa-mobile-alt text-4xl text-money-green mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4">Apps de Renda</h3>
+                    <p>Os melhores aplicativos para ganhar dinheiro no seu tempo livre, diretamente pelo seu smartphone.</p>
+                </div>
+                
+                <div class="bg-dark-bg p-8 rounded-lg shadow-lg transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-xl animate-on-scroll">
+                    <i class="fas fa-recycle text-4xl text-money-green mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4">Economia Circular</h3>
+                    <p>Como transformar itens usados em dinheiro e aproveitar oportunidades na economia de segunda mão.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Method Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                        Um Método <span class="text-money-green">Comprovado</span>
+                    </h2>
+                    <p class="text-lg mb-6">
+                        Entre as 50 formas de ganhar dinheiro rápido, destacamos o método de arbitragem de produtos digitais, que permite lucros de até 300% em poucos dias, mesmo para iniciantes.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-money-green mt-1 mr-3"></i>
+                            <span>Sem necessidade de criar produtos próprios</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-money-green mt-1 mr-3"></i>
+                            <span>Investimento inicial mínimo</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-money-green mt-1 mr-3"></i>
+                            <span>Resultados visíveis em até 48 horas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-money-green mt-1 mr-3"></i>
+                            <span>Escalável para rendimentos maiores</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 animate-on-scroll">
+                    <img src="images/happy-shopping.jpg" alt="Pessoa feliz com compras" class="rounded-lg shadow-xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 bg-dark-secondary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 animate-on-scroll">
+                Investimento <span class="text-money-green">Mínimo</span>, Retorno <span class="text-money-green">Máximo</span>
+            </h2>
+            <p class="text-xl text-center max-w-3xl mx-auto mb-12 animate-on-scroll">
+                Um pequeno investimento hoje pode transformar sua realidade financeira amanhã.
+            </p>
+            
+            <div class="bg-dark-bg p-8 rounded-lg max-w-2xl mx-auto relative shadow-xl animate-on-scroll">
+                <div class="absolute top-4 right-4 bg-danger-color text-white px-3 py-1 rounded-full font-bold transform rotate-12">
+                    80% OFF
+                </div>
+                <div class="border-t-4 border-money-green absolute top-0 left-0 w-full"></div>
+                
+                <h3 class="text-2xl font-bold mb-6 text-center">Ebook Digital - 50 Formas de Ganhar Dinheiro Rápido</h3>
+                
+                <div class="text-center mb-8">
+                    <div class="text-xl text-gray-400 line-through inline-block">De R$ 99,00</div>
+                    <div class="text-4xl md:text-5xl text-money-green font-bold mt-2">Por R$ 19,90</div>
+                    <p class="mt-2">Acesso imediato após a confirmação do pagamento</p>
+                </div>
+                
+                <div class="flex justify-center mb-8">
+                    <a href="#" class="bg-gradient-to-r from-money-green-dark to-money-green text-white font-bold py-4 px-8 rounded-full text-xl flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                        <i class="fas fa-shopping-cart mr-2"></i> COMPRAR AGORA
+                    </a>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <div class="flex items-center bg-dark-secondary px-4 py-2 rounded border-2 border-money-green text-money-green">
+                        <i class="fas fa-qrcode mr-2"></i> PIX
+                    </div>
+                    <div class="flex items-center bg-dark-secondary px-4 py-2 rounded">
+                        <i class="fas fa-credit-card mr-2"></i> Cartão de Crédito
+                    </div>
+                    <div class="flex items-center bg-dark-secondary px-4 py-2 rounded">
+                        <i class="fas fa-university mr-2"></i> Boleto Bancário
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-center">
+                    <i class="fas fa-shield-alt text-accent-color text-3xl mr-4"></i>
+                    <div class="text-left">
+                        <strong>Garantia de 7 dias</strong><br>
+                        Se não ficar satisfeito, devolvemos seu dinheiro.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 animate-on-scroll">
+                O Que Dizem Nossos <span class="text-money-green">Leitores</span>
+            </h2>
+            <p class="text-xl text-center max-w-3xl mx-auto mb-12 animate-on-scroll">
+                Histórias reais de pessoas que transformaram suas finanças com nossos métodos.
+            </p>
+            
+            <div class="max-w-2xl mx-auto relative">
+                <div class="testimonial-card bg-dark-bg p-6 rounded-lg shadow-lg">
+                    <div class="mb-6 relative">
+                        <span class="absolute -top-6 -left-4 text-6xl text-money-green opacity-20">"</span>
+                        <p class="italic relative z-10">
+                            "Implementei apenas 3 dos 50 métodos e já consegui uma renda extra de R$ 1.200 no primeiro mês. O método de arbitragem digital foi o que mais me deu resultado!"
+                        </p>
+                    </div>
+                    <div class="flex items-center">
+                        <div>
+                            <div class="font-bold">Carlos Silva</div>
+                            <div class="text-sm text-gray-400">Estudante Universitário</div>
+                            <div class="text-accent-color mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card bg-dark-bg p-6 rounded-lg shadow-lg">
+                    <div class="mb-6 relative">
+                        <span class="absolute -top-6 -left-4 text-6xl text-money-green opacity-20">"</span>
+                        <p class="italic relative z-10">
+                            "Estava desempregada e precisando urgentemente de uma fonte de renda. Com as dicas do ebook, consegui montar um pequeno negócio que hoje me rende mais do que meu antigo emprego."
+                        </p>
+                    </div>
+                    <div class="flex items-center">
+                        <div>
+                            <div class="font-bold">Mariana Costa</div>
+                            <div class="text-sm text-gray-400">Empreendedora</div>
+                            <div class="text-accent-color mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card bg-dark-bg p-6 rounded-lg shadow-lg">
+                    <div class="mb-6 relative">
+                        <span class="absolute -top-6 -left-4 text-6xl text-money-green opacity-20">"</span>
+                        <p class="italic relative z-10">
+                            "Achei que seria mais um daqueles ebooks genéricos, mas me surpreendi com o conteúdo prático e detalhado. Já estou aplicando 5 métodos diferentes e vendo resultados reais."
+                        </p>
+                    </div>
+                    <div class="flex items-center">
+                        <div>
+                            <div class="font-bold">Roberto Almeida</div>
+                            <div class="text-sm text-gray-400">Profissional Liberal</div>
+                            <div class="text-accent-color mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center mt-6 gap-4">
+                    <button id="prev-testimonial" class="bg-dark-secondary hover:bg-dark-bg w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="next-testimonial" class="bg-dark-secondary hover:bg-dark-bg w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section class="py-16 bg-dark-secondary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 animate-on-scroll">
+                Compra <span class="text-money-green">100% Segura</span>
+            </h2>
+            <p class="text-xl text-center max-w-3xl mx-auto mb-12 animate-on-scroll">
+                Sua segurança e satisfação são nossas prioridades.
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
+                <div class="bg-dark-bg p-6 rounded-lg flex flex-col items-center text-center transition-all duration-300 hover:shadow-lg">
+                    <i class="fas fa-lock text-money-green text-3xl mb-4"></i>
+                    <div class="font-bold mb-2">Pagamento Seguro</div>
+                    <p class="text-sm">Todas as transações são criptografadas e protegidas.</p>
+                </div>
+                
+                <div class="bg-dark-bg p-6 rounded-lg flex flex-col items-center text-center transition-all duration-300 hover:shadow-lg">
+                    <i class="fas fa-shield-alt text-money-green text-3xl mb-4"></i>
+                    <div class="font-bold mb-2">Site Protegido</div>
+                    <p class="text-sm">Certificado SSL de 256 bits para sua segurança.</p>
+                </div>
+                
+                <div class="bg-dark-bg p-6 rounded-lg flex flex-col items-center text-center transition-all duration-300 hover:shadow-lg">
+                    <i class="fas fa-undo-alt text-money-green text-3xl mb-4"></i>
+                    <div class="font-bold mb-2">Garantia de Reembolso</div>
+                    <p class="text-sm">7 dias de garantia incondicional.</p>
+                </div>
+                
+                <div class="bg-dark-bg p-6 rounded-lg flex flex-col items-center text-center transition-all duration-300 hover:shadow-lg">
+                    <i class="fas fa-headset text-money-green text-3xl mb-4"></i>
+                    <div class="font-bold mb-2">Suporte Dedicado</div>
+                    <p class="text-sm">Atendimento rápido para suas dúvidas.</p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#pricing" class="bg-gradient-to-r from-money-green-dark to-money-green text-white font-bold py-4 px-8 rounded-full text-xl inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                    <i class="fas fa-bolt mr-2"></i> GARANTIR MEU EBOOK AGORA
+                </a>
+                <p class="mt-4 text-sm">Oferta por tempo limitado. Não perca esta oportunidade!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Perguntas Frequentes</h2>
+            
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="bg-dark-secondary rounded-lg overflow-hidden">
+                    <div class="faq-question p-4 cursor-pointer flex justify-between items-center">
+                        <h3 class="text-lg font-semibold">Como recebo o ebook após a compra?</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer bg-dark-bg p-4 border-t border-gray-700">
+                        <p>Após a confirmação do pagamento, você receberá um email com o link para download do ebook em formato PDF. O acesso é imediato e você pode ler em qualquer dispositivo.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-dark-secondary rounded-lg overflow-hidden">
+                    <div class="faq-question p-4 cursor-pointer flex justify-between items-center">
+                        <h3 class="text-lg font-semibold">Quanto tempo leva para ver resultados?</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer bg-dark-bg p-4 border-t border-gray-700">
+                        <p>Isso varia de acordo com o método escolhido e sua dedicação. Alguns métodos podem gerar resultados em 24-48 horas, enquanto outros podem levar algumas semanas para mostrar retorno significativo.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-dark-secondary rounded-lg overflow-hidden">
+                    <div class="faq-question p-4 cursor-pointer flex justify-between items-center">
+                        <h3 class="text-lg font-semibold">Preciso de experiência prévia?</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer bg-dark-bg p-4 border-t border-gray-700">
+                        <p>Não! O ebook foi desenvolvido pensando em iniciantes. Todos os métodos são explicados passo a passo, desde o básico, para que qualquer pessoa possa implementá-los.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-dark-secondary rounded-lg overflow-hidden">
+                    <div class="faq-question p-4 cursor-pointer flex justify-between items-center">
+                        <h3 class="text-lg font-semibold">Como funciona a garantia de 7 dias?</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer bg-dark-bg p-4 border-t border-gray-700">
+                        <p>Se você não ficar satisfeito com o conteúdo por qualquer motivo, basta enviar um email para nosso suporte dentro do período de 7 dias após a compra, e faremos o reembolso integral, sem questionamentos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-secondary py-10">
+        <div class="container mx-auto px-4 flex flex-col items-center">
+            <div class="text-2xl font-bold text-money-green mb-6">DinheiroRápido</div>
+            <div class="flex gap-6 mb-6">
+                <a href="#" class="text-gray-400 hover:text-money-green transition-colors">Termos de Uso</a>
+                <a href="#" class="text-gray-400 hover:text-money-green transition-colors">Política de Privacidade</a>
+                <a href="#" class="text-gray-400 hover:text-money-green transition-colors">Contato</a>
+            </div>
+            <div class="text-gray-400 text-sm">
+                &copy; 2025 DinheiroRápido. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Contador regressivo de 2 horas
+            const countdownDate = new Date();
+            countdownDate.setHours(countdownDate.getHours() + 2);
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+                
+                // Cálculo de tempo para horas, minutos e segundos
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Atualização dos elementos HTML
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+                
+                // Quando o contador chegar a zero
+                if (distance < 0) {
+                    clearInterval(countdownTimer);
+                    const countdownContainer = document.querySelector('.animate-pulse');
+                    if (countdownContainer) {
+                        countdownContainer.innerHTML = "<p class='text-danger-color font-bold'>Oferta encerrada!</p>";
+                    }
+                }
+            }
+            
+            // Atualiza o contador a cada segundo
+            updateCountdown();
+            const countdownTimer = setInterval(updateCountdown, 1000);
+            
+            // Animações ao scroll
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.animate-on-scroll');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 50) {
+                        element.classList.add('animated');
+                    }
+                });
+            };
+            
+            // Executa a animação ao carregar a página e ao rolar
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Efeito de pulsação no botão de compra
+            const pulseButton = function() {
+                const buyButtons = document.querySelectorAll('a[href="#pricing"]');
+                buyButtons.forEach(button => {
+                    button.classList.add('pulse');
+                    
+                    setTimeout(() => {
+                        button.classList.remove('pulse');
+                    }, 1000);
+                });
+            };
+            
+            // Pulsa o botão a cada 3 segundos
+            pulseButton();
+            setInterval(pulseButton, 3000);
+            
+            // Slider de depoimentos
+            let currentTestimonial = 0;
+            const testimonials = document.querySelectorAll('.testimonial-card');
+            const totalTestimonials = testimonials.length;
+            
+            function showTestimonial(index) {
+                testimonials.forEach((testimonial, i) => {
+                    testimonial.style.display = i === index ? 'block' : 'none';
+                    setTimeout(() => {
+                        testimonial.style.opacity = i === index ? '1' : '0';
+                    }, 50);
+                });
+            }
+            
+            function nextTestimonial() {
+                currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+                showTestimonial(currentTestimonial);
+            }
+            
+            function prevTestimonial() {
+                currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+                showTestimonial(currentTestimonial);
+            }
+            
+            // Configura os botões de navegação do slider
+            const prevButton = document.getElementById('prev-testimonial');
+            const nextButton = document.getElementById('next-testimonial');
+            
+            if (prevButton && nextButton) {
+                prevButton.addEventListener('click', prevTestimonial);
+                nextButton.addEventListener('click', nextTestimonial);
+            }
+            
+            // Mostra o primeiro depoimento
+            showTestimonial(currentTestimonial);
+            
+            // Troca automática de depoimentos a cada 5 segundos
+            setInterval(nextTestimonial, 5000);
+            
+            // Adicionar funcionalidade para as perguntas frequentes
+            const faqItems = document.querySelectorAll('.faq-question');
+            
+            faqItems.forEach(item => {
+                const answer = item.nextElementSibling;
+                const icon = item.querySelector('i');
+                
+                item.addEventListener('click', () => {
+                    // Toggle da resposta
+                    const isOpen = answer.style.maxHeight !== '0px' && answer.style.maxHeight !== '';
+                    
+                    if (!isOpen) {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        answer.style.maxHeight = '0px';
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+
+            // Adicionar efeito de rolagem suave para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // Ajuste para o header fixo
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Adicionar efeito de destaque para o método de pagamento PIX
+            const pixMethod = document.querySelector('.border-money-green');
+            if (pixMethod) {
+                setInterval(() => {
+                    pixMethod.classList.toggle('pulse');
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
