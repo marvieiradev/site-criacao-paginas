@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Barbearia Original App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              barber: {
+                primary: "#4A1E5F", // Roxo escuro
+                secondary: "#E67E22", // Laranja
+                dark: "#121212", // Fundo escuro
+                darkgray: "#1E1E1E", // Cinza escuro
+                light: "#F5F5F5", // Texto claro
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap");
+
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+        touch-action: manipulation;
+        font-family: "Poppins", sans-serif;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Oswald", sans-serif;
+      }
+
+      /* Animações para botões */
+      .app-btn {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .app-btn:active {
+        transform: scale(0.95);
+      }
+
+      /* Animações para páginas */
+      .app-page {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        opacity: 0;
+        transform: translateX(20px);
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        overflow-y: auto;
+        display: none;
+      }
+
+      .app-page.active {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+        display: flex;
+      }
+
+      /* Modal de agendamento */
+      .modal {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+        display: none;
+      }
+
+      .modal.active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        display: flex;
+      }
+
+      /* Animação de entrada para os elementos */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 0.3s ease forwards;
+      }
+
+      /* Animação para botão de voltar */
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .back-btn:active {
+        animation: pulse 0.3s ease;
+      }
+
+      /* Status bar estilo iOS/Android */
+      .status-bar {
+        height: 24px;
+        background-color: rgba(0, 0, 0, 0.8);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 12px;
+        font-size: 12px;
+      }
+
+      /* Efeito de ripple para botões (estilo Android) */
+      .ripple {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ripple:after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+        background-repeat: no-repeat;
+        background-position: 50%;
+        transform: scale(10, 10);
+        opacity: 0;
+        transition: transform 0.5s, opacity 1s;
+      }
+
+      .ripple:active:after {
+        transform: scale(0, 0);
+        opacity: 0.3;
+        transition: 0s;
+      }
+
+      /* Estilo para scrollbar dentro das páginas */
+      .app-page::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      .app-page::-webkit-scrollbar-track {
+        background: rgba(30, 30, 30, 0.5);
+      }
+
+      .app-page::-webkit-scrollbar-thumb {
+        background: #4a1e5f;
+        border-radius: 4px;
+      }
+
+      /* Estilo para formulários */
+      input,
+      select,
+      textarea {
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 8px;
+      }
+
+      /* Animação para carregamento da página */
+      .app-container {
+        opacity: 0;
+        transform: translateY(10px);
+        animation: appLoad 0.5s ease forwards 0.2s;
+      }
+
+      @keyframes appLoad {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Efeito de deslizar para modal (estilo iOS) */
+      .slide-up {
+        animation: slideUp 0.3s ease forwards;
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .slide-down {
+        animation: slideDown 0.3s ease forwards;
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+      }
+
+      /* Animação para transição de páginas */
+      @keyframes slideInRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      .slide-in-right {
+        animation: slideInRight 0.3s ease forwards;
+      }
+
+      @keyframes slideOutRight {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+      }
+
+      .slide-out-right {
+        animation: slideOutRight 0.3s ease forwards;
+      }
+    </style>
+  </head>
+  <body class="bg-barber-dark text-barber-light">
+    <!-- Status Bar (estilo iOS/Android) 
+    <div class="status-bar">
+        <div class="time">12:00</div>
+        <div class="icons flex space-x-2">
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>-->
+
+    <!-- Página Inicial (Home) -->
+    <div id="homePage" class="app-page active flex flex-col h-full pt-6">
+      <!-- Logo e Descrição -->
+      <div class="flex flex-col items-center justify-center px-6 pt-2 pb-6">
+        <!-- Logo da Barbearia -->
+        <div
+          class="w-32 h-32 rounded-full bg-barber-primary border-4 border-barber-secondary p-2 flex items-center justify-center mb-4 shadow-lg"
+        >
+          <div
+            class="w-full h-full rounded-full bg-barber-primary flex items-center justify-center relative"
+          >
+            <!-- Logo Redesenhado -->
+            <div
+              class="absolute inset-0 rounded-full border-4 border-white flex items-center justify-center"
+            >
+              <div class="relative w-3/4 h-3/4">
+                <!-- Máquina de Cortar Cabelo -->
+                <div
+                  class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                >
+                  <div class="w-8 h-12 bg-barber-secondary rounded-lg relative">
+                    <!-- Detalhes da máquina -->
+                    <div
+                      class="absolute top-0 left-1/2 transform -translate-x-1/2 w-5 h-1.5 bg-gray-300 rounded-t-lg"
+                    ></div>
+                    <div
+                      class="absolute top-1.5 left-1/2 transform -translate-x-1/2 w-6 h-1 bg-gray-700"
+                    ></div>
+                    <div
+                      class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-7 h-2 bg-gray-800 rounded-b-lg"
+                    ></div>
+                  </div>
+                </div>
+                <!-- Tesouras -->
+                <div class="absolute top-0 left-0 transform -rotate-45">
+                  <div class="w-0.5 h-8 bg-gray-300"></div>
+                  <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+                </div>
+                <div class="absolute top-0 right-0 transform rotate-45">
+                  <div class="w-0.5 h-8 bg-gray-300"></div>
+                  <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Texto do Logo -->
+            <div class="absolute top-0 w-full text-center pt-2">
+              <h2 class="text-sm font-bold tracking-wider text-white">
+                BARBEARIA
+              </h2>
+            </div>
+            <div class="absolute bottom-0 w-full text-center pb-2">
+              <h2 class="text-sm font-bold tracking-wider text-white">
+                ORIGINAL
+              </h2>
+            </div>
+          </div>
+        </div>
+        <h1 class="text-2xl font-bold text-white mb-2 text-center">
+          BARBEARIA ORIGINAL
+        </h1>
+        <p class="text-sm text-gray-300 text-center">
+          Estilo e tradição em cada corte.
+        </p>
+      </div>
+
+      <!-- Grade de Botões do App -->
+      <div class="grid grid-cols-2 gap-4 px-6 pb-6">
+        <!-- Botão Agendar -->
+        <button
+          class="app-btn ripple bg-barber-primary rounded-xl p-4 flex flex-col items-center justify-center shadow-lg h-30"
+          data-action="openModal"
+          data-target="agendarModal"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-barber-darkgray flex items-center justify-center mb-2"
+          >
+            <i class="fas fa-calendar-alt text-barber-secondary text-xl"></i>
+          </div>
+          <span class="font-medium">AGENDAR</span>
+        </button>
+
+        <!-- Botão Localização -->
+        <button
+          class="app-btn ripple bg-barber-primary rounded-xl p-4 flex flex-col items-center justify-center shadow-lg h-30"
+          data-action="openPage"
+          data-target="localizacaoPage"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-barber-darkgray flex items-center justify-center mb-2"
+          >
+            <i class="fas fa-map-marker-alt text-barber-secondary text-xl"></i>
+          </div>
+          <span class="font-medium">LOCALIZAÇÃO</span>
+        </button>
+
+        <!-- Botão Serviços -->
+        <button
+          class="app-btn ripple bg-barber-primary rounded-xl p-4 flex flex-col items-center justify-center shadow-lg h-30"
+          data-action="openPage"
+          data-target="servicosPage"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-barber-darkgray flex items-center justify-center mb-2"
+          >
+            <i class="fas fa-cut text-barber-secondary text-xl"></i>
+          </div>
+          <span class="font-medium">SERVIÇOS</span>
+        </button>
+
+        <!-- Botão Profissionais -->
+        <button
+          class="app-btn ripple bg-barber-primary rounded-xl p-4 flex flex-col items-center justify-center shadow-lg h-30"
+          data-action="openPage"
+          data-target="profissionaisPage"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-barber-darkgray flex items-center justify-center mb-2"
+          >
+            <i class="fas fa-users text-barber-secondary text-xl"></i>
+          </div>
+          <span class="font-medium">PROFISSIONAIS</span>
+        </button>
+
+        <!-- Botão Galeria -->
+        <button
+          class="app-btn ripple bg-barber-primary rounded-xl p-4 flex flex-col items-center justify-center shadow-lg h-30"
+          data-action="openPage"
+          data-target="galeriaPage"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-barber-darkgray flex items-center justify-center mb-2"
+          >
+            <i class="fas fa-images text-barber-secondary text-xl"></i>
+          </div>
+          <span class="font-medium">GALERIA</span>
+        </button>
+
+        <!-- Botão Sobre -->
+        <button
+          class="app-btn ripple bg-barber-primary rounded-xl p-4 flex flex-col items-center justify-center shadow-lg h-30"
+          data-action="openPage"
+          data-target="sobrePage"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-barber-darkgray flex items-center justify-center mb-2"
+          >
+            <i class="fas fa-info-circle text-barber-secondary text-xl"></i>
+          </div>
+          <span class="font-medium">SOBRE</span>
+        </button>
+      </div>
+      <!-- Barra inferior (estilo app) -->
+      <div class="fixed bottom-0 w-full h-1 bg-barber-secondary"></div>
+    </div>
+
+    <!-- Página de Localização -->
+    <div id="localizacaoPage" class="app-page flex flex-col h-full">
+      <!-- Cabeçalho da Página -->
+      <div
+        class="bg-barber-primary px-6 py-4 flex items-center justify-between"
+      >
+        <button
+          class="back-btn text-white focus:outline-none"
+          data-action="goHome"
+        >
+          <i class="fas fa-chevron-left text-xl"></i>
+        </button>
+        <h2 class="text-xl font-bold text-white">LOCALIZAÇÃO</h2>
+        <div class="w-6"></div>
+        <!-- Espaçador para centralizar o título -->
+      </div>
+
+      <!-- Conteúdo da Página -->
+      <div class="flex-1 overflow-y-auto">
+        <!-- Mapa (representado por um div) -->
+        <div class="h-64 bg-barber-darkgray flex items-center justify-center">
+          <div class="text-center p-8">
+            <i
+              class="fas fa-map-marked-alt text-5xl text-barber-secondary mb-4"
+            ></i>
+            <h3 class="text-xl font-bold text-white mb-2">MAPA INTERATIVO</h3>
+            <p class="text-gray-300">
+              Aqui seria exibido um mapa interativo com a localização da
+              barbearia.
+            </p>
+          </div>
+        </div>
+
+        <!-- Informações de Endereço -->
+        <div class="p-6 space-y-6">
+          <div>
+            <h3 class="text-lg font-bold text-barber-secondary mb-3">
+              ENDEREÇO
+            </h3>
+            <div class="flex items-start">
+              <i
+                class="fas fa-map-marker-alt text-barber-secondary text-lg mr-3 mt-1"
+              ></i>
+              <div>
+                <p class="text-white font-medium">Barbearia Original</p>
+                <p class="text-gray-300">Av. Paulista, 1000 - Bela Vista</p>
+                <p class="text-gray-300">São Paulo - SP, 01310-100</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-bold text-barber-secondary mb-3">
+              HORÁRIO DE FUNCIONAMENTO
+            </h3>
+            <div class="flex items-start">
+              <i
+                class="fas fa-clock text-barber-secondary text-lg mr-3 mt-1"
+              ></i>
+              <div>
+                <p class="text-white">Segunda a Sexta: 9h às 20h</p>
+                <p class="text-white">Sábado: 9h às 18h</p>
+                <p class="text-white">Domingo: Fechado</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-bold text-barber-secondary mb-3">
+              CONTATO
+            </h3>
+            <div class="flex items-start mb-3">
+              <i
+                class="fas fa-phone text-barber-secondary text-lg mr-3 mt-1"
+              ></i>
+              <div>
+                <p class="text-white">(11) 99999-9999</p>
+                <p class="text-white">(11) 3333-3333</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <i
+                class="fas fa-envelope text-barber-secondary text-lg mr-3 mt-1"
+              ></i>
+              <div>
+                <p class="text-white">contato@barbearia-original.com.br</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botões de Ação -->
+      <div class="p-6 bg-barber-darkgray grid grid-cols-2 gap-4">
+        <button
+          class="py-3 bg-barber-primary text-white font-bold rounded-lg ripple flex items-center justify-center"
+        >
+          <i class="fas fa-phone mr-2"></i> LIGAR
+        </button>
+        <button
+          class="py-3 bg-barber-secondary text-white font-bold rounded-lg ripple flex items-center justify-center"
+        >
+          <i class="fas fa-directions mr-2"></i> COMO CHEGAR
+        </button>
+      </div>
+    </div>
+
+    <!-- Página de Serviços -->
+    <div id="servicosPage" class="app-page flex flex-col h-full">
+      <!-- Cabeçalho da Página -->
+      <div
+        class="bg-barber-primary px-6 py-4 flex items-center justify-between"
+      >
+        <button
+          class="back-btn text-white focus:outline-none"
+          data-action="goHome"
+        >
+          <i class="fas fa-chevron-left text-xl"></i>
+        </button>
+        <h2 class="text-xl font-bold text-white">SERVIÇOS</h2>
+        <div class="w-6"></div>
+        <!-- Espaçador para centralizar o título -->
+      </div>
+
+      <!-- Conteúdo da Página -->
+      <div class="flex-1 overflow-y-auto p-6">
+        <div class="space-y-6">
+          <!-- Serviço 1 -->
+          <div class="bg-barber-darkgray rounded-lg overflow-hidden shadow-lg">
+            <div class="p-4 flex items-center">
+              <div
+                class="w-12 h-12 rounded-full bg-barber-primary flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-cut text-barber-secondary text-xl"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-barber-secondary">
+                  Corte de Cabelo
+                </h3>
+                <p class="text-sm text-gray-300">
+                  Cortes modernos ou clássicos com técnicas precisas
+                </p>
+              </div>
+              <div class="text-right">
+                <span class="text-lg font-bold text-white">R$ 45</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Serviço 2 -->
+          <div class="bg-barber-darkgray rounded-lg overflow-hidden shadow-lg">
+            <div class="p-4 flex items-center">
+              <div
+                class="w-12 h-12 rounded-full bg-barber-primary flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-razor text-barber-secondary text-xl"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-barber-secondary">
+                  Barba Completa
+                </h3>
+                <p class="text-sm text-gray-300">
+                  Modelagem e hidratação com produtos especiais
+                </p>
+              </div>
+              <div class="text-right">
+                <span class="text-lg font-bold text-white">R$ 35</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Serviço 3 -->
+          <div class="bg-barber-darkgray rounded-lg overflow-hidden shadow-lg">
+            <div class="p-4 flex items-center">
+              <div
+                class="w-12 h-12 rounded-full bg-barber-primary flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-spa text-barber-secondary text-xl"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-barber-secondary">
+                  Combo Completo
+                </h3>
+                <p class="text-sm text-gray-300">
+                  Corte + barba com bebida cortesia
+                </p>
+              </div>
+              <div class="text-right">
+                <span class="text-lg font-bold text-white">R$ 75</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Serviço 4 -->
+          <div class="bg-barber-darkgray rounded-lg overflow-hidden shadow-lg">
+            <div class="p-4 flex items-center">
+              <div
+                class="w-12 h-12 rounded-full bg-barber-primary flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-tint text-barber-secondary text-xl"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-barber-secondary">
+                  Coloração
+                </h3>
+                <p class="text-sm text-gray-300">
+                  Coloração profissional para cabelo ou barba
+                </p>
+              </div>
+              <div class="text-right">
+                <span class="text-lg font-bold text-white">R$ 60</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Serviço 5 -->
+          <div class="bg-barber-darkgray rounded-lg overflow-hidden shadow-lg">
+            <div class="p-4 flex items-center">
+              <div
+                class="w-12 h-12 rounded-full bg-barber-primary flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-child text-barber-secondary text-xl"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-barber-secondary">
+                  Corte Infantil
+                </h3>
+                <p class="text-sm text-gray-300">
+                  Cortes especiais para crianças
+                </p>
+              </div>
+              <div class="text-right">
+                <span class="text-lg font-bold text-white">R$ 35</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Serviço 6 -->
+          <div class="bg-barber-darkgray rounded-lg overflow-hidden shadow-lg">
+            <div class="p-4 flex items-center">
+              <div
+                class="w-12 h-12 rounded-full bg-barber-primary flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-fire text-barber-secondary text-xl"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-barber-secondary">
+                  Tratamentos
+                </h3>
+                <p class="text-sm text-gray-300">
+                  Hidratação profunda e tratamentos especiais
+                </p>
+              </div>
+              <div class="text-right">
+                <span class="text-lg font-bold text-white">R$ 50</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botão de Ação -->
+      <div class="p-6 bg-barber-darkgray">
+        <button
+          class="w-full py-4 bg-barber-secondary text-white font-bold rounded-lg ripple"
+          data-action="openModal"
+          data-target="agendarModal"
+        >
+          AGENDAR SERVIÇO
+        </button>
+      </div>
+    </div>
+
+    <!-- Página de Profissionais -->
+    <div id="profissionaisPage" class="app-page flex flex-col h-full">
+      <!-- Cabeçalho da Página -->
+      <div
+        class="bg-barber-primary px-6 py-4 flex items-center justify-between"
+      >
+        <button
+          class="back-btn text-white focus:outline-none"
+          data-action="goHome"
+        >
+          <i class="fas fa-chevron-left text-xl"></i>
+        </button>
+        <h2 class="text-xl font-bold text-white">PROFISSIONAIS</h2>
+        <div class="w-6"></div>
+        <!-- Espaçador para centralizar o título -->
+      </div>
+
+      <!-- Conteúdo da Página -->
+      <div class="flex-1 overflow-y-auto p-6">
+        <div class="space-y-6">
+          <!-- Profissional 1 -->
+          <div class="bg-barber-darkgray rounded-lg overflow-hidden shadow-lg">
+            <div class="flex">
+              <div
+                class="w-1/3 bg-gradient-to-b from-barber-primary to-barber-darkgray flex items-center justify-center p-4"
+              >
+                <div
+                  class="w-20 h-20 rounded-full bg-gray-300 flex items-center justify-center"
+                >
+                  <i class="fas fa-user text-3xl text-barber-dark"></i>
+                </div>
+              </div>
+              <div class="w-2/3 p-4">
+                <h3 class="text-lg font-bold text-barber-secondary">
+                  Carlos Silva
+                </h3>
+                <p class="text-sm text-gray-400 mb-2">Barbeiro Master</p>
+                <p class="text-xs text-gray-300">
+                  Especialista em cortes clássicos e modernos, com mais de 15
+                  anos de experiência.
+                </p>
+                <div class="mt-2 flex space-x-2">
+                  <a
+                    href="#"
+                    class="text-barber-secondary hover:text-white transition-colors"
+                  >
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="text-barber-secondary hover:text-white transition-colors"
+                  >
+                    <i class="fab fa-whatsapp"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profissional 2 -->
+          <div class="bg-barber-darkgray rounded-lg overflow-hidden shadow-lg">
+            <div class="flex">
+              <div
+                class="w-1/3 bg-gradient-to-b from-barber-primary to-barber-darkgray flex items-center justify-center p-4"
+              >
+                <div
+                  class="w-20 h-20 rounded-full bg-gray-300 flex items-center justify-center"
+                >
+                  <i class="fas fa-user text-3xl text-barber-dark"></i>
+                </div>
+              </div>
+              <div class="w-2/3 p-4">
+                <h3 class="text-lg font-bold text-barber-secondary">
+                  Rafael Oliveira
+                </h3>
+                <p class="text-sm text-gray-400 mb-2">Especialista em Barba</p>
+                <p class="text-xs text-gray-300">
+                  Mestre na arte de modelar e cuidar de barbas, com técnicas
+                  exclusivas de hidratação.
+                </p>
+                <div class="mt-2 flex space-x-2">
+                  <a
+                    href="#"
+                    class="text-barber-secondary hover:text-white transition-colors"
+                  >
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="text-barber-secondary hover:text-white transition-colors"
+                  >
+                    <i class="fab fa-whatsapp"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profissional 3 -->
+          <div class="bg-barber-darkgray rounded-lg overflow-hidden shadow-lg">
+            <div class="flex">
+              <div
+                class="w-1/3 bg-gradient-to-b from-barber-primary to-barber-darkgray flex items-center justify-center p-4"
+              >
+                <div
+                  class="w-20 h-20 rounded-full bg-gray-300 flex items-center justify-center"
+                >
+                  <i class="fas fa-user text-3xl text-barber-dark"></i>
+                </div>
+              </div>
+              <div class="w-2/3 p-4">
+                <h3 class="text-lg font-bold text-barber-secondary">
+                  André Santos
+                </h3>
+                <p class="text-sm text-gray-400 mb-2">Colorista</p>
+                <p class="text-xs text-gray-300">
+                  Especialista em coloração e tratamentos capilares, trazendo as
+                  últimas tendências.
+                </p>
+                <div class="mt-2 flex space-x-2">
+                  <a
+                    href="#"
+                    class="text-barber-secondary hover:text-white transition-colors"
+                  >
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="text-barber-secondary hover:text-white transition-colors"
+                  >
+                    <i class="fab fa-whatsapp"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botão de Ação -->
+      <div class="p-6 bg-barber-darkgray">
+        <button
+          class="w-full py-4 bg-barber-secondary text-white font-bold rounded-lg ripple"
+          data-action="openModal"
+          data-target="agendarModal"
+        >
+          AGENDAR COM PROFISSIONAL
+        </button>
+      </div>
+    </div>
+
+    <!-- Página de Galeria -->
+    <div id="galeriaPage" class="app-page flex flex-col h-full">
+      <!-- Cabeçalho da Página -->
+      <div
+        class="bg-barber-primary px-6 py-4 flex items-center justify-between"
+      >
+        <button
+          class="back-btn text-white focus:outline-none"
+          data-action="goHome"
+        >
+          <i class="fas fa-chevron-left text-xl"></i>
+        </button>
+        <h2 class="text-xl font-bold text-white">GALERIA</h2>
+        <div class="w-6"></div>
+        <!-- Espaçador para centralizar o título -->
+      </div>
+
+      <!-- Conteúdo da Página -->
+      <div class="flex-1 overflow-y-auto p-6">
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Imagens da Galeria (representadas por divs coloridos) -->
+          <div
+            class="h-40 bg-gradient-to-br from-barber-primary to-barber-darkgray rounded-lg overflow-hidden shadow-lg flex items-center justify-center"
+          >
+            <i class="fas fa-cut text-3xl text-barber-secondary"></i>
+          </div>
+          <div
+            class="h-40 bg-gradient-to-br from-barber-primary to-barber-darkgray rounded-lg overflow-hidden shadow-lg flex items-center justify-center"
+          >
+            <i class="fas fa-razor text-3xl text-barber-secondary"></i>
+          </div>
+          <div
+            class="h-40 bg-gradient-to-br from-barber-primary to-barber-darkgray rounded-lg overflow-hidden shadow-lg flex items-center justify-center"
+          >
+            <i class="fas fa-spray-can text-3xl text-barber-secondary"></i>
+          </div>
+          <div
+            class="h-40 bg-gradient-to-br from-barber-primary to-barber-darkgray rounded-lg overflow-hidden shadow-lg flex items-center justify-center"
+          >
+            <i class="fas fa-chair text-3xl text-barber-secondary"></i>
+          </div>
+          <div
+            class="h-40 bg-gradient-to-br from-barber-primary to-barber-darkgray rounded-lg overflow-hidden shadow-lg flex items-center justify-center"
+          >
+            <i class="fas fa-store text-3xl text-barber-secondary"></i>
+          </div>
+          <div
+            class="h-40 bg-gradient-to-br from-barber-primary to-barber-darkgray rounded-lg overflow-hidden shadow-lg flex items-center justify-center"
+          >
+            <i class="fas fa-users text-3xl text-barber-secondary"></i>
+          </div>
+          <div
+            class="h-40 bg-gradient-to-br from-barber-primary to-barber-darkgray rounded-lg overflow-hidden shadow-lg flex items-center justify-center"
+          >
+            <i class="fas fa-trophy text-3xl text-barber-secondary"></i>
+          </div>
+          <div
+            class="h-40 bg-gradient-to-br from-barber-primary to-barber-darkgray rounded-lg overflow-hidden shadow-lg flex items-center justify-center"
+          >
+            <i class="fas fa-award text-3xl text-barber-secondary"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botão de Ação -->
+      <div class="p-6 bg-barber-darkgray">
+        <button
+          class="w-full py-4 bg-barber-secondary text-white font-bold rounded-lg ripple"
+          data-action="openModal"
+          data-target="agendarModal"
+        >
+          AGENDAR AGORA
+        </button>
+      </div>
+    </div>
+
+    <!-- Página Sobre -->
+    <div id="sobrePage" class="app-page flex flex-col h-full">
+      <!-- Cabeçalho da Página -->
+      <div
+        class="bg-barber-primary px-6 py-4 flex items-center justify-between"
+      >
+        <button
+          class="back-btn text-white focus:outline-none"
+          data-action="goHome"
+        >
+          <i class="fas fa-chevron-left text-xl"></i>
+        </button>
+        <h2 class="text-xl font-bold text-white">SOBRE NÓS</h2>
+        <div class="w-6"></div>
+        <!-- Espaçador para centralizar o título -->
+      </div>
+
+      <!-- Conteúdo da Página -->
+      <div class="flex-1 overflow-y-auto p-6">
+        <div class="space-y-6">
+          <div class="flex justify-center mb-6">
+            <div
+              class="w-24 h-24 rounded-full bg-barber-primary border-2 border-barber-secondary p-2 flex items-center justify-center shadow-lg"
+            >
+              <div
+                class="w-full h-full rounded-full bg-barber-primary flex items-center justify-center relative"
+              >
+                <!-- Logo Simplificado -->
+                <div
+                  class="absolute inset-0 rounded-full border-2 border-white flex items-center justify-center"
+                >
+                  <i class="fas fa-cut text-2xl text-barber-secondary"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-bold text-barber-secondary mb-2">
+              NOSSA HISTÓRIA
+            </h3>
+            <p class="text-gray-300 text-sm">
+              Fundada em 2010, a Barbearia Original nasceu da paixão por cortes
+              clássicos e modernos. Nossa missão é proporcionar uma experiência
+              única de cuidado masculino, combinando técnicas tradicionais com
+              tendências contemporâneas.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-bold text-barber-secondary mb-2">
+              NOSSOS VALORES
+            </h3>
+            <div class="space-y-2">
+              <div class="flex items-center">
+                <i
+                  class="fas fa-check-circle text-barber-secondary text-sm mr-2"
+                ></i>
+                <span class="text-gray-300 text-sm"
+                  >Profissionalismo e Qualidade</span
+                >
+              </div>
+              <div class="flex items-center">
+                <i
+                  class="fas fa-check-circle text-barber-secondary text-sm mr-2"
+                ></i>
+                <span class="text-gray-300 text-sm"
+                  >Atendimento Personalizado</span
+                >
+              </div>
+              <div class="flex items-center">
+                <i
+                  class="fas fa-check-circle text-barber-secondary text-sm mr-2"
+                ></i>
+                <span class="text-gray-300 text-sm">Ambiente Acolhedor</span>
+              </div>
+              <div class="flex items-center">
+                <i
+                  class="fas fa-check-circle text-barber-secondary text-sm mr-2"
+                ></i>
+                <span class="text-gray-300 text-sm"
+                  >Produtos de Alta Qualidade</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-bold text-barber-secondary mb-2">
+              DIFERENCIAIS
+            </h3>
+            <p class="text-gray-300 text-sm">
+              Na Barbearia Original, não oferecemos apenas cortes de cabelo e
+              barba, mas uma experiência completa de cuidado masculino, com
+              produtos de alta qualidade e atendimento personalizado.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-bold text-barber-secondary mb-2">
+              CONTATO
+            </h3>
+            <div class="space-y-2">
+              <div class="flex items-center">
+                <i class="fas fa-phone text-barber-secondary text-sm mr-2"></i>
+                <span class="text-gray-300 text-sm">(11) 99999-9999</span>
+              </div>
+              <div class="flex items-center">
+                <i
+                  class="fas fa-envelope text-barber-secondary text-sm mr-2"
+                ></i>
+                <span class="text-gray-300 text-sm"
+                  >contato@barbearia-original.com.br</span
+                >
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-globe text-barber-secondary text-sm mr-2"></i>
+                <span class="text-gray-300 text-sm"
+                  >www.barbearia-original.com.br</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-center space-x-4 pt-4">
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-barber-primary flex items-center justify-center text-barber-secondary hover:bg-barber-secondary hover:text-white transition-colors"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-barber-primary flex items-center justify-center text-barber-secondary hover:bg-barber-secondary hover:text-white transition-colors"
+            >
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-barber-primary flex items-center justify-center text-barber-secondary hover:bg-barber-secondary hover:text-white transition-colors"
+            >
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botão de Ação -->
+      <div class="p-6 bg-barber-darkgray">
+        <button
+          class="w-full py-4 bg-barber-secondary text-white font-bold rounded-lg ripple"
+          data-action="openModal"
+          data-target="agendarModal"
+        >
+          AGENDAR VISITA
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal de Agendamento (único modal) -->
+    <div
+      id="agendarModal"
+      class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80"
+    >
+      <div
+        class="bg-barber-dark w-full h-full max-w-md max-h-full rounded-t-3xl overflow-hidden flex flex-col"
+      >
+        <!-- Cabeçalho do Modal -->
+        <div
+          class="bg-barber-primary px-6 py-4 flex items-center justify-between"
+        >
+          <button
+            class="back-btn text-white focus:outline-none"
+            data-action="closeModal"
+          >
+            <i class="fas fa-chevron-left text-xl"></i>
+          </button>
+          <h2 class="text-xl font-bold text-white">AGENDAR HORÁRIO</h2>
+          <div class="w-6"></div>
+          <!-- Espaçador para centralizar o título -->
+        </div>
+
+        <!-- Conteúdo do Modal -->
+        <div class="flex-1 overflow-y-auto p-6">
+          <form id="agendamentoForm" class="space-y-6">
+            <div class="space-y-4">
+              <div>
+                <label for="nome" class="block text-white mb-2 text-sm"
+                  >Nome Completo</label
+                >
+                <input
+                  type="text"
+                  id="nome"
+                  class="w-full px-4 py-3 bg-barber-darkgray border border-gray-700 rounded-lg focus:outline-none focus:border-barber-secondary text-white"
+                  placeholder="Seu nome completo"
+                />
+              </div>
+              <div>
+                <label for="telefone" class="block text-white mb-2 text-sm"
+                  >Telefone</label
+                >
+                <input
+                  type="tel"
+                  id="telefone"
+                  class="w-full px-4 py-3 bg-barber-darkgray border border-gray-700 rounded-lg focus:outline-none focus:border-barber-secondary text-white"
+                  placeholder="(00) 00000-0000"
+                />
+              </div>
+              <div>
+                <label for="data" class="block text-white mb-2 text-sm"
+                  >Data</label
+                >
+                <input
+                  type="date"
+                  id="data"
+                  class="w-full px-4 py-3 bg-barber-darkgray border border-gray-700 rounded-lg focus:outline-none focus:border-barber-secondary text-white"
+                />
+              </div>
+              <div>
+                <label for="horario" class="block text-white mb-2 text-sm"
+                  >Horário</label
+                >
+                <select
+                  id="horario"
+                  class="w-full px-4 py-3 bg-barber-darkgray border border-gray-700 rounded-lg focus:outline-none focus:border-barber-secondary text-white"
+                >
+                  <option value="">Selecione um horário</option>
+                  <option value="09:00">09:00</option>
+                  <option value="10:00">10:00</option>
+                  <option value="11:00">11:00</option>
+                  <option value="12:00">12:00</option>
+                  <option value="13:00">13:00</option>
+                  <option value="14:00">14:00</option>
+                  <option value="15:00">15:00</option>
+                  <option value="16:00">16:00</option>
+                  <option value="17:00">17:00</option>
+                  <option value="18:00">18:00</option>
+                  <option value="19:00">19:00</option>
+                </select>
+              </div>
+              <div>
+                <label for="servico" class="block text-white mb-2 text-sm"
+                  >Serviço</label
+                >
+                <select
+                  id="servico"
+                  class="w-full px-4 py-3 bg-barber-darkgray border border-gray-700 rounded-lg focus:outline-none focus:border-barber-secondary text-white"
+                >
+                  <option value="">Selecione um serviço</option>
+                  <option value="corte">Corte de Cabelo - R$ 45,00</option>
+                  <option value="barba">Barba Completa - R$ 35,00</option>
+                  <option value="combo">Combo Completo - R$ 75,00</option>
+                  <option value="coloracao">Coloração - R$ 60,00</option>
+                  <option value="infantil">Corte Infantil - R$ 35,00</option>
+                  <option value="tratamento">
+                    Tratamentos Especiais - R$ 50,00
+                  </option>
+                </select>
+              </div>
+              <div>
+                <label for="profissional" class="block text-white mb-2 text-sm"
+                  >Profissional</label
+                >
+                <select
+                  id="profissional"
+                  class="w-full px-4 py-3 bg-barber-darkgray border border-gray-700 rounded-lg focus:outline-none focus:border-barber-secondary text-white"
+                >
+                  <option value="">Selecione um profissional</option>
+                  <option value="carlos">Carlos Silva - Barbeiro Master</option>
+                  <option value="rafael">
+                    Rafael Oliveira - Especialista em Barba
+                  </option>
+                  <option value="andre">André Santos - Colorista</option>
+                </select>
+              </div>
+              <div>
+                <label for="observacoes" class="block text-white mb-2 text-sm"
+                  >Observações</label
+                >
+                <textarea
+                  id="observacoes"
+                  rows="3"
+                  class="w-full px-4 py-3 bg-barber-darkgray border border-gray-700 rounded-lg focus:outline-none focus:border-barber-secondary text-white"
+                  placeholder="Alguma observação especial?"
+                ></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Botão de Ação -->
+        <div class="p-6 bg-barber-darkgray">
+          <button
+            id="btnAgendar"
+            class="w-full py-4 bg-barber-secondary text-white font-bold rounded-lg ripple"
+          >
+            AGENDAR AGORA
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback de Sucesso -->
+    <div
+      id="successModal"
+      class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80"
+    >
+      <div
+        class="bg-barber-dark w-5/6 max-w-sm rounded-xl overflow-hidden p-6 text-center"
+      >
+        <div
+          class="w-20 h-20 rounded-full bg-green-500 mx-auto flex items-center justify-center mb-4"
+        >
+          <i class="fas fa-check text-white text-3xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-2">
+          Agendamento Realizado!
+        </h3>
+        <p class="text-gray-300 mb-6">
+          Seu horário foi agendado com sucesso. Em breve entraremos em contato
+          para confirmar.
+        </p>
+        <button
+          class="w-full py-3 bg-barber-secondary text-white font-bold rounded-lg ripple"
+          data-action="successDone"
+        >
+          ENTENDI
+        </button>
+      </div>
+    </div>
+
+    <!-- Script para interatividade -->
+    <script>
+      // Atualizar hora na barra de status
+      function updateStatusBarTime() {
+        const now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+
+        // Formatar para exibição (adicionar zero à esquerda se necessário)
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+
+        /*document.querySelector(
+          ".status-bar .time"
+        ).textContent = `${hours}:${minutes}`;*/
+      }
+
+      // Atualizar hora a cada minuto
+      updateStatusBarTime();
+      setInterval(updateStatusBarTime, 60000);
+
+      // Gerenciamento de navegação e modais
+      document.addEventListener("DOMContentLoaded", function () {
+        // Elementos
+        const pages = document.querySelectorAll(".app-page");
+        const modals = document.querySelectorAll(".modal");
+        const buttons = document.querySelectorAll("[data-action]");
+
+        // Inicializar modais como ocultos
+        modals.forEach((modal) => {
+          modal.style.display = "none";
+        });
+
+        // Função para abrir página
+        function openPage(pageId) {
+          // Esconder todas as páginas
+          pages.forEach((page) => {
+            page.classList.remove("active");
+          });
+
+          // Mostrar a página selecionada
+          const targetPage = document.getElementById(pageId);
+          if (targetPage) {
+            targetPage.classList.add("active");
+            targetPage.classList.add("slide-in-right");
+
+            // Remover classe de animação após conclusão
+            setTimeout(() => {
+              targetPage.classList.remove("slide-in-right");
+            }, 300);
+          }
+        }
+
+        // Função para voltar à página inicial
+        function goHome() {
+          // Esconder todas as páginas exceto a home
+          pages.forEach((page) => {
+            if (page.id !== "homePage") {
+              page.classList.add("slide-out-right");
+
+              setTimeout(() => {
+                page.classList.remove("active");
+                page.classList.remove("slide-out-right");
+              }, 300);
+            }
+          });
+
+          // Mostrar a página inicial
+          const homePage = document.getElementById("homePage");
+          if (homePage) {
+            setTimeout(() => {
+              homePage.classList.add("active");
+            }, 300);
+          }
+        }
+
+        // Função para abrir modal
+        function openModal(modalId) {
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.style.display = "flex";
+
+            // Forçar reflow
+            modal.offsetHeight;
+
+            // Adicionar classe para animação
+            setTimeout(() => {
+              modal.classList.add("active");
+
+              // Animar conteúdo do modal
+              const modalContent = modal.querySelector(".flex-1");
+              if (modalContent) {
+                modalContent.classList.add("slide-up");
+              }
+            }, 10);
+          }
+        }
+
+        // Função para fechar modal
+        function closeModal(modalId) {
+          const modal = document.getElementById(modalId || "agendarModal");
+          if (modal) {
+            modal.classList.remove("active");
+
+            // Animar saída
+            const modalContent = modal.querySelector(".flex-1");
+            if (modalContent) {
+              modalContent.classList.remove("slide-up");
+              modalContent.classList.add("slide-down");
+            }
+
+            setTimeout(() => {
+              modal.style.display = "none";
+              if (modalContent) {
+                modalContent.classList.remove("slide-down");
+              }
+            }, 300);
+          }
+        }
+
+        // Configurar botões com base em data-action
+        buttons.forEach((button) => {
+          button.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const action = this.getAttribute("data-action");
+            const target = this.getAttribute("data-target");
+
+            switch (action) {
+              case "openPage":
+                openPage(target);
+                break;
+              case "goHome":
+                goHome();
+                break;
+              case "openModal":
+                openModal(target);
+                break;
+              case "closeModal":
+                closeModal(target);
+                break;
+              case "successDone":
+                // Fechar o modal de sucesso e voltar para a tela inicial
+                closeModal("successModal");
+                setTimeout(() => {
+                  goHome();
+                }, 300);
+                break;
+            }
+          });
+        });
+
+        // Simulação de agendamento
+        document
+          .getElementById("btnAgendar")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const nome = document.getElementById("nome").value;
+            const telefone = document.getElementById("telefone").value;
+            const data = document.getElementById("data").value;
+            const horario = document.getElementById("horario").value;
+            const servico = document.getElementById("servico").value;
+
+            // Verificar campos obrigatórios
+            if (!nome || !telefone || !data || !horario || !servico) {
+              // Feedback visual de erro
+              this.classList.add("bg-red-500");
+              this.innerHTML =
+                '<i class="fas fa-exclamation-circle mr-2"></i> PREENCHA OS CAMPOS';
+
+              setTimeout(() => {
+                this.classList.remove("bg-red-500");
+                this.innerHTML = "AGENDAR AGORA";
+              }, 2000);
+
+              return;
+            }
+
+            // Mostrar animação de processamento
+            this.innerHTML =
+              '<i class="fas fa-spinner fa-spin mr-2"></i> PROCESSANDO...';
+            this.disabled = true;
+
+            // Simular processamento
+            setTimeout(() => {
+              // Fechar modal atual
+              closeModal("agendarModal");
+
+              // Abrir modal de sucesso
+              setTimeout(() => {
+                openModal("successModal");
+
+                // Resetar formulário
+                document.getElementById("agendamentoForm").reset();
+
+                // Restaurar botão
+                this.innerHTML = "AGENDAR AGORA";
+                this.disabled = false;
+              }, 300);
+            }, 1500);
+          });
+
+        // Efeito de toque em botões (estilo app)
+        const allButtons = document.querySelectorAll("button");
+        allButtons.forEach((button) => {
+          button.addEventListener("touchstart", function () {
+            this.style.opacity = "0.8";
+          });
+
+          button.addEventListener("touchend", function () {
+            this.style.opacity = "1";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
