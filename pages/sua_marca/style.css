@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap");
+
+@font-face {
+  font-family: Higuen;
+  src: url(font/Higuen_Serif.woff) format("woff");
+}
+
+@font-face {
+  font-family: Domaine;
+  src: url(font/DomaineSemibold.woff2) format("woff2");
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  touch-action: manipulation;
+  font-family: "Poppins", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  background-color: #efe4f2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Domaine", sans-serif;
+}
+
+.text-btn {
+  /* font-family: "Higuen", sans-serif;*/
+  font-family: "Domaine", sans-serif;
+}
+
+/* Animações para botões */
+.app-btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.app-btn:active {
+  transform: scale(0.95);
+}
+
+/* Animações para páginas */
+.app-page {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateX(20px);
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  overflow-y: auto;
+  display: none;
+}
+
+.app-page.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  display: flex;
+}
+
+#homePage {
+  background-image: url("img/bg.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Modal de agendamento */
+.modal {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  display: none;
+}
+
+.modal.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  display: flex;
+}
+
+/* Animação de entrada para os elementos */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Animação para botão de voltar */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.back-btn:active {
+  animation: pulse 0.3s ease;
+}
+
+/* Efeito de ripple para botões (estilo Android) */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+
+.ripple:active:after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+/* Estilo para scrollbar dentro das páginas */
+.app-page::-webkit-scrollbar {
+  width: 4px;
+}
+
+.app-page::-webkit-scrollbar-track {
+  background: rgba(30, 30, 30, 0.5);
+}
+
+.app-page::-webkit-scrollbar-thumb {
+  background: #4a1e5f;
+  border-radius: 4px;
+}
+
+/* Estilo para formulários */
+input,
+select,
+textarea {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 8px;
+}
+
+/* Animação para carregamento da página */
+.app-container {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: appLoad 0.5s ease forwards 0.2s;
+}
+
+@keyframes appLoad {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efeito de deslizar para modal (estilo iOS) */
+.slide-up {
+  animation: slideUp 0.3s ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-down {
+  animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* Animação para transição de páginas */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-right {
+  animation: slideInRight 0.3s ease forwards;
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.slide-out-right {
+  animation: slideOutRight 0.3s ease forwards;
+}
