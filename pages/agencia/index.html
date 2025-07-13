@@ -1,1022 +1,1469 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agência Digital | Soluções Criativas</title>
     <!-- TailwindCSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Boxicons para ícones -->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#5d30ff',
-                        'primary-transparent': '#5d30ffd8',
-                        dark: {
-                            900: '#0f1115',
-                            800: '#151821',
-                            700: '#1c202b',
-                            600: '#2e3342'
-                        }
-                    },
-                    fontFamily: {
-                        'poppins': ['Poppins', 'sans-serif'],
-                        'montserrat': ['Montserrat', 'sans-serif']
-                    },
-                    animation: {
-                        'float': 'float 3s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'bounce-slow': 'bounce 3s infinite',
-                        'spin-slow': 'spin 8s linear infinite'
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' }
-                        }
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#5d30ff",
+              "primary-transparent": "#5d30ffd8",
+              dark: {
+                900: "#0f1115",
+                800: "#151821",
+                700: "#1c202b",
+                600: "#2e3342",
+              },
+            },
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+              montserrat: ["Montserrat", "sans-serif"],
+            },
+            animation: {
+              float: "float 3s ease-in-out infinite",
+              "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              "bounce-slow": "bounce 3s infinite",
+              "spin-slow": "spin 8s linear infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
+            },
+          },
+        },
+      };
     </script>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(90deg, #5d30ff 0%, #8b6fff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(90deg, #5d30ff 0%, #7b51ff 100%);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(93, 48, 255, 0.3);
-        }
-        
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 150%;
-            height: 150%;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            transition: transform 0.6s ease;
-        }
-        
-        .btn-primary:hover::after {
-            transform: translate(-50%, -50%) scale(1);
-        }
-        
-        .card {
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .navbar {
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        
-        .hero-shape {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background: radial-gradient(circle at top right, rgba(93, 48, 255, 0.15), transparent 70%);
-            z-index: -1;
-            animation: pulse 8s ease-in-out infinite alternate;
-        }
-        
-        .hero-shape-2 {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50%;
-            height: 70%;
-            background: radial-gradient(circle at bottom left, rgba(93, 48, 255, 0.1), transparent 70%);
-            z-index: -1;
-            animation: pulse 8s ease-in-out 2s infinite alternate;
-        }
-        
-        /* Animação de digitação */
-        .typing-animation {
-            border-right: 3px solid #5d30ff;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
-        }
-        
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #5d30ff }
-        }
+      body {
+        font-family: "Poppins", sans-serif;
+        scroll-behavior: smooth;
+      }
 
-        /* Animação de scroll */
-        .scroll-down {
-            animation: scrollDown 2s ease-in-out infinite;
-        }
+      .gradient-text {
+        background: linear-gradient(90deg, #5d30ff 0%, #8b6fff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
 
-        @keyframes scrollDown {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
-        }
+      .btn-primary {
+        background: linear-gradient(90deg, #5d30ff 0%, #7b51ff 100%);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
 
-        /* Efeito de hover nos cards */
-        .service-card {
-            transition: all 0.4s ease;
-            background: linear-gradient(145deg, #151821, #1c202b);
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(225deg, rgba(93, 48, 255, 0.05), transparent);
-            z-index: -1;
-            transition: opacity 0.5s ease;
-            opacity: 0;
-        }
-        
-        .service-card:hover::before {
-            opacity: 1;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(93, 48, 255, 0.2);
-        }
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(93, 48, 255, 0.3);
+      }
 
-        .service-card:hover .icon-container {
-            background: #5d30ff;
-            color: #000000;
-            transform: scale(1.1) rotate(10deg);
-        }
-        
-        .service-card:hover .icon-container i {
-            color: #000000;
-        }
+      .btn-primary::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 150%;
+        height: 150%;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.6s ease;
+      }
 
-        .icon-container {
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+      .btn-primary:hover::after {
+        transform: translate(-50%, -50%) scale(1);
+      }
 
-        /* Efeito de paralaxe nas imagens */
-        .parallax {
-            transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
-        }
+      .card {
+        transition: all 0.3s ease;
+      }
 
-        /* Animação para o menu mobile */
-        .menu-transition {
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .navbar {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      .hero-shape {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 100%;
+        background: radial-gradient(
+          circle at top right,
+          rgba(93, 48, 255, 0.15),
+          transparent 70%
+        );
+        z-index: -1;
+        animation: pulse 8s ease-in-out infinite alternate;
+      }
+
+      .hero-shape-2 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50%;
+        height: 70%;
+        background: radial-gradient(
+          circle at bottom left,
+          rgba(93, 48, 255, 0.1),
+          transparent 70%
+        );
+        z-index: -1;
+        animation: pulse 8s ease-in-out 2s infinite alternate;
+      }
+
+      /* Animação de digitação */
+      .typing-animation {
+        border-right: 3px solid #5d30ff;
+        white-space: nowrap;
+        overflow: hidden;
+        animation: typing 3.5s steps(30, end),
+          blink-caret 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
         }
-        
-        /* Animação de flutuação para elementos */
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+        to {
+          width: 100%;
         }
-        
-        @keyframes floating {
-            0%, 100% { transform: translateY(0) rotate(0); }
-            50% { transform: translateY(-10px) rotate(2deg); }
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
         }
-        
-        /* Efeito de brilho nos botões */
-        .btn-glow {
-            position: relative;
-            overflow: hidden;
+        50% {
+          border-color: #5d30ff;
         }
-        
-        .btn-glow::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(93, 48, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: glow 3s linear infinite;
+      }
+
+      /* Animação de scroll */
+      .scroll-down {
+        animation: scrollDown 2s ease-in-out infinite;
+      }
+
+      @keyframes scrollDown {
+        0%,
+        100% {
+          transform: translateY(0);
         }
-        
-        @keyframes glow {
-            0% { transform: rotate(45deg) translateX(-100%); }
-            100% { transform: rotate(45deg) translateX(100%); }
+        50% {
+          transform: translateY(10px);
         }
-        
-        /* Animação de partículas */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
+      }
+
+      /* Efeito de hover nos cards */
+      .service-card {
+        transition: all 0.4s ease;
+        background: linear-gradient(145deg, #151821, #1c202b);
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          225deg,
+          rgba(93, 48, 255, 0.05),
+          transparent
+        );
+        z-index: -1;
+        transition: opacity 0.5s ease;
+        opacity: 0;
+      }
+
+      .service-card:hover::before {
+        opacity: 1;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(93, 48, 255, 0.2);
+      }
+
+      .service-card:hover .icon-container {
+        background: #5d30ff;
+        color: #000000;
+        transform: scale(1.1) rotate(10deg);
+      }
+
+      .service-card:hover .icon-container i {
+        color: #000000;
+      }
+
+      .icon-container {
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      /* Efeito de paralaxe nas imagens */
+      .parallax {
+        transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+      }
+
+      /* Animação para o menu mobile */
+      .menu-transition {
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      /* Animação de flutuação para elementos */
+      .floating {
+        animation: floating 3s ease-in-out infinite;
+      }
+
+      @keyframes floating {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0);
         }
-        
-        .particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: rgba(93, 48, 255, 0.2);
-            border-radius: 50%;
-            animation: particleFloat linear infinite;
+        50% {
+          transform: translateY(-10px) rotate(2deg);
         }
-        
-        @keyframes particleFloat {
-            0% { transform: translateY(0); opacity: 0; }
-            50% { opacity: 0.5; }
-            100% { transform: translateY(-100vh); opacity: 0; }
+      }
+
+      /* Efeito de brilho nos botões */
+      .btn-glow {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-glow::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(93, 48, 255, 0.1),
+          transparent
+        );
+        transform: rotate(45deg);
+        animation: glow 3s linear infinite;
+      }
+
+      @keyframes glow {
+        0% {
+          transform: rotate(45deg) translateX(-100%);
         }
-        
-        /* Efeito de hover nas imagens do portfólio */
-        .portfolio-item {
-            overflow: hidden;
-            position: relative;
+        100% {
+          transform: rotate(45deg) translateX(100%);
         }
-        
-        .portfolio-item img {
-            transition: transform 0.7s cubic-bezier(0.33, 1, 0.68, 1);
+      }
+
+      /* Animação de partículas */
+      .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+      }
+
+      .particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: rgba(93, 48, 255, 0.2);
+        border-radius: 50%;
+        animation: particleFloat linear infinite;
+      }
+
+      @keyframes particleFloat {
+        0% {
+          transform: translateY(0);
+          opacity: 0;
         }
-        
-        .portfolio-item:hover img {
-            transform: scale(1.1);
+        50% {
+          opacity: 0.5;
         }
-        
-        .portfolio-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(15, 17, 21, 0.9), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 1.5rem;
+        100% {
+          transform: translateY(-100vh);
+          opacity: 0;
         }
-        
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
+      }
+
+      /* Efeito de hover nas imagens do portfólio */
+      .portfolio-item {
+        overflow: hidden;
+        position: relative;
+      }
+
+      .portfolio-item img {
+        transition: transform 0.7s cubic-bezier(0.33, 1, 0.68, 1);
+      }
+
+      .portfolio-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .portfolio-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(15, 17, 21, 0.9), transparent);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 1.5rem;
+      }
+
+      .portfolio-item:hover .portfolio-overlay {
+        opacity: 1;
+      }
+
+      .portfolio-overlay h3 {
+        transform: translateY(20px);
+        transition: transform 0.4s ease;
+      }
+
+      .portfolio-overlay p {
+        transform: translateY(20px);
+        transition: transform 0.4s ease 0.1s;
+      }
+
+      .portfolio-item:hover .portfolio-overlay h3,
+      .portfolio-item:hover .portfolio-overlay p {
+        transform: translateY(0);
+      }
+
+      /* Animação de pulsação para elementos de destaque */
+      .pulse-element {
+        animation: pulseElement 2s ease-in-out infinite;
+      }
+
+      @keyframes pulseElement {
+        0%,
+        100% {
+          transform: scale(1);
         }
-        
-        .portfolio-overlay h3 {
-            transform: translateY(20px);
-            transition: transform 0.4s ease;
+        50% {
+          transform: scale(1.05);
         }
-        
-        .portfolio-overlay p {
-            transform: translateY(20px);
-            transition: transform 0.4s ease 0.1s;
+      }
+
+      /* Efeito de borda gradiente */
+      .gradient-border {
+        position: relative;
+        border-radius: 0.75rem;
+        padding: 1px;
+        background: linear-gradient(45deg, #5d30ff, transparent, #5d30ff);
+        background-size: 200% 200%;
+        animation: gradientBorder 4s linear infinite;
+      }
+
+      @keyframes gradientBorder {
+        0% {
+          background-position: 0% 50%;
         }
-        
-        .portfolio-item:hover .portfolio-overlay h3,
-        .portfolio-item:hover .portfolio-overlay p {
-            transform: translateY(0);
+        50% {
+          background-position: 100% 50%;
         }
-        
-        /* Animação de pulsação para elementos de destaque */
-        .pulse-element {
-            animation: pulseElement 2s ease-in-out infinite;
+        100% {
+          background-position: 0% 50%;
         }
-        
-        @keyframes pulseElement {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        /* Efeito de borda gradiente */
-        .gradient-border {
-            position: relative;
-            border-radius: 0.75rem;
-            padding: 1px;
-            background: linear-gradient(45deg, #5d30ff, transparent, #5d30ff);
-            background-size: 200% 200%;
-            animation: gradientBorder 4s linear infinite;
-        }
-        
-        @keyframes gradientBorder {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .gradient-border-inner {
-            background: #1c202b;
-            border-radius: 0.7rem;
-            height: 100%;
-            width: 100%;
-        }
+      }
+
+      .gradient-border-inner {
+        background: #1c202b;
+        border-radius: 0.7rem;
+        height: 100%;
+        width: 100%;
+      }
     </style>
-</head>
-<body class="bg-dark-900 text-gray-200">
+  </head>
+  <body class="bg-dark-900 text-gray-200">
     <!-- Partículas de fundo -->
     <div class="particles" id="particles"></div>
 
     <!-- Header/Navbar -->
     <header class="fixed w-full top-0 z-50">
-        <nav class="navbar bg-dark-800/80 border-b border-dark-600">
-            <div class="container mx-auto px-4 py-3">
-                <div class="flex justify-between items-center">
-                    <!-- Logo -->
-                    <a href="#" class="flex items-center">
-                        <span class="text-2xl font-bold gradient-text font-montserrat">NEXUS</span>
-                        <span class="ml-1 text-sm text-gray-400">STUDIO</span>
-                    </a>
-                    
-                    <!-- Menu Desktop -->
-                    <div class="hidden md:flex items-center space-x-8">
-                        <a href="#inicio" class="text-gray-300 hover:text-primary transition-colors duration-300 relative group">
-                            Início
-                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                        <a href="#servicos" class="text-gray-300 hover:text-primary transition-colors duration-300 relative group">
-                            Serviços
-                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                        <a href="#portfolio" class="text-gray-300 hover:text-primary transition-colors duration-300 relative group">
-                            Portfólio
-                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                        <a href="#depoimentos" class="text-gray-300 hover:text-primary transition-colors duration-300 relative group">
-                            Depoimentos
-                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                        <a href="#contato" class="btn-primary btn-glow px-6 py-2 rounded-full text-white font-medium">Contato</a>
-                    </div>
-                    
-                    <!-- Menu Mobile Button -->
-                    <div class="md:hidden">
-                        <button id="menu-toggle" class="text-gray-300 hover:text-primary focus:outline-none">
-                            <i class='bx bx-menu text-2xl'></i>
-                        </button>
-                    </div>
-                </div>
+      <nav class="navbar bg-dark-800/80 border-b border-dark-600">
+        <div class="container mx-auto px-4 py-3">
+          <div class="flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center">
+              <span class="text-2xl font-bold gradient-text font-montserrat"
+                >NEXUS</span
+              >
+              <span class="ml-1 text-sm text-gray-400">STUDIO</span>
+            </a>
+
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex items-center space-x-8">
+              <a
+                href="#inicio"
+                class="text-gray-300 hover:text-primary transition-colors duration-300 relative group"
+              >
+                Início
+                <span
+                  class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
+                ></span>
+              </a>
+              <a
+                href="#servicos"
+                class="text-gray-300 hover:text-primary transition-colors duration-300 relative group"
+              >
+                Serviços
+                <span
+                  class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
+                ></span>
+              </a>
+              <a
+                href="#portfolio"
+                class="text-gray-300 hover:text-primary transition-colors duration-300 relative group"
+              >
+                Portfólio
+                <span
+                  class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
+                ></span>
+              </a>
+              <a
+                href="#depoimentos"
+                class="text-gray-300 hover:text-primary transition-colors duration-300 relative group"
+              >
+                Depoimentos
+                <span
+                  class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
+                ></span>
+              </a>
+              <a
+                href="#contato"
+                class="btn-primary btn-glow px-6 py-2 rounded-full text-white font-medium"
+                >Contato</a
+              >
             </div>
-            
-            <!-- Menu Mobile -->
-            <div id="mobile-menu" class="md:hidden bg-dark-800/95 py-4 px-4 hidden menu-transition">
-                <div class="flex flex-col space-y-4">
-                    <a href="#inicio" class="text-gray-300 hover:text-primary py-2 transition-colors duration-300">Início</a>
-                    <a href="#servicos" class="text-gray-300 hover:text-primary py-2 transition-colors duration-300">Serviços</a>
-                    <a href="#portfolio" class="text-gray-300 hover:text-primary py-2 transition-colors duration-300">Portfólio</a>
-                    <a href="#depoimentos" class="text-gray-300 hover:text-primary py-2 transition-colors duration-300">Depoimentos</a>
-                    <a href="#contato" class="btn-primary px-6 py-2 rounded-full text-white font-medium text-center">Contato</a>
-                </div>
+
+            <!-- Menu Mobile Button -->
+            <div class="md:hidden">
+              <button
+                id="menu-toggle"
+                class="text-gray-300 hover:text-primary focus:outline-none"
+              >
+                <i class="bx bx-menu text-2xl"></i>
+              </button>
             </div>
-        </nav>
+          </div>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div
+          id="mobile-menu"
+          class="md:hidden bg-dark-800/95 py-4 px-4 hidden menu-transition"
+        >
+          <div class="flex flex-col space-y-4">
+            <a
+              href="#inicio"
+              class="text-gray-300 hover:text-primary py-2 transition-colors duration-300"
+              >Início</a
+            >
+            <a
+              href="#servicos"
+              class="text-gray-300 hover:text-primary py-2 transition-colors duration-300"
+              >Serviços</a
+            >
+            <a
+              href="#portfolio"
+              class="text-gray-300 hover:text-primary py-2 transition-colors duration-300"
+              >Portfólio</a
+            >
+            <a
+              href="#depoimentos"
+              class="text-gray-300 hover:text-primary py-2 transition-colors duration-300"
+              >Depoimentos</a
+            >
+            <a
+              href="#contato"
+              class="btn-primary px-6 py-2 rounded-full text-white font-medium text-center"
+              >Contato</a
+            >
+          </div>
+        </div>
+      </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="inicio" class="min-h-screen flex items-center pt-20 relative overflow-hidden">
-        <div class="hero-shape"></div>
-        <div class="hero-shape-2"></div>
-        <div class="container mx-auto px-4 py-16">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right" data-aos-duration="1000">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-montserrat">
-                        Transformamos <span class="gradient-text">ideias</span> em experiências digitais
-                    </h1>
-                    <p class="text-gray-400 text-lg mb-8">
-                        Somos uma agência digital completa, especializada em criar soluções criativas que elevam sua marca ao próximo nível. Nossa equipe de especialistas trabalha para transformar sua visão em realidade digital impactante.
-                    </p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#servicos" class="btn-primary px-8 py-3 rounded-full text-white font-medium text-center">
-                            Nossos Serviços
-                        </a>
-                        <a href="#contato" class="px-8 py-3 rounded-full border border-gray-600 text-gray-300 hover:border-primary hover:text-primary transition-colors duration-300 text-center relative overflow-hidden group">
-                            <span class="relative z-10">Fale Conosco</span>
-                            <span class="absolute inset-0 bg-dark-700 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                        </a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 relative" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="relative z-10 animate-float">
-                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Equipe trabalhando em projeto digital" class="rounded-2xl shadow-2xl">
-                        <div class="absolute -bottom-5 -left-5 bg-dark-800 p-4 rounded-lg shadow-lg">
-                            <div class="flex items-center space-x-2">
-                                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                                <span class="text-sm font-medium">Sempre online para você</span>
-                            </div>
-                        </div>
-                        <!-- Elementos decorativos flutuantes -->
-                        <div class="absolute -top-4 -right-4 w-16 h-16 bg-primary/10 rounded-full animate-pulse-slow"></div>
-                        <div class="absolute -bottom-8 right-20 w-20 h-20 bg-primary/5 rounded-full animate-bounce-slow"></div>
-                    </div>
-                </div>
+    <section
+      id="inicio"
+      class="min-h-screen flex items-center pt-20 relative overflow-hidden"
+    >
+      <div class="hero-shape"></div>
+      <div class="hero-shape-2"></div>
+      <div class="container mx-auto px-4 py-16">
+        <div class="flex flex-col md:flex-row items-center">
+          <div
+            class="md:w-1/2 mb-10 md:mb-0"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+          >
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-montserrat"
+            >
+              Transformamos <span class="gradient-text">ideias</span> em
+              experiências digitais
+            </h1>
+            <p class="text-gray-400 text-lg mb-8">
+              Somos uma agência digital completa, especializada em criar
+              soluções criativas que elevam sua marca ao próximo nível. Nossa
+              equipe de especialistas trabalha para transformar sua visão em
+              realidade digital impactante.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+            >
+              <a
+                href="#servicos"
+                class="btn-primary px-8 py-3 rounded-full text-white font-medium text-center"
+              >
+                Nossos Serviços
+              </a>
+              <a
+                href="#contato"
+                class="px-8 py-3 rounded-full border border-gray-600 text-gray-300 hover:border-primary hover:text-primary transition-colors duration-300 text-center relative overflow-hidden group"
+              >
+                <span class="relative z-10">Fale Conosco</span>
+                <span
+                  class="absolute inset-0 bg-dark-700 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+                ></span>
+              </a>
             </div>
-            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-center">
-                <div class="scroll-down">
-                    <i class='bx bx-chevron-down text-3xl text-primary'></i>
+          </div>
+          <div
+            class="md:w-1/2 relative"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+          >
+            <div class="relative z-10 animate-float">
+              <img
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                alt="Equipe trabalhando em projeto digital"
+                class="rounded-2xl shadow-2xl"
+              />
+              <div
+                class="absolute -bottom-5 -left-5 bg-dark-800 p-4 rounded-lg shadow-lg"
+              >
+                <div class="flex items-center space-x-2">
+                  <div
+                    class="w-3 h-3 bg-green-500 rounded-full animate-pulse"
+                  ></div>
+                  <span class="text-sm font-medium"
+                    >Sempre online para você</span
+                  >
                 </div>
-                <span class="text-sm text-gray-400">Role para descobrir</span>
+              </div>
+              <!-- Elementos decorativos flutuantes -->
+              <div
+                class="absolute -top-4 -right-4 w-16 h-16 bg-primary/10 rounded-full animate-pulse-slow"
+              ></div>
+              <div
+                class="absolute -bottom-8 right-20 w-20 h-20 bg-primary/5 rounded-full animate-bounce-slow"
+              ></div>
             </div>
+          </div>
         </div>
+        <div
+          class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-center"
+        >
+          <div class="scroll-down">
+            <i class="bx bx-chevron-down text-3xl text-primary"></i>
+          </div>
+          <span class="text-sm text-gray-400">Role para descobrir</span>
+        </div>
+      </div>
     </section>
 
     <!-- Serviços Section -->
     <section id="servicos" class="py-20 bg-dark-800 relative overflow-hidden">
-        <!-- Elementos decorativos -->
-        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 font-montserrat">Nossos <span class="gradient-text">Serviços</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Oferecemos soluções digitais completas para impulsionar sua presença online e fortalecer sua marca no mercado. Nossa abordagem personalizada garante resultados que superam expectativas.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Serviço 1 -->
-                <div class="service-card p-6 rounded-xl" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon-container w-16 h-16 bg-dark-700 rounded-full flex items-center justify-center mb-6">
-                        <i class='bx bx-code-alt text-2xl text-primary'></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 font-montserrat">Desenvolvimento Web</h3>
-                    <p class="text-gray-400">
-                        Criamos websites e aplicações web personalizadas, responsivas e otimizadas para todos os dispositivos. Utilizamos as tecnologias mais modernas para garantir performance e experiência de usuário excepcional.
-                    </p>
-                </div>
-                
-                <!-- Serviço 2 -->
-                <div class="service-card p-6 rounded-xl" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon-container w-16 h-16 bg-dark-700 rounded-full flex items-center justify-center mb-6">
-                        <i class='bx bx-paint text-2xl text-primary'></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 font-montserrat">Design de Marca</h3>
-                    <p class="text-gray-400">
-                        Desenvolvemos identidades visuais que comunicam a essência da sua marca. Desde logotipos até guias de estilo completos, criamos designs memoráveis que conectam sua marca ao público-alvo.
-                    </p>
-                </div>
-                
-                <!-- Serviço 3 -->
-                <div class="service-card p-6 rounded-xl" data-aos="fade-up" data-aos-delay="300">
-                    <div class="icon-container w-16 h-16 bg-dark-700 rounded-full flex items-center justify-center mb-6">
-                        <i class='bx bx-line-chart text-2xl text-primary'></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 font-montserrat">Marketing Digital</h3>
-                    <p class="text-gray-400">
-                        Elaboramos estratégias de marketing digital que geram resultados. Desde gestão de redes sociais até campanhas de anúncios, trabalhamos para aumentar sua visibilidade online e converter visitantes em clientes.
-                    </p>
-                </div>
-                
-                <!-- Serviço 4 -->
-                <div class="service-card p-6 rounded-xl" data-aos="fade-up" data-aos-delay="400">
-                    <div class="icon-container w-16 h-16 bg-dark-700 rounded-full flex items-center justify-center mb-6">
-                        <i class='bx bx-devices text-2xl text-primary'></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 font-montserrat">Landing Pages</h3>
-                    <p class="text-gray-400">
-                        Desenvolvemos landing pages otimizadas para conversão, com design atraente e conteúdo persuasivo. Nossas páginas são criadas para capturar leads e aumentar suas taxas de conversão em campanhas específicas.
-                    </p>
-                </div>
-                
-                <!-- Serviço 5 -->
-                <div class="service-card p-6 rounded-xl" data-aos="fade-up" data-aos-delay="500">
-                    <div class="icon-container w-16 h-16 bg-dark-700 rounded-full flex items-center justify-center mb-6">
-                        <i class='bx bx-camera text-2xl text-primary'></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 font-montserrat">Conteúdo para Redes Sociais</h3>
-                    <p class="text-gray-400">
-                        Criamos conteúdos visuais impactantes para suas redes sociais. Nossos designs são pensados para engajar seu público e fortalecer sua presença digital, com uma estratégia visual consistente e atraente.
-                    </p>
-                </div>
-                
-                <!-- Serviço 6 -->
-                <div class="service-card p-6 rounded-xl" data-aos="fade-up" data-aos-delay="600">
-                    <div class="icon-container w-16 h-16 bg-dark-700 rounded-full flex items-center justify-center mb-6">
-                        <i class='bx bx-search-alt text-2xl text-primary'></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 font-montserrat">SEO e Otimização</h3>
-                    <p class="text-gray-400">
-                        Melhoramos o posicionamento do seu site nos motores de busca através de técnicas avançadas de SEO. Analisamos e otimizamos seu conteúdo para aumentar o tráfego orgânico e a visibilidade online.
-                    </p>
-                </div>
-            </div>
+      <!-- Elementos decorativos -->
+      <div
+        class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl"
+      ></div>
+      <div
+        class="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
+      ></div>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 font-montserrat">
+            Nossos <span class="gradient-text">Serviços</span>
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            Oferecemos soluções digitais completas para impulsionar sua presença
+            online e fortalecer sua marca no mercado. Nossa abordagem
+            personalizada garante resultados que superam expectativas.
+          </p>
         </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Serviço 1 -->
+          <div
+            class="service-card p-6 rounded-xl"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div
+              class="icon-container w-16 h-16 bg-dark-700 rounded-full flex items-center justify-center mb-6"
+            >
+              <i class="bx bx-code-alt text-2xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 font-montserrat">
+              Desenvolvimento Web
+            </h3>
+            <p class="text-gray-400">
+              Criamos websites e aplicações web personalizadas, responsivas e
+              otimizadas para todos os dispositivos. Utilizamos as tecnologias
+              mais modernas para garantir performance e experiência de usuário
+              excepcional.
+            </p>
+          </div>
+
+          <!-- Serviço 2 -->
+          <div
+            class="service-card p-6 rounded-xl"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div
+              class="icon-container w-16 h-16 bg-dark-700 rounded-full flex items-center justify-center mb-6"
+            >
+              <i class="bx bx-paint text-2xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 font-montserrat">
+              Design de Marca
+            </h3>
+            <p class="text-gray-400">
+              Desenvolvemos identidades visuais que comunicam a essência da sua
+              marca. Desde logotipos até guias de estilo completos, criamos
+              designs memoráveis que conectam sua marca ao público-alvo.
+            </p>
+          </div>
+
+          <!-- Serviço 3 -->
+          <div
+            class="service-card p-6 rounded-xl"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div
+              class="icon-container w-16 h-16 bg-dark-700 rounded-full flex items-center justify-center mb-6"
+            >
+              <i class="bx bx-line-chart text-2xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 font-montserrat">
+              Marketing Digital
+            </h3>
+            <p class="text-gray-400">
+              Elaboramos estratégias de marketing digital que geram resultados.
+              Desde gestão de redes sociais até campanhas de anúncios,
+              trabalhamos para aumentar sua visibilidade online e converter
+              visitantes em clientes.
+            </p>
+          </div>
+
+          <!-- Serviço 4 -->
+          <div
+            class="service-card p-6 rounded-xl"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div
+              class="icon-container w-16 h-16 bg-dark-700 rounded-full flex items-center justify-center mb-6"
+            >
+              <i class="bx bx-devices text-2xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 font-montserrat">
+              Landing Pages
+            </h3>
+            <p class="text-gray-400">
+              Desenvolvemos landing pages otimizadas para conversão, com design
+              atraente e conteúdo persuasivo. Nossas páginas são criadas para
+              capturar leads e aumentar suas taxas de conversão em campanhas
+              específicas.
+            </p>
+          </div>
+
+          <!-- Serviço 5 -->
+          <div
+            class="service-card p-6 rounded-xl"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <div
+              class="icon-container w-16 h-16 bg-dark-700 rounded-full flex items-center justify-center mb-6"
+            >
+              <i class="bx bx-camera text-2xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 font-montserrat">
+              Conteúdo para Redes Sociais
+            </h3>
+            <p class="text-gray-400">
+              Criamos conteúdos visuais impactantes para suas redes sociais.
+              Nossos designs são pensados para engajar seu público e fortalecer
+              sua presença digital, com uma estratégia visual consistente e
+              atraente.
+            </p>
+          </div>
+
+          <!-- Serviço 6 -->
+          <div
+            class="service-card p-6 rounded-xl"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <div
+              class="icon-container w-16 h-16 bg-dark-700 rounded-full flex items-center justify-center mb-6"
+            >
+              <i class="bx bx-search-alt text-2xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 font-montserrat">
+              SEO e Otimização
+            </h3>
+            <p class="text-gray-400">
+              Melhoramos o posicionamento do seu site nos motores de busca
+              através de técnicas avançadas de SEO. Analisamos e otimizamos seu
+              conteúdo para aumentar o tráfego orgânico e a visibilidade online.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="py-20 bg-dark-900 relative overflow-hidden">
-        <!-- Elementos decorativos -->
-        <div class="absolute top-40 left-10 w-20 h-20 border border-primary/20 rounded-full animate-spin-slow"></div>
-        <div class="absolute bottom-20 right-10 w-32 h-32 border border-primary/10 rounded-full animate-spin-slow"></div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 font-montserrat">Nosso <span class="gradient-text">Portfólio</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Conheça alguns dos projetos que desenvolvemos para nossos clientes. Cada trabalho representa nossa dedicação em criar soluções digitais que geram resultados reais.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Projeto 1 -->
-                <div class="portfolio-item rounded-xl overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Projeto de Website" class="w-full h-64 object-cover">
-                    <div class="portfolio-overlay">
-                        <h3 class="text-xl font-bold font-montserrat text-white">Website Corporativo</h3>
-                        <p class="text-gray-300">Design e desenvolvimento</p>
-                    </div>
-                </div>
-                
-                <!-- Projeto 2 -->
-                <div class="portfolio-item rounded-xl overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Projeto de Branding" class="w-full h-64 object-cover">
-                    <div class="portfolio-overlay">
-                        <h3 class="text-xl font-bold font-montserrat text-white">Identidade Visual</h3>
-                        <p class="text-gray-300">Branding e design gráfico</p>
-                    </div>
-                </div>
-                
-                <!-- Projeto 3 -->
-                <div class="portfolio-item rounded-xl overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Projeto de Landing Page" class="w-full h-64 object-cover">
-                    <div class="portfolio-overlay">
-                        <h3 class="text-xl font-bold font-montserrat text-white">Landing Page</h3>
-                        <p class="text-gray-300">Conversão e marketing</p>
-                    </div>
-                </div>
-                
-                <!-- Projeto 4 -->
-                <div class="portfolio-item rounded-xl overflow-hidden" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="https://images.unsplash.com/photo-1493119508027-2b584f234d6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Projeto de Redes Sociais" class="w-full h-64 object-cover">
-                    <div class="portfolio-overlay">
-                        <h3 class="text-xl font-bold font-montserrat text-white">Redes Sociais</h3>
-                        <p class="text-gray-300">Conteúdo e estratégia</p>
-                    </div>
-                </div>
-                
-                <!-- Projeto 5 -->
-                <div class="portfolio-item rounded-xl overflow-hidden" data-aos="zoom-in" data-aos-delay="500">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Projeto de E-commerce" class="w-full h-64 object-cover">
-                    <div class="portfolio-overlay">
-                        <h3 class="text-xl font-bold font-montserrat text-white">E-commerce</h3>
-                        <p class="text-gray-300">Desenvolvimento e UX</p>
-                    </div>
-                </div>
-                
-                <!-- Projeto 6 -->
-                <div class="portfolio-item rounded-xl overflow-hidden" data-aos="zoom-in" data-aos-delay="600">
-                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Projeto de App" class="w-full h-64 object-cover">
-                    <div class="portfolio-overlay">
-                        <h3 class="text-xl font-bold font-montserrat text-white">Aplicativo Mobile</h3>
-                        <p class="text-gray-300">Design de interface</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12" data-aos="fade-up">
-                <a href="#contato" class="btn-primary btn-glow px-8 py-3 rounded-full text-white font-medium inline-block">
-                    Quero um projeto assim
-                </a>
-            </div>
+      <!-- Elementos decorativos -->
+      <div
+        class="absolute top-40 left-10 w-20 h-20 border border-primary/20 rounded-full animate-spin-slow"
+      ></div>
+      <div
+        class="absolute bottom-20 right-10 w-32 h-32 border border-primary/10 rounded-full animate-spin-slow"
+      ></div>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 font-montserrat">
+            Nosso <span class="gradient-text">Portfólio</span>
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            Conheça alguns dos projetos que desenvolvemos para nossos clientes.
+            Cada trabalho representa nossa dedicação em criar soluções digitais
+            que geram resultados reais.
+          </p>
         </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Projeto 1 -->
+          <div
+            class="portfolio-item rounded-xl overflow-hidden"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+              alt="Projeto de Website"
+              class="w-full h-64 object-cover"
+            />
+            <div class="portfolio-overlay">
+              <h3 class="text-xl font-bold font-montserrat text-white">
+                Website Corporativo
+              </h3>
+              <p class="text-gray-300">Design e desenvolvimento</p>
+            </div>
+          </div>
+
+          <!-- Projeto 2 -->
+          <div
+            class="portfolio-item rounded-xl overflow-hidden"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+              alt="Projeto de Branding"
+              class="w-full h-64 object-cover"
+            />
+            <div class="portfolio-overlay">
+              <h3 class="text-xl font-bold font-montserrat text-white">
+                Identidade Visual
+              </h3>
+              <p class="text-gray-300">Branding e design gráfico</p>
+            </div>
+          </div>
+
+          <!-- Projeto 3 -->
+          <div
+            class="portfolio-item rounded-xl overflow-hidden"
+            data-aos="zoom-in"
+            data-aos-delay="300"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+              alt="Projeto de Landing Page"
+              class="w-full h-64 object-cover"
+            />
+            <div class="portfolio-overlay">
+              <h3 class="text-xl font-bold font-montserrat text-white">
+                Landing Page
+              </h3>
+              <p class="text-gray-300">Conversão e marketing</p>
+            </div>
+          </div>
+
+          <!-- Projeto 4 -->
+          <div
+            class="portfolio-item rounded-xl overflow-hidden"
+            data-aos="zoom-in"
+            data-aos-delay="400"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1493119508027-2b584f234d6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+              alt="Projeto de Redes Sociais"
+              class="w-full h-64 object-cover"
+            />
+            <div class="portfolio-overlay">
+              <h3 class="text-xl font-bold font-montserrat text-white">
+                Redes Sociais
+              </h3>
+              <p class="text-gray-300">Conteúdo e estratégia</p>
+            </div>
+          </div>
+
+          <!-- Projeto 5 -->
+          <div
+            class="portfolio-item rounded-xl overflow-hidden"
+            data-aos="zoom-in"
+            data-aos-delay="500"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+              alt="Projeto de E-commerce"
+              class="w-full h-64 object-cover"
+            />
+            <div class="portfolio-overlay">
+              <h3 class="text-xl font-bold font-montserrat text-white">
+                E-commerce
+              </h3>
+              <p class="text-gray-300">Desenvolvimento e UX</p>
+            </div>
+          </div>
+
+          <!-- Projeto 6 -->
+          <div
+            class="portfolio-item rounded-xl overflow-hidden"
+            data-aos="zoom-in"
+            data-aos-delay="600"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+              alt="Projeto de App"
+              class="w-full h-64 object-cover"
+            />
+            <div class="portfolio-overlay">
+              <h3 class="text-xl font-bold font-montserrat text-white">
+                Aplicativo Mobile
+              </h3>
+              <p class="text-gray-300">Design de interface</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12" data-aos="fade-up">
+          <a
+            href="#contato"
+            class="btn-primary btn-glow px-8 py-3 rounded-full text-white font-medium inline-block"
+          >
+            Quero um projeto assim
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Depoimentos Section -->
-    <section id="depoimentos" class="py-20 bg-dark-800 relative overflow-hidden">
-        <!-- Elementos decorativos -->
-        <div class="absolute top-20 left-0 w-full h-40 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 skew-y-3 opacity-30"></div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 font-montserrat">O que nossos <span class="gradient-text">Clientes</span> dizem</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    A satisfação dos nossos clientes é nossa maior conquista. Confira o que eles têm a dizer sobre nossas soluções e nossa forma de trabalhar.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Depoimento 1 -->
-                <div class="gradient-border" data-aos="fade-up" data-aos-delay="100">
-                    <div class="gradient-border-inner p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="text-primary text-4xl">
-                                <i class='bx bxs-quote-alt-left'></i>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 mb-6">
-                            A equipe da Nexus Studio superou todas as nossas expectativas. O novo site não apenas ficou visualmente impressionante, mas também trouxe resultados concretos para nosso negócio, com um aumento significativo nas conversões.
-                        </p>
-                        <div class="flex items-center">
-                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4 border-2 border-primary">
-                            <div>
-                                <h4 class="font-bold">Mariana Silva</h4>
-                                <p class="text-gray-400 text-sm">Diretora de Marketing, TechSolutions</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Depoimento 2 -->
-                <div class="gradient-border" data-aos="fade-up" data-aos-delay="200">
-                    <div class="gradient-border-inner p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="text-primary text-4xl">
-                                <i class='bx bxs-quote-alt-left'></i>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 mb-6">
-                            Contratar a Nexus Studio foi a melhor decisão que tomamos para nossa marca. O redesign do nosso logo e a estratégia de redes sociais transformaram completamente nossa presença digital e aumentaram nosso engajamento.
-                        </p>
-                        <div class="flex items-center">
-                            <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4 border-2 border-primary">
-                            <div>
-                                <h4 class="font-bold">Rafael Mendes</h4>
-                                <p class="text-gray-400 text-sm">CEO, Innovate Startup</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Depoimento 3 -->
-                <div class="gradient-border" data-aos="fade-up" data-aos-delay="300">
-                    <div class="gradient-border-inner p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="text-primary text-4xl">
-                                <i class='bx bxs-quote-alt-left'></i>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 mb-6">
-                            A landing page desenvolvida pela equipe da Nexus Studio triplicou nossa taxa de conversão. O processo foi transparente do início ao fim, com comunicação clara e entregas sempre dentro do prazo estabelecido.
-                        </p>
-                        <div class="flex items-center">
-                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4 border-2 border-primary">
-                            <div>
-                                <h4 class="font-bold">Camila Rodrigues</h4>
-                                <p class="text-gray-400 text-sm">Gerente de Produto, EcoStore</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section
+      id="depoimentos"
+      class="py-20 bg-dark-800 relative overflow-hidden"
+    >
+      <!-- Elementos decorativos -->
+      <div
+        class="absolute top-20 left-0 w-full h-40 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 skew-y-3 opacity-30"
+      ></div>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 font-montserrat">
+            O que nossos <span class="gradient-text">Clientes</span> dizem
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            A satisfação dos nossos clientes é nossa maior conquista. Confira o
+            que eles têm a dizer sobre nossas soluções e nossa forma de
+            trabalhar.
+          </p>
         </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Depoimento 1 -->
+          <div class="gradient-border" data-aos="fade-up" data-aos-delay="100">
+            <div class="gradient-border-inner p-6">
+              <div class="flex items-center mb-4">
+                <div class="text-primary text-4xl">
+                  <i class="bx bxs-quote-alt-left"></i>
+                </div>
+              </div>
+              <p class="text-gray-300 mb-6">
+                A equipe da Nexus Studio superou todas as nossas expectativas. O
+                novo site não apenas ficou visualmente impressionante, mas
+                também trouxe resultados concretos para nosso negócio, com um
+                aumento significativo nas conversões.
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://randomuser.me/api/portraits/women/32.jpg"
+                  alt="Cliente"
+                  class="w-12 h-12 rounded-full mr-4 border-2 border-primary"
+                />
+                <div>
+                  <h4 class="font-bold">Mariana Silva</h4>
+                  <p class="text-gray-400 text-sm">
+                    Diretora de Marketing, TechSolutions
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Depoimento 2 -->
+          <div class="gradient-border" data-aos="fade-up" data-aos-delay="200">
+            <div class="gradient-border-inner p-6">
+              <div class="flex items-center mb-4">
+                <div class="text-primary text-4xl">
+                  <i class="bx bxs-quote-alt-left"></i>
+                </div>
+              </div>
+              <p class="text-gray-300 mb-6">
+                Contratar a Nexus Studio foi a melhor decisão que tomamos para
+                nossa marca. O redesign do nosso logo e a estratégia de redes
+                sociais transformaram completamente nossa presença digital e
+                aumentaram nosso engajamento.
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://randomuser.me/api/portraits/men/46.jpg"
+                  alt="Cliente"
+                  class="w-12 h-12 rounded-full mr-4 border-2 border-primary"
+                />
+                <div>
+                  <h4 class="font-bold">Rafael Mendes</h4>
+                  <p class="text-gray-400 text-sm">CEO, Innovate Startup</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Depoimento 3 -->
+          <div class="gradient-border" data-aos="fade-up" data-aos-delay="300">
+            <div class="gradient-border-inner p-6">
+              <div class="flex items-center mb-4">
+                <div class="text-primary text-4xl">
+                  <i class="bx bxs-quote-alt-left"></i>
+                </div>
+              </div>
+              <p class="text-gray-300 mb-6">
+                A landing page desenvolvida pela equipe da Nexus Studio
+                triplicou nossa taxa de conversão. O processo foi transparente
+                do início ao fim, com comunicação clara e entregas sempre dentro
+                do prazo estabelecido.
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://randomuser.me/api/portraits/women/65.jpg"
+                  alt="Cliente"
+                  class="w-12 h-12 rounded-full mr-4 border-2 border-primary"
+                />
+                <div>
+                  <h4 class="font-bold">Camila Rodrigues</h4>
+                  <p class="text-gray-400 text-sm">
+                    Gerente de Produto, EcoStore
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- CTA Section -->
     <section class="py-20 bg-dark-900 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-full h-full">
-            <div class="absolute top-0 right-0 w-1/2 h-full bg-primary/5 rounded-bl-full"></div>
-        </div>
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="bg-dark-800 rounded-2xl p-8 md:p-12 shadow-xl border border-dark-600 pulse-element" data-aos="fade-up">
-                <div class="flex flex-col md:flex-row items-center justify-between">
-                    <div class="md:w-2/3 mb-8 md:mb-0">
-                        <h2 class="text-2xl md:text-3xl font-bold mb-4 font-montserrat">Pronto para transformar suas <span class="gradient-text">ideias</span> em realidade?</h2>
-                        <p class="text-gray-400">
-                            Entre em contato conosco hoje mesmo e descubra como podemos ajudar a impulsionar sua presença digital com soluções criativas e personalizadas.
-                        </p>
-                    </div>
-                    <div>
-                        <a href="#contato" class="btn-primary btn-glow px-8 py-3 rounded-full text-white font-medium inline-block">
-                            Fale com um especialista
-                        </a>
-                    </div>
-                </div>
+      <div class="absolute top-0 right-0 w-full h-full">
+        <div
+          class="absolute top-0 right-0 w-1/2 h-full bg-primary/5 rounded-bl-full"
+        ></div>
+      </div>
+      <div class="container mx-auto px-4 relative z-10">
+        <div
+          class="bg-dark-800 rounded-2xl p-8 md:p-12 shadow-xl border border-dark-600 pulse-element"
+          data-aos="fade-up"
+        >
+          <div class="flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-2/3 mb-8 md:mb-0">
+              <h2 class="text-2xl md:text-3xl font-bold mb-4 font-montserrat">
+                Pronto para transformar suas
+                <span class="gradient-text">ideias</span> em realidade?
+              </h2>
+              <p class="text-gray-400">
+                Entre em contato conosco hoje mesmo e descubra como podemos
+                ajudar a impulsionar sua presença digital com soluções criativas
+                e personalizadas.
+              </p>
             </div>
+            <div>
+              <a
+                href="#contato"
+                class="btn-primary btn-glow px-8 py-3 rounded-full text-white font-medium inline-block"
+              >
+                Fale com um especialista
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Contato Section -->
     <section id="contato" class="py-20 bg-dark-800 relative overflow-hidden">
-        <!-- Elementos decorativos -->
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-primary/10 to-transparent rounded-full blur-3xl"></div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 font-montserrat">Entre em <span class="gradient-text">Contato</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Estamos prontos para ouvir sobre seu projeto e discutir como podemos ajudar a alcançar seus objetivos. Preencha o formulário abaixo e nossa equipe entrará em contato em breve.
-                </p>
-            </div>
-            
-            <div class="flex flex-col md:flex-row gap-12">
-                <div class="md:w-1/2" data-aos="fade-right">
-                    <form class="space-y-6">
-                        <div class="relative">
-                            <label for="nome" class="block text-sm font-medium text-gray-300 mb-2">Nome completo</label>
-                            <input type="text" id="nome" class="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300">
-                            <div class="absolute right-3 top-9 text-primary opacity-0 transition-opacity duration-300 input-check">
-                                <i class='bx bx-check-circle'></i>
-                            </div>
-                        </div>
-                        <div class="relative">
-                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">E-mail</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300">
-                            <div class="absolute right-3 top-9 text-primary opacity-0 transition-opacity duration-300 input-check">
-                                <i class='bx bx-check-circle'></i>
-                            </div>
-                        </div>
-                        <div class="relative">
-                            <label for="telefone" class="block text-sm font-medium text-gray-300 mb-2">Telefone</label>
-                            <input type="tel" id="telefone" class="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300">
-                            <div class="absolute right-3 top-9 text-primary opacity-0 transition-opacity duration-300 input-check">
-                                <i class='bx bx-check-circle'></i>
-                            </div>
-                        </div>
-                        <div>
-                            <label for="mensagem" class="block text-sm font-medium text-gray-300 mb-2">Mensagem</label>
-                            <textarea id="mensagem" rows="5" class="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"></textarea>
-                        </div>
-                        <button type="button" class="btn-primary w-full px-8 py-3 rounded-lg text-white font-medium relative overflow-hidden group">
-                            <span class="relative z-10">Enviar mensagem</span>
-                            <span class="absolute inset-0 bg-white/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
-                        </button>
-                    </form>
-                </div>
-                
-                <div class="md:w-1/2" data-aos="fade-left">
-                    <div class="bg-dark-700 p-8 rounded-xl h-full relative overflow-hidden">
-                        <!-- Elemento decorativo -->
-                        <div class="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-xl"></div>
-                        
-                        <h3 class="text-xl font-bold mb-6 font-montserrat relative z-10">Informações de contato</h3>
-                        
-                        <div class="space-y-6 relative z-10">
-                            <div class="flex items-start">
-                                <div class="w-12 h-12 bg-dark-600 rounded-full flex items-center justify-center mr-4 hover:bg-primary transition-colors duration-300 group">
-                                    <i class='bx bx-envelope text-xl text-primary group-hover:text-white transition-colors duration-300'></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-200 mb-1">E-mail</h4>
-                                    <p class="text-gray-400">contato@nexusstudio.com.br</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-12 h-12 bg-dark-600 rounded-full flex items-center justify-center mr-4 hover:bg-primary transition-colors duration-300 group">
-                                    <i class='bx bx-phone text-xl text-primary group-hover:text-white transition-colors duration-300'></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-200 mb-1">Telefone</h4>
-                                    <p class="text-gray-400">+55 (11) 9999-8888</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-12 h-12 bg-dark-600 rounded-full flex items-center justify-center mr-4 hover:bg-primary transition-colors duration-300 group">
-                                    <i class='bx bx-map text-xl text-primary group-hover:text-white transition-colors duration-300'></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-200 mb-1">Endereço</h4>
-                                    <p class="text-gray-400">Av. Paulista, 1000 - Bela Vista<br>São Paulo - SP, 01310-100</p>
-                                </div>
-                            </div>
-                            
-                            <div class="pt-6">
-                                <h4 class="font-medium text-gray-200 mb-4">Siga-nos</h4>
-                                <div class="flex space-x-4">
-                                    <a href="#" class="w-10 h-10 bg-dark-600 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300 hover:scale-110 transform">
-                                        <i class='bx bxl-facebook text-xl'></i>
-                                    </a>
-                                    <a href="#" class="w-10 h-10 bg-dark-600 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300 hover:scale-110 transform">
-                                        <i class='bx bxl-instagram text-xl'></i>
-                                    </a>
-                                    <a href="#" class="w-10 h-10 bg-dark-600 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300 hover:scale-110 transform">
-                                        <i class='bx bxl-linkedin text-xl'></i>
-                                    </a>
-                                    <a href="#" class="w-10 h-10 bg-dark-600 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300 hover:scale-110 transform">
-                                        <i class='bx bxl-twitter text-xl'></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <!-- Elementos decorativos -->
+      <div
+        class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-primary/10 to-transparent rounded-full blur-3xl"
+      ></div>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 font-montserrat">
+            Entre em <span class="gradient-text">Contato</span>
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            Estamos prontos para ouvir sobre seu projeto e discutir como podemos
+            ajudar a alcançar seus objetivos. Preencha o formulário abaixo e
+            nossa equipe entrará em contato em breve.
+          </p>
         </div>
+
+        <div class="flex flex-col md:flex-row gap-12">
+          <div class="md:w-1/2" data-aos="fade-right">
+            <form class="space-y-6">
+              <div class="relative">
+                <label
+                  for="nome"
+                  class="block text-sm font-medium text-gray-300 mb-2"
+                  >Nome completo</label
+                >
+                <input
+                  type="text"
+                  id="nome"
+                  class="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
+                />
+                <div
+                  class="absolute right-3 top-9 text-primary opacity-0 transition-opacity duration-300 input-check"
+                >
+                  <i class="bx bx-check-circle"></i>
+                </div>
+              </div>
+              <div class="relative">
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-300 mb-2"
+                  >E-mail</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  class="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
+                />
+                <div
+                  class="absolute right-3 top-9 text-primary opacity-0 transition-opacity duration-300 input-check"
+                >
+                  <i class="bx bx-check-circle"></i>
+                </div>
+              </div>
+              <div class="relative">
+                <label
+                  for="telefone"
+                  class="block text-sm font-medium text-gray-300 mb-2"
+                  >Telefone</label
+                >
+                <input
+                  type="tel"
+                  id="telefone"
+                  class="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
+                />
+                <div
+                  class="absolute right-3 top-9 text-primary opacity-0 transition-opacity duration-300 input-check"
+                >
+                  <i class="bx bx-check-circle"></i>
+                </div>
+              </div>
+              <div>
+                <label
+                  for="mensagem"
+                  class="block text-sm font-medium text-gray-300 mb-2"
+                  >Mensagem</label
+                >
+                <textarea
+                  id="mensagem"
+                  rows="5"
+                  class="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
+                ></textarea>
+              </div>
+              <button
+                type="button"
+                class="btn-primary w-full px-8 py-3 rounded-lg text-white font-medium relative overflow-hidden group"
+              >
+                <span class="relative z-10">Enviar mensagem</span>
+                <span
+                  class="absolute inset-0 bg-white/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
+                ></span>
+              </button>
+            </form>
+          </div>
+
+          <div class="md:w-1/2" data-aos="fade-left">
+            <div
+              class="bg-dark-700 p-8 rounded-xl h-full relative overflow-hidden"
+            >
+              <!-- Elemento decorativo -->
+              <div
+                class="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-xl"
+              ></div>
+
+              <h3 class="text-xl font-bold mb-6 font-montserrat relative z-10">
+                Informações de contato
+              </h3>
+
+              <div class="space-y-6 relative z-10">
+                <div class="flex items-start">
+                  <div
+                    class="w-12 h-12 bg-dark-600 rounded-full flex items-center justify-center mr-4 hover:bg-primary transition-colors duration-300 group"
+                  >
+                    <i
+                      class="bx bx-envelope text-xl text-primary group-hover:text-white transition-colors duration-300"
+                    ></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-200 mb-1">E-mail</h4>
+                    <p class="text-gray-400">contato@nexusstudio.com.br</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div
+                    class="w-12 h-12 bg-dark-600 rounded-full flex items-center justify-center mr-4 hover:bg-primary transition-colors duration-300 group"
+                  >
+                    <i
+                      class="bx bx-phone text-xl text-primary group-hover:text-white transition-colors duration-300"
+                    ></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-200 mb-1">Telefone</h4>
+                    <p class="text-gray-400">+55 (11) 9999-8888</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div
+                    class="w-12 h-12 bg-dark-600 rounded-full flex items-center justify-center mr-4 hover:bg-primary transition-colors duration-300 group"
+                  >
+                    <i
+                      class="bx bx-map text-xl text-primary group-hover:text-white transition-colors duration-300"
+                    ></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-200 mb-1">Endereço</h4>
+                    <p class="text-gray-400">
+                      Av. Paulista, 1000 - Bela Vista<br />São Paulo - SP,
+                      01310-100
+                    </p>
+                  </div>
+                </div>
+
+                <div class="pt-6">
+                  <h4 class="font-medium text-gray-200 mb-4">Siga-nos</h4>
+                  <div class="flex space-x-4">
+                    <a
+                      href="#"
+                      class="w-10 h-10 bg-dark-600 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300 hover:scale-110 transform"
+                    >
+                      <i class="bx bxl-facebook text-xl"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="w-10 h-10 bg-dark-600 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300 hover:scale-110 transform"
+                    >
+                      <i class="bx bxl-instagram text-xl"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="w-10 h-10 bg-dark-600 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300 hover:scale-110 transform"
+                    >
+                      <i class="bx bxl-linkedin text-xl"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="w-10 h-10 bg-dark-600 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300 hover:scale-110 transform"
+                    >
+                      <i class="bx bxl-twitter text-xl"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-dark-900 border-t border-dark-700 py-12">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <a href="#" class="flex items-center">
-                        <span class="text-2xl font-bold gradient-text font-montserrat">NEXUS</span>
-                        <span class="ml-1 text-sm text-gray-400">STUDIO</span>
-                    </a>
-                    <p class="text-gray-400 mt-2 max-w-md">
-                        Transformando ideias em experiências digitais memoráveis desde 2015.
-                    </p>
-                </div>
-                
-                <div class="flex flex-col items-center md:items-end">
-                    <p class="text-gray-400 text-sm mb-2">
-                        &copy; 2025 Nexus Studio. Todos os direitos reservados.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300 text-sm">Política de Privacidade</a>
-                        <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300 text-sm">Termos de Uso</a>
-                    </div>
-                </div>
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <a href="#" class="flex items-center">
+              <span class="text-2xl font-bold gradient-text font-montserrat"
+                >NEXUS</span
+              >
+              <span class="ml-1 text-sm text-gray-400">STUDIO</span>
+            </a>
+            <p class="text-gray-400 mt-2 max-w-md">
+              Transformando ideias em experiências digitais memoráveis desde
+              2015.
+            </p>
+          </div>
+
+          <div class="flex flex-col items-center md:items-end">
+            <p class="text-gray-400 text-sm mb-2">
+              &copy; 2025 Nexus Studio. Todos os direitos reservados.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-primary transition-colors duration-300 text-sm"
+                >Política de Privacidade</a
+              >
+              <a
+                href="#"
+                class="text-gray-400 hover:text-primary transition-colors duration-300 text-sm"
+                >Termos de Uso</a
+              >
             </div>
+          </div>
         </div>
+      </div>
     </footer>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg transform transition-transform duration-300 scale-0 hover:scale-110 z-50">
-        <i class='bx bx-up-arrow-alt text-2xl'></i>
+    <button
+      id="back-to-top"
+      class="fixed bottom-6 right-6 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg transform transition-transform duration-300 scale-0 hover:scale-110 z-50"
+    >
+      <i class="bx bx-up-arrow-alt text-2xl"></i>
     </button>
 
     <!-- Scripts -->
     <script>
-        // Inicializar AOS (Animate On Scroll)
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                duration: 800,
-                easing: 'ease-in-out',
-                once: true
-            });
-            
-            // Menu Mobile Toggle
-            const menuToggle = document.getElementById('menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            menuToggle.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-                if (mobileMenu.classList.contains('hidden')) {
-                    menuToggle.innerHTML = '<i class="bx bx-menu text-2xl"></i>';
-                } else {
-                    menuToggle.innerHTML = '<i class="bx bx-x text-2xl"></i>';
-                }
-            });
-            
-            // Links do menu mobile - fechar ao clicar
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.add('hidden');
-                    menuToggle.innerHTML = '<i class="bx bx-menu text-2xl"></i>';
-                });
-            });
-            
-            // Back to Top Button
-            const backToTopButton = document.getElementById('back-to-top');
-            
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
-                    backToTopButton.classList.remove('scale-0');
-                    backToTopButton.classList.add('scale-100');
-                } else {
-                    backToTopButton.classList.remove('scale-100');
-                    backToTopButton.classList.add('scale-0');
-                }
-            });
-            
-            backToTopButton.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            // Efeito Parallax nas imagens
-            const parallaxElements = document.querySelectorAll('.parallax');
-            
-            window.addEventListener('mousemove', function(e) {
-                const x = e.clientX / window.innerWidth;
-                const y = e.clientY / window.innerHeight;
-                
-                parallaxElements.forEach(element => {
-                    const speed = element.getAttribute('data-speed') || 20;
-                    const moveX = (x - 0.5) * speed;
-                    const moveY = (y - 0.5) * speed;
-                    
-                    element.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                });
-            });
-            
-            // Animação de digitação para textos específicos
-            const typingElements = document.querySelectorAll('.typing-animation');
-            typingElements.forEach(element => {
-                element.style.width = '0';
-                setTimeout(() => {
-                    element.style.width = '100%';
-                }, 500);
-            });
-            
-            // Animação de verificação nos inputs
-            const formInputs = document.querySelectorAll('input');
-            formInputs.forEach(input => {
-                input.addEventListener('input', function() {
-                    if (this.value.length > 0) {
-                        this.nextElementSibling.classList.add('opacity-100');
-                    } else {
-                        this.nextElementSibling.classList.remove('opacity-100');
-                    }
-                });
-            });
-            
-            // Criar partículas de fundo
-            const particlesContainer = document.getElementById('particles');
-            if (particlesContainer) {
-                for (let i = 0; i < 50; i++) {
-                    const particle = document.createElement('div');
-                    particle.classList.add('particle');
-                    
-                    // Posição aleatória
-                    const posX = Math.random() * 100;
-                    const posY = Math.random() * 100;
-                    particle.style.left = `${posX}%`;
-                    particle.style.top = `${posY}%`;
-                    
-                    // Tamanho aleatório
-                    const size = Math.random() * 6 + 2;
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
-                    
-                    // Opacidade aleatória
-                    const opacity = Math.random() * 0.5 + 0.1;
-                    particle.style.opacity = opacity;
-                    
-                    // Duração da animação aleatória
-                    const duration = Math.random() * 20 + 10;
-                    particle.style.animationDuration = `${duration}s`;
-                    
-                    // Atraso da animação aleatório
-                    const delay = Math.random() * 5;
-                    particle.style.animationDelay = `${delay}s`;
-                    
-                    particlesContainer.appendChild(particle);
-                }
-            }
-            
-            // Efeito de hover nos cards de serviço
-            const serviceCards = document.querySelectorAll('.service-card');
-            serviceCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.querySelectorAll('.icon-container i').forEach(icon => {
-                        icon.classList.add('animate-bounce');
-                    });
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.querySelectorAll('.icon-container i').forEach(icon => {
-                        icon.classList.remove('animate-bounce');
-                    });
-                });
-            });
-            
-            // Animação suave para links de âncora
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
+      // Inicializar AOS (Animate On Scroll)
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          easing: "ease-in-out",
+          once: true,
         });
+
+        // Menu Mobile Toggle
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        menuToggle.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+          if (mobileMenu.classList.contains("hidden")) {
+            menuToggle.innerHTML = '<i class="bx bx-menu text-2xl"></i>';
+          } else {
+            menuToggle.innerHTML = '<i class="bx bx-x text-2xl"></i>';
+          }
+        });
+
+        // Links do menu mobile - fechar ao clicar
+        const mobileLinks = mobileMenu.querySelectorAll("a");
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.add("hidden");
+            menuToggle.innerHTML = '<i class="bx bx-menu text-2xl"></i>';
+          });
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById("back-to-top");
+
+        window.addEventListener("scroll", function () {
+          if (window.pageYOffset > 300) {
+            backToTopButton.classList.remove("scale-0");
+            backToTopButton.classList.add("scale-100");
+          } else {
+            backToTopButton.classList.remove("scale-100");
+            backToTopButton.classList.add("scale-0");
+          }
+        });
+
+        backToTopButton.addEventListener("click", function () {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+
+        // Efeito Parallax nas imagens
+        const parallaxElements = document.querySelectorAll(".parallax");
+
+        window.addEventListener("mousemove", function (e) {
+          const x = e.clientX / window.innerWidth;
+          const y = e.clientY / window.innerHeight;
+
+          parallaxElements.forEach((element) => {
+            const speed = element.getAttribute("data-speed") || 20;
+            const moveX = (x - 0.5) * speed;
+            const moveY = (y - 0.5) * speed;
+
+            element.style.transform = `translate(${moveX}px, ${moveY}px)`;
+          });
+        });
+
+        // Animação de digitação para textos específicos
+        const typingElements = document.querySelectorAll(".typing-animation");
+        typingElements.forEach((element) => {
+          element.style.width = "0";
+          setTimeout(() => {
+            element.style.width = "100%";
+          }, 500);
+        });
+
+        // Animação de verificação nos inputs
+        const formInputs = document.querySelectorAll("input");
+        formInputs.forEach((input) => {
+          input.addEventListener("input", function () {
+            if (this.value.length > 0) {
+              this.nextElementSibling.classList.add("opacity-100");
+            } else {
+              this.nextElementSibling.classList.remove("opacity-100");
+            }
+          });
+        });
+
+        // Criar partículas de fundo
+        const particlesContainer = document.getElementById("particles");
+        if (particlesContainer) {
+          for (let i = 0; i < 50; i++) {
+            const particle = document.createElement("div");
+            particle.classList.add("particle");
+
+            // Posição aleatória
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            particle.style.left = `${posX}%`;
+            particle.style.top = `${posY}%`;
+
+            // Tamanho aleatório
+            const size = Math.random() * 6 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+
+            // Opacidade aleatória
+            const opacity = Math.random() * 0.5 + 0.1;
+            particle.style.opacity = opacity;
+
+            // Duração da animação aleatória
+            const duration = Math.random() * 20 + 10;
+            particle.style.animationDuration = `${duration}s`;
+
+            // Atraso da animação aleatório
+            const delay = Math.random() * 5;
+            particle.style.animationDelay = `${delay}s`;
+
+            particlesContainer.appendChild(particle);
+          }
+        }
+
+        // Efeito de hover nos cards de serviço
+        const serviceCards = document.querySelectorAll(".service-card");
+        serviceCards.forEach((card) => {
+          card.addEventListener("mouseenter", function () {
+            this.querySelectorAll(".icon-container i").forEach((icon) => {
+              icon.classList.add("animate-bounce");
+            });
+          });
+
+          card.addEventListener("mouseleave", function () {
+            this.querySelectorAll(".icon-container i").forEach((icon) => {
+              icon.classList.remove("animate-bounce");
+            });
+          });
+        });
+
+        // Animação suave para links de âncora
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
     </script>
-</body>
+  </body>
 </html>

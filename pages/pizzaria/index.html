@@ -15,6 +15,11 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Satisfy&family=Montserrat:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+    <!-- Boxicons para ícones -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
 
     <!-- Configuração do Tailwind e estilos personalizados -->
     <script>
@@ -150,19 +155,7 @@
               id="mobile-menu-button"
               class="text-white focus:outline-none"
             >
-              <svg
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
-              </svg>
+              <i class="bx bx-menu text-2xl"></i>
             </button>
           </div>
         </div>
@@ -835,6 +828,11 @@
         // Adiciona evento de clique para o botão do menu mobile
         mobileMenuButton.addEventListener("click", function () {
           mobileMenu.classList.toggle("open");
+          if (mobileMenu.classList.contains("open")) {
+            mobileMenuButton.innerHTML = '<i class="bx bx-x text-2xl"></i>';
+          } else {
+            mobileMenuButton.innerHTML = '<i class="bx bx-menu text-2xl"></i>';
+          }
         });
       });
     </script>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite de Casamento - Ana & João</title>
+    <meta name="description" content="Convite de casamento digital para Ana e João">
+    
+    <!-- Fontes do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header com animação de entrada -->
+    <header class="hero-section" id="home">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="couple-names">
+                <h1 class="bride-name">Ana</h1>
+                <div class="heart-divider">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h1 class="groom-name">João</h1>
+            </div>
+            <p class="wedding-date">15 de Dezembro de 2024</p>
+            <p class="wedding-subtitle">Convidam você para celebrar nosso amor</p>
+            <button class="cta-button" onclick="scrollToSection('detalhes')">
+                <i class="fas fa-scroll"></i>
+                Ver Convite
+            </button>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <!-- Navegação -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">A & J</div>
+            <ul class="nav-menu">
+                <li><a href="#home" onclick="scrollToSection('home')">Início</a></li>
+                <li><a href="#detalhes" onclick="scrollToSection('detalhes')">Detalhes</a></li>
+                <li><a href="#localizacao" onclick="scrollToSection('localizacao')">Local</a></li>
+                <li><a href="#presentes" onclick="scrollToSection('presentes')">Presentes</a></li>
+                <li><a href="#confirmacao" onclick="scrollToSection('confirmacao')">RSVP</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Seção de Detalhes do Casamento -->
+    <section class="wedding-details" id="detalhes">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nosso Grande Dia</h2>
+                <div class="decorative-line"></div>
+            </div>
+            
+            <div class="details-grid">
+                <div class="detail-card">
+                    <div class="detail-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Data</h3>
+                    <p>15 de Dezembro de 2024</p>
+                    <p class="detail-sub">Sábado</p>
+                </div>
+                
+                <div class="detail-card">
+                    <div class="detail-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Horário</h3>
+                    <p>Cerimônia: 16h00</p>
+                    <p class="detail-sub">Festa: 18h00</p>
+                </div>
+                
+                <div class="detail-card">
+                    <div class="detail-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Local</h3>
+                    <p>Igreja São José</p>
+                    <p class="detail-sub">Salão de Festas Jardim</p>
+                </div>
+            </div>
+            
+            <div class="love-story">
+                <h3>Nossa História</h3>
+                <p>Há 5 anos nossos caminhos se cruzaram e desde então construímos uma linda história de amor. Agora queremos compartilhar este momento especial com as pessoas que mais amamos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Localização -->
+    <section class="location-section" id="localizacao">
+        <div class="container">
+            <div class="section-header">
+                <h2>Como Chegar</h2>
+                <div class="decorative-line"></div>
+            </div>
+            
+            <div class="location-content">
+                <div class="location-info">
+                    <div class="venue-info">
+                        <h3><i class="fas fa-church"></i> Cerimônia</h3>
+                        <p><strong>Igreja São José</strong></p>
+                        <p>Rua das Flores, 123 - Centro</p>
+                        <p>São Paulo - SP</p>
+                        <button class="location-btn" onclick="openMap('igreja')">
+                            <i class="fas fa-directions"></i> Como Chegar
+                        </button>
+                    </div>
+                    
+                    <div class="venue-info">
+                        <h3><i class="fas fa-glass-cheers"></i> Festa</h3>
+                        <p><strong>Salão de Festas Jardim</strong></p>
+                        <p>Av. dos Jardins, 456 - Jardins</p>
+                        <p>São Paulo - SP</p>
+                        <button class="location-btn" onclick="openMap('festa')">
+                            <i class="fas fa-directions"></i> Como Chegar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <div id="map" class="map-placeholder">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p>Mapa Interativo</p>
+                        <small>Clique nos botões acima para ver a localização</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Presentes -->
+    <section class="gifts-section" id="presentes">
+        <div class="container">
+            <div class="section-header">
+                <h2>Lista de Presentes</h2>
+                <div class="decorative-line"></div>
+                <p>Sua presença é o nosso maior presente, mas se desejar nos presentear, aqui estão algumas sugestões:</p>
+            </div>
+            
+            <div class="gifts-options">
+                <div class="gift-option">
+                    <div class="gift-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Lista de Casamento</h3>
+                    <p>Itens para nossa nova casa</p>
+                    <div class="gift-stores">
+                        <a href="#" class="store-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Loja Americana
+                        </a>
+                        <a href="#" class="store-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Magazine Luiza
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="gift-option">
+                    <div class="gift-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <h3>Lua de Mel</h3>
+                    <p>Ajude-nos a realizar nossa viagem dos sonhos</p>
+                    <div class="pix-info">
+                        <p><strong>PIX:</strong></p>
+                        <div class="pix-key">
+                            <span id="pixKey">ana.joao@email.com</span>
+                            <button onclick="copyPix()" class="copy-btn">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gift-option">
+                    <div class="gift-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Presença</h3>
+                    <p>O mais importante é ter você conosco neste dia especial</p>
+                    <button class="presence-btn" onclick="scrollToSection('confirmacao')">
+                        <i class="fas fa-check"></i> Confirmar Presença
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Confirmação -->
+    <section class="rsvp-section" id="confirmacao">
+        <div class="container">
+            <div class="section-header">
+                <h2>Confirmação de Presença</h2>
+                <div class="decorative-line"></div>
+                <p>Por favor, confirme sua presença até o dia 1º de dezembro</p>
+            </div>
+            
+            <div class="rsvp-form-container">
+                <form class="rsvp-form" id="rsvpForm">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo *</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefone">Telefone *</label>
+                        <input type="tel" id="telefone" name="telefone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="acompanhantes">Número de Acompanhantes</label>
+                        <select id="acompanhantes" name="acompanhantes">
+                            <option value="0">Apenas eu</option>
+                            <option value="1">1 acompanhante</option>
+                            <option value="2">2 acompanhantes</option>
+                            <option value="3">3 acompanhantes</option>
+                            <option value="4">4 ou mais acompanhantes</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nomeAcompanhantes">Nome dos Acompanhantes</label>
+                        <textarea id="nomeAcompanhantes" name="nomeAcompanhantes" placeholder="Digite o nome dos acompanhantes (opcional)"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="restricoes">Restrições Alimentares</label>
+                        <textarea id="restricoes" name="restricoes" placeholder="Informe se há alguma restrição alimentar (opcional)"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem para os Noivos</label>
+                        <textarea id="mensagem" name="mensagem" placeholder="Deixe uma mensagem carinhosa (opcional)"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Confirmar via WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="couple-initials">A & J</div>
+                <p>15 de Dezembro de 2024</p>
+                <p>Com amor, Ana e João</p>
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    
+    <!-- Leaflet para o mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</body>
+</html>
+
