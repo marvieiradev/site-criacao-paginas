@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu Doce - Doces Artesanais de Qualidade</title>
+    <meta
+      name="description"
+      content="Doces artesanais feitos com amor e ingredientes premium. Brigadeiros gourmet, cupcakes, bolos e muito mais!"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="nav-brand">
+            <h1 class="logo">
+              <i class="fas fa-birthday-cake"></i>
+              Meu Doce
+            </h1>
+          </div>
+          <div class="nav-menu" id="nav-menu">
+            <ul class="nav-list">
+              <li class="nav-item">
+                <a href="#hero" class="nav-link">Início</a>
+              </li>
+              <li class="nav-item">
+                <a href="#about" class="nav-link">Sobre</a>
+              </li>
+              <li class="nav-item">
+                <a href="#menu" class="nav-link">Cardápio</a>
+              </li>
+              <li class="nav-item">
+                <a href="#contact" class="nav-link">Contato</a>
+              </li>
+            </ul>
+          </div>
+          <div class="nav-controls">
+            <button id="theme-toggle" class="theme-toggle">
+              <img src="images/morango.svg" alt="" />
+            </button>
+            <button class="nav-toggle" id="nav-toggle">
+              <span class="hamburger"></span>
+              <span class="hamburger"></span>
+              <span class="hamburger"></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="hero" class="hero-section">
+        <div class="container">
+          <div class="hero-content">
+            <h2 class="hero-title">A Qualidade e Dedicação em Cada Doce</h2>
+            <p class="hero-subtitle">
+              Experimente a perfeição em cada mordida. Feito com amor e os
+              melhores ingredientes.
+            </p>
+            <button class="btn primary-btn" onclick="scrollToSection('menu')">
+              <i class="fas fa-heart"></i> Conheça Nossos Doces
+            </button>
+          </div>
+          <div class="hero-image">
+            <img
+              src="./images/hero-sweet.webp"
+              alt="Doces artesanais"
+              class="floating-image"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about-section">
+        <div class="container">
+          <div class="about-content">
+            <div class="about-text">
+              <h2>Nossa História</h2>
+              <p>
+                Na <strong>Meu Doce</strong>, cada receita é uma obra de arte
+                criada com paixão e dedicação. Utilizamos apenas ingredientes
+                selecionados e técnicas artesanais para garantir que cada doce
+                seja uma experiência única e inesquecível.
+              </p>
+              <div class="features">
+                <div class="feature">
+                  <i class="fas fa-award"></i>
+                  <span>Ingredientes Premium</span>
+                </div>
+                <div class="feature">
+                  <i class="fas fa-heart"></i>
+                  <span>Feito com Amor</span>
+                </div>
+                <div class="feature">
+                  <i class="fas fa-star"></i>
+                  <span>Qualidade Garantida</span>
+                </div>
+              </div>
+            </div>
+            <div class="about-image">
+              <img
+                src="./images/about-us.webp"
+                alt="Nossa equipe preparando doces"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="menu" class="menu-section">
+        <div class="container">
+          <h2 class="section-title">Nosso Cardápio</h2>
+          <p class="section-subtitle">
+            Delícias irresistíveis que conquistam todos os paladares
+          </p>
+          <div class="menu-items">
+            <div class="menu-item" data-aos="fade-up">
+              <div class="menu-item-image">
+                <img src="./images/01.webp" alt="Brigadeiro de Chocolate" />
+                <div class="menu-item-overlay">
+                  <i class="fas fa-eye"></i>
+                </div>
+              </div>
+              <div class="menu-item-content">
+                <h3>Brigadeiro Gourmet</h3>
+                <p>
+                  O clássico que você ama, com um toque especial e ingredientes
+                  premium.
+                </p>
+                <span class="price">R$ 3,50</span>
+              </div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="100">
+              <div class="menu-item-image">
+                <img src="./images/02.webp" alt="Cupcake de Morango" />
+                <div class="menu-item-overlay">
+                  <i class="fas fa-eye"></i>
+                </div>
+              </div>
+              <div class="menu-item-content">
+                <h3>Cupcake de Morango</h3>
+                <p>Leve e delicioso, com cobertura cremosa e morango fresco.</p>
+                <span class="price">R$ 8,00</span>
+              </div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="200">
+              <div class="menu-item-image">
+                <img src="./images/03.webp" alt="Bolo de Chocolate" />
+                <div class="menu-item-overlay">
+                  <i class="fas fa-eye"></i>
+                </div>
+              </div>
+              <div class="menu-item-content">
+                <h3>Bolo de Chocolate</h3>
+                <p>Camadas de puro prazer para os amantes de chocolate.</p>
+                <span class="price">R$ 45,00</span>
+              </div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="300">
+              <div class="menu-item-image">
+                <img src="./images/04.webp" alt="Trufa Especial" />
+                <div class="menu-item-overlay">
+                  <i class="fas fa-eye"></i>
+                </div>
+              </div>
+              <div class="menu-item-content">
+                <h3>Trufa Especial</h3>
+                <p>
+                  Chocolate belga derretendo na boca com recheios exclusivos.
+                </p>
+                <span class="price">R$ 5,00</span>
+              </div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="400">
+              <div class="menu-item-image">
+                <img src="./images/05.webp" alt="Mousse de Morango" />
+                <div class="menu-item-overlay">
+                  <i class="fas fa-eye"></i>
+                </div>
+              </div>
+              <div class="menu-item-content">
+                <h3>Mousse de Morango</h3>
+                <p>Cremoso e refrescante, perfeito para qualquer ocasião.</p>
+                <span class="price">R$ 12,00</span>
+              </div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="500">
+              <div class="menu-item-image">
+                <img src="./images/06.webp" alt="Torta Especial" />
+                <div class="menu-item-overlay">
+                  <i class="fas fa-eye"></i>
+                </div>
+              </div>
+              <div class="menu-item-content">
+                <h3>Torta Especial</h3>
+                <p>Combinação perfeita de sabores em uma sobremesa única.</p>
+                <span class="price">R$ 65,00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" class="testimonials-section">
+        <div class="container">
+          <h2 class="section-title">O Que Nossos Clientes Dizem</h2>
+          <div class="testimonials">
+            <div class="testimonial" data-aos="fade-right">
+              <div class="testimonial-content">
+                <i class="fas fa-quote-left"></i>
+                <p>
+                  "Os doces mais deliciosos que já provei! A qualidade é
+                  excepcional e o atendimento é maravilhoso."
+                </p>
+                <div class="testimonial-author">
+                  <strong>Maria Silva</strong>
+                  <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial" data-aos="fade-up">
+              <div class="testimonial-content">
+                <i class="fas fa-quote-left"></i>
+                <p>
+                  "Perfeito para ocasiões especiais! Os brigadeiros gourmet são
+                  simplesmente divinos."
+                </p>
+                <div class="testimonial-author">
+                  <strong>João Santos</strong>
+                  <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial" data-aos="fade-left">
+              <div class="testimonial-content">
+                <i class="fas fa-quote-left"></i>
+                <p>
+                  "Ingredientes de primeira qualidade e sabor incomparável.
+                  Recomendo a todos!"
+                </p>
+                <div class="testimonial-author">
+                  <strong>Ana Costa</strong>
+                  <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact-section">
+        <div class="container">
+          <div class="contact-content">
+            <div class="contact-info">
+              <h2>Entre em Contato</h2>
+              <p>
+                Faça sua encomenda ou tire suas dúvidas. Estamos prontos para te
+                atender com todo carinho!
+              </p>
+              <div class="contact-details">
+                <div class="contact-item">
+                  <i class="fas fa-phone"></i>
+                  <span>(11) 99999-9999</span>
+                </div>
+                <div class="contact-item">
+                  <i class="fas fa-envelope"></i>
+                  <span>contato@meudoce.com.br</span>
+                </div>
+                <div class="contact-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>São Paulo, SP</span>
+                </div>
+              </div>
+            </div>
+            <div class="contact-form">
+              <form id="whatsapp-form">
+                <div class="form-group">
+                  <label for="name">Nome</label>
+                  <input type="text" id="name" name="name" required />
+                </div>
+                <div class="form-group">
+                  <label for="phone">Telefone</label>
+                  <input type="tel" id="phone" name="phone" required />
+                </div>
+                <div class="form-group">
+                  <label for="message">Mensagem</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    placeholder="Conte-nos sobre seu pedido ou dúvida..."
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn whatsapp-btn">
+                  <i class="fab fa-whatsapp"></i> Enviar via WhatsApp
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Meu Doce</h3>
+            <p>
+              Doces artesanais feitos com amor e dedicação para adoçar seus
+              momentos especiais.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" class="social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="social-link"
+                ><i class="fab fa-whatsapp"></i
+              ></a>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h4>Contato</h4>
+            <div class="footer-contact">
+              <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+              <p><i class="fas fa-envelope"></i> contato@meudoce.com.br</p>
+              <p><i class="fas fa-map-marker-alt"></i> São Paulo, SP</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Meu Doce. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
